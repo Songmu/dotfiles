@@ -683,6 +683,7 @@ endfunction
 " vundle
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
+Bundle 'gmarik/bundle'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-ref'
