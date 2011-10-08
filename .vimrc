@@ -114,10 +114,6 @@ nnoremap <silent> <Space>r :<C-u>
 \ endif<CR>
 
 " s:snippetsを外からunletできないので以下の関数をplugin/snipMate.vimに書く
-"fun! ResetSnippet(ft)
-"	if has_key(g:did_ft, ft) | unlet g:did_ft[ft] | endif
-"	if has_key(s:snippets, ft) | unlet s:snippets[ft] | endif
-"endif
 function! SnipMateReload()
     if &ft == 'snippet'
         let ft = substitute(expand('%'), '.snippets', '', '')
@@ -126,9 +122,6 @@ function! SnipMateReload()
     endif
 endfunction
 
-"grepとかmakeのあとにエラーがあればQuickFixだす
-"autocmd MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep
-"    \ if len(getqflist()) != 0 | copen | endif
 
 " オレオレgrep
 command! -complete=file -nargs=+ Grep call s:grep(<q-args>)
@@ -153,7 +146,6 @@ set fileencoding=utf-8
 set fileformats=unix,dos,mac
 
 " タブラインの設定
-" from :help setting-tabline
 set tabline=%!MyTabLine()
 
 function! MyTabLine()
@@ -203,30 +195,6 @@ let mapleader = ','
 "; to :
 nnoremap ; :
 
-"エスケープキー
-inoremap <C-j> <esc>
-vnoremap <C-j> <esc>
-
-"保存
-nnoremap <Space>w :<C-u>write<CR>
-
-"終了
-nnoremap <Space>q :<C-u>quit<CR>
-
-"上下移動
-nnoremap gj j
-nnoremap gk k
-vnoremap gj j
-vnoremap gk k
-
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
-
-"改行
-"nnoremap <CR> o<ESC>
-"nnoremap <S-CR> O<ESC>
 
 "単語検索
 nnoremap * g*
@@ -294,24 +262,6 @@ nnoremap <C-y> <C-y>k
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
 
-"function! SmoothScroll(action)
-"   let l:h=winheight(0) / 6
-"   let l:i=0
-"   while l:i < l:h
-"      let l:i = l:i + 1
-"      if a:action=="down"
-"         execute "normal 3\<C-e>"
-"      elseif a:action=="up"
-"         execute "normal 3\<C-y>"
-"      end
-"      redraw
-"      sleep 1m
-"   endwhile 
-"endfunction
-"
-"nnoremap <silent> <C-d> :<C-u>call SmoothScroll("down")<CR>
-"nnoremap <silent> <C-u> :<C-u>call SmoothScroll("up")<CR>
-
 " <C-u>とかのundo
 inoremap <C-u>  <C-g>u<C-u>
 inoremap <C-w>  <C-g>u<C-w>
@@ -324,16 +274,6 @@ cnoremap <C-]> \
 nnoremap Y y$
 
 " text object
-"onoremap aa  a>
-"vnoremap aa  a>
-"onoremap ia  i>
-"vnoremap ia  i>
-"
-"onoremap ar  a]
-"vnoremap ar  a]
-"onoremap ir  i]
-"vnoremap ir  i]
- 
 nnoremap gc `[v`]
 onoremap gc :normal gc<CR>
 
@@ -436,12 +376,6 @@ set includeexpr=substitute(v:fname,'^\\/','','')
 autocmd FileType html :setlocal path+=;/
 
 " align.vimのおぺれーた
-"function! AlignTSP(type, ...)
-"    let reg_save = @@
-"    silent execute "normal! '[V']\<leader>tsp"
-"    let @@ = reg_save
-"endfunction
-"nnoremap <silent> <Space>a :<C-u>set opfunc=AlignTSP<CR>g@
 vmap <Space>a <leader>tsp
 vnoremap <Space>= :Align =><CR>
 
@@ -480,10 +414,6 @@ endfunction
 augroup FileJumpAutoCmd
     autocmd!
 augroup END
-
-"autocmd FileJumpAutoCmd BufReadPre * call FileJumpPush()
-"nnoremap <silent> ,p :<C-u>call FileJumpPrev()<CR>
-"nnoremap <silent> ,n :<C-u>call FileJumpNext()<CR>
 
 
 " acp.vim
