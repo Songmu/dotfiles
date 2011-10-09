@@ -75,6 +75,10 @@ set splitbelow
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
 
+highlight JpSpace cterm=underline ctermfg=red guifg=red
+au BufRead,BufNew * match JpSpace /　/
+
+
 set helplang=ja
 
 "-----------------------
