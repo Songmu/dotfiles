@@ -346,6 +346,8 @@ onoremap ai :normal vai<CR>
 
 nnoremap gs :<C-u>setf<Space>
 
+" onmi補完 Ctrl+Space
+imap <Nul> <C-x><C-o>
 
 "------------------------
 " プラグインの設定
@@ -422,9 +424,6 @@ augroup FileJumpAutoCmd
     autocmd!
 augroup END
 
-
-" acp.vim
-let g:acp_behaviorSnipmateLength = 1
 
 " see http://vim-users.jp/2009/11/hack96/
 autocmd FileType *
@@ -613,7 +612,9 @@ Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
 Bundle 'mattn/perl-completion.vim'
+Bundle 'tsaleh/vim-align'
+Bundle 'vim-scripts/closetag.vim'
+Bundle 'thinca/vim-quickrun'
 filetype plugin indent on     " required!
-
 
 
