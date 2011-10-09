@@ -195,12 +195,8 @@ command! -nargs=0 CD :execute 'lcd ' . expand("%:p:h")
 "------------------------
 " キーバインド
 "------------------------
-"leader設定
-let mapleader = ','
-
 "; to :
 nnoremap ; :
-
 
 "単語検索
 nnoremap * g*
