@@ -136,6 +136,8 @@ function! s:grep(args)
     if len(getqflist()) != 0 | copen | endif
 endfunction
 
+autocmd FileType perl,cgi :compiler perl
+
 "-----------------------
 " 文字コードとかの設定
 "------------------------
@@ -267,10 +269,6 @@ nnoremap <C-d> <C-d>zz
 " <C-u>とかのundo
 inoremap <C-u>  <C-g>u<C-u>
 inoremap <C-w>  <C-g>u<C-w>
-
-" \ って遠いよね
-inoremap <C-]> \
-cnoremap <C-]> \
 
 " 行末までyank
 nnoremap Y y$
@@ -598,6 +596,19 @@ function! s:error(msg)
     echohl None
 endfunction
 
+" errormarker
+let g:errormarker_errortext     = '!!'
+let g:errormarker_warningstext  = '??'
+let g:errormarker_errorgroup    = 'Error'
+let g:errormarker_warning_group = 'Todo'
+"let g:errormarker_erroricon = expand('~/.vim/signs/err.png')
+"let g:errormarker_erroricon = expand('~/.vim/signs/warn.png')
+
+"if !exists('g:flymake_enabled')
+"    let g:flymake_enabled = 1
+"    autocmd BufWritePost *.pl,*.pm,*.psgi,*.t silent make %
+"endif
+
 
 " vundle
 set rtp+=~/.vim/vundle.git/
@@ -611,6 +622,7 @@ Bundle 'mattn/perl-completion.vim'
 Bundle 'tsaleh/vim-align'
 Bundle 'vim-scripts/closetag.vim'
 Bundle 'thinca/vim-quickrun'
+Bundle 'vim-scripts/errormarker.vim'
 filetype plugin indent on     " required!
 
 
