@@ -1,0 +1,15 @@
+[color]
+	ui = true
+[user]
+	name = Masayuki Matsuki
+	email = y.songmu@gmail.com
+[alias]
+    st = status
+    co = checkout
+    ci = commit
+    cp = cherry-pick
+    br = branch
+[diff "swfv"]
+	textconv = swfv
+[core]
+	quotepath = false
