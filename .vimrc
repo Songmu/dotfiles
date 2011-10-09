@@ -75,6 +75,8 @@ set splitbelow
 highlight WhitespaceEOL ctermbg=red guibg=red
 match WhitespaceEOL /\s\+$/
 
+set helplang=ja
+
 "-----------------------
 " autocmd
 "------------------------

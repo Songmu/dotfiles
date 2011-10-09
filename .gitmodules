@@ -1,3 +1,6 @@
 [submodule "/home/songmu/.dotfiles/vimfiles/vundle.git"]
 	path = /home/songmu/.dotfiles/vimfiles/vundle.git
 	url = http://github.com/gmarik/vundle.git
+[submodule "vimfiles/bundle/vimdoc-ja"]
+	path = vimfiles/bundle/vimdoc-ja
+	url = https://github.com/vim-jp/vimdoc-ja.git
