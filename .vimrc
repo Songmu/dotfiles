@@ -346,6 +346,7 @@ onoremap ai :normal vai<CR>
 
 nnoremap gs :<C-u>setf<Space>
 
+
 "------------------------
 " プラグインの設定
 "------------------------
@@ -483,19 +484,6 @@ let g:user_zen_settings = {
 
 set virtualedit+=block
 
-" プロジェクト毎に読み込む設定ファイル
-augroup vimrc-project
-    autocmd!
-    autocmd BufNewFile,BufReadPost * call s:vimrc_project(expand('<afile>:p:h'))
-augroup END
-
-function! s:vimrc_project(loc)
-    let files = findfile('.vimrc.project', escape(a:loc, ' ') . ';', -1)
-    for i in reverse(filter(files, 'filereadable(v:val)'))
-        source `=i`
-    endfor
-endfunction
-
 " package名チェック
 function! s:get_package_name()
   let mx = '^\s*package\s\+\([^ ;]\+\)'
@@ -619,11 +607,12 @@ endfunction
 " vundle
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
-Bundle 'gmarik/bundle'
+Bundle 'gmarik/vundle'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
+Bundle 'mattn/perl-completion.vim'
 filetype plugin indent on     " required!
 
 
