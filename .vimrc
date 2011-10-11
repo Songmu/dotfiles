@@ -4,6 +4,7 @@
 
 "色設定
 syntax on
+colorscheme mycolor
 
 "タブの設定
 set softtabstop=4
@@ -31,7 +32,7 @@ set cmdheight=1
 set backspace=indent,eol,start
 
 "タブバー常に表示
-set showtabline=2 
+set showtabline=2
 
 "タブ文字可視化
 set list
