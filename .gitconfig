@@ -1,15 +1,19 @@
 [color]
-	ui = true
+    ui = true
 [user]
-	name = Masayuki Matsuki
-	email = y.songmu@gmail.com
+    name = Masayuki Matsuki
+    email = y.songmu@gmail.com
+[core]
+    pager = less -r
 [alias]
-    st = status
     co = checkout
     ci = commit
-    cp = cherry-pick
+    st = status
     br = branch
+    cp = cherry-pick
+    l  = log --date=local -10
+    lo = log --date=local
 [diff "swfv"]
-	textconv = swfv
+    textconv = swfv
 [core]
-	quotepath = false
+    quotepath = false

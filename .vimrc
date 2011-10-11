@@ -72,11 +72,13 @@ set winwidth=78
 " 下に開く
 set splitbelow
 
-highlight WhitespaceEOL ctermbg=red guibg=red
-match WhitespaceEOL /\s\+$/
-
+" 全角スペース
 highlight JpSpace cterm=underline ctermfg=red guifg=red
 au BufRead,BufNew * match JpSpace /　/
+
+" 行末スペース
+highlight WhitespaceEOL ctermbg=red guibg=red
+au BufRead,BufNew,WinEnter * match WhitespaceEOL /\s\+$/
 
 
 set helplang=ja
