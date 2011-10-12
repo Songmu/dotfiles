@@ -81,6 +81,8 @@ au BufRead,BufNew * match JpSpace /　/
 highlight WhitespaceEOL ctermbg=red guibg=red
 au BufRead,BufNew,WinEnter * match WhitespaceEOL /\s\+$/
 
+" 勝手に改行しない
+set textwidth=0
 
 set helplang=ja
 
