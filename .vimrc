@@ -81,15 +81,11 @@ au BufRead,BufNew * match JpSpace /　/
 highlight WhitespaceEOL ctermbg=red guibg=red
 au BufRead,BufNew,WinEnter * match WhitespaceEOL /\s\+$/
 
-" 勝手に改行しない
-set textwidth=0
-
 set helplang=ja
 
 "-----------------------
 " autocmd
 "------------------------
-
 augroup MyAutoCmd
   autocmd!
 augroup END
@@ -347,6 +343,9 @@ nnoremap gs :<C-u>setf<Space>
 
 " onmi補完 Ctrl+Space
 imap <Nul> <C-x><C-o>
+
+map gf <C-w>gf
+autocmd FileType perl set isfname-=-
 
 "------------------------
 " プラグインの設定

@@ -13,6 +13,7 @@
     cp = cherry-pick
     l  = log --date=local -10
     lo = log --date=local
+    subup = submodule foreach 'git pull origin master'
 [diff "swfv"]
     textconv = swfv
 [core]
