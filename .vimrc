@@ -211,6 +211,7 @@ nnoremap <silent> <Space>th :set hlsearch!<CR>
 "タブ切り替え
 nnoremap <C-l> gt
 nnoremap <C-h> gT
+nmap <C-t> :tabnew .<cr>
 
 "タブ文字（\t）を入力
 inoremap <C-Tab> <C-v><Tab>
