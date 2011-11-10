@@ -628,6 +628,7 @@ Bundle 'tsaleh/vim-align'
 Bundle 'vim-scripts/closetag.vim'
 Bundle 'thinca/vim-quickrun'
 Bundle 'vim-scripts/errormarker.vim'
+Bundle 'ack.vim'
 filetype plugin indent on     " required!
 
 
