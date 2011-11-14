@@ -1,1 +1,4 @@
+--type-set=tx=.tx
 --type-set=mt=.mt
+--ignore-dir=swf
+--ignore-dir=sql

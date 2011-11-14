@@ -7,4 +7,8 @@ do
         ln -Fis "$PWD/$dotfile" $HOME
     fi
 done
-ln -s ~/.dotfiles/vimfiles ~/.vim
+
+if [ ! -d ~/.vim ]
+then
+    ln -s ~/.dotfiles/vimfiles ~/.vim
+fi
