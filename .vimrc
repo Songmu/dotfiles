@@ -110,7 +110,7 @@ autocmd MyAutoCmd BufNewFile,BufReadPost *.md set filetype=md
 
 "ディレクト自動移動
 autocmd MyAutoCmd BufNewFile,BufReadPost *
-\ execute ":lcd " . substitute(expand("%:p:h"), ' ', '\\ ', 'g')
+\ execute ":lcd " . substitute(substitute(expand("%:p:h"), ' ', '\\ ', 'g'), '#', '\\#', 'g')
 
 " カレントバッファのファイルを再読み込み。filetypeがvimかsnippetsのときだけ。
 nnoremap <silent> <Space>r :<C-u>
