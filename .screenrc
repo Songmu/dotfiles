@@ -1,0 +1,12 @@
+startup_message off
+vbell           off
+msgminwait      0
+autodetach      on
+defscrollback   10000
+
+shelltitle "% |zsh"
+hardstatus on
+hardstatus alwayslastline "%`%-w%{=b bw}%n %t%{-}%+w"
+bind s
+
+term xterm-256color

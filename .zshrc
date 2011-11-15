@@ -185,6 +185,14 @@ function imageinfo() {
   fi
 }
 
+function ssh_screen(){
+ eval server=\${$#}
+ screen -t $server ssh "$@"
+}
+if [ x$TERM = xscreen ]; then
+  alias ssh=ssh_screen
+fi
+
 #perlbrew
 [ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
 
