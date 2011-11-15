@@ -11,5 +11,8 @@ bind s
 
 term xterm-256color
 
+# 強制リサイズ回避
+termcapinfo xterm 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l' 
+
 # 画面が残らないように
 altscreen on
