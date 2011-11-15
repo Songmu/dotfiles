@@ -10,3 +10,6 @@ hardstatus alwayslastline "%`%-w%{=b bw}%n %t%{-}%+w"
 bind s
 
 term xterm-256color
+
+# 画面が残らないように
+altscreen on
