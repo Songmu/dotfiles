@@ -629,6 +629,8 @@ Bundle 'vim-scripts/closetag.vim'
 Bundle 'thinca/vim-quickrun'
 Bundle 'vim-scripts/errormarker.vim'
 Bundle 'ack.vim'
+Bundle 'mattn/webapi-vim'
+Bundle 'toritori0318/vim-redmine'
 filetype plugin indent on     " required!
 
 
