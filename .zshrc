@@ -13,6 +13,8 @@ zstyle ':vcs_info:*' enable git svn
 zstyle ':vcs_info:*' formats '%{'${fg[red]}'%}(%s %b) %{'$reset_color'%}'
 
 
+
+
 setopt prompt_subst
 precmd () {
   LANG=en_US.UTF-8 vcs_info
@@ -24,6 +26,10 @@ precmd () {
     PROMPT="
  %{${fg[yellow]}%}%~%{${reset_color}%} ${vcs_info_msg_0_}
 %{${fg[green]}%}[%n@%m]$%{${reset_color}%} "
+  fi
+
+  if [ "$TERM" = "screen" ]; then
+    screen -X title $(basename $(print -P "%~"))
   fi
 }
 
@@ -103,7 +109,7 @@ unsetopt promptcr
 
 #screenのステータスラインに最後に実行したコマンドを表示
 if [ "$TERM" = "screen" ]; then
-    #chpwd () { echo -n "_`dirs`\\" }
+    chpwd () { echo -n "_`dirs`\\" }
     preexec() {
         # see [zsh-workers:13180]
         # http://www.zsh.org/mla/workers/2000/msg03993.html
@@ -139,6 +145,12 @@ if [ "$TERM" = "screen" ]; then
     }
     chpwd () {}
 fi
+
+function ssh_screen(){
+    eval server=\${$#}
+    screen -t $server ssh "$@"
+}
+alias ssh='ssh_screen'
 
 #w3m4alc
 function alc() {
