@@ -10,8 +10,6 @@ hardstatus alwayslastline "%`%-w%{=b bw}%n %t%{-}%+w"
 bind s
 bind x
 
-term xterm-256color
-
 # 強制リサイズ回避
 termcapinfo xterm-256color hs@:is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l
 
@@ -19,5 +17,3 @@ termcapinfo xterm* ti@:te@
 
 # 画面が残らないように
 altscreen on
-
-defbce on
