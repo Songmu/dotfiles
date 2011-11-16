@@ -143,7 +143,7 @@ if [ "$TERM" = "screen" ]; then
             cmd=(${(z)${(e):-\$jt$num}})
             echo -n "k$cmd[1]:t\\") 2>/dev/null
     }
-    chpwd () {}
+    chpwd
 fi
 
 function ssh_screen(){
