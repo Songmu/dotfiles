@@ -12,9 +12,6 @@ autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn
 zstyle ':vcs_info:*' formats '%{'${fg[red]}'%}(%s %b) %{'$reset_color'%}'
 
-
-
-
 setopt prompt_subst
 precmd () {
   LANG=en_US.UTF-8 vcs_info
@@ -148,9 +145,11 @@ fi
 
 function ssh_screen(){
     eval server=\${$#}
-    screen -t $server ssh "$@"
+    \screen -t $server ssh "$@"
 }
-alias ssh='ssh_screen'
+if [ "$TERM" = "screen" ]; then
+    alias ssh='ssh_screen'
+fi
 
 #w3m4alc
 function alc() {
@@ -197,15 +196,6 @@ function imageinfo() {
     echo 'usage: imageinfo file [file..]'
   fi
 }
-
-function ssh_screen(){
-  eval server=\${$#}
-  screen -t $server ssh "$@"
-}
-if [ "$TERM" = "screen" ]; then
-  alias ssh=ssh_screen
-fi
-
 
 #perlbrew
 [ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
