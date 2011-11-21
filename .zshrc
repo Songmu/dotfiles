@@ -206,7 +206,7 @@ function imageinfo() {
 [ -f ~/.pythonbrew/etc/bashrc ] && source ~/.pythonbrew/etc/bashrc
 
 #nvm
-[ -f ~/.nvm/nvm.sh ] && source ~/.nvm/nvm.sh
+# [ -f ~/.nvm/nvm.sh ] && source ~/.nvm/nvm.sh
 
 #個別設定を読み込む
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
