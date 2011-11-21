@@ -631,6 +631,7 @@ Bundle 'vim-scripts/errormarker.vim'
 Bundle 'ack.vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'toritori0318/vim-redmine'
+Bundle 'h1mesuke/unite-outline'
 filetype plugin indent on     " required!
 
 

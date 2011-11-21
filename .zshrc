@@ -95,6 +95,8 @@ alias svnadd="svn st | grep '^?' | awk '{ print \$2 }' | xargs svn add"
 alias svndel="svn st | grep '^!' | awk '{ print \$2 }' | xargs svn delete"
 
 alias gs="git svn"
+alias gi="git"
+alias gti="git"
 
 alias screen='screen -U -D -RR'
 
@@ -154,7 +156,7 @@ fi
 #w3m4alc
 function alc() {
   if [ $# != 0 ]; then
-    w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa" | less +37
+    w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa" | \less
     #w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa"
   else
     echo 'usage: alc word'
