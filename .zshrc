@@ -108,7 +108,7 @@ unsetopt promptcr
 
 #screenのステータスラインに最後に実行したコマンドを表示
 if [ "$TERM" = "screen" ]; then
-    chpwd () { echo -n "_`dirs`\\" }
+    #chpwd () { echo -n "_`dirs`\\" }
     preexec() {
         # see [zsh-workers:13180]
         # http://www.zsh.org/mla/workers/2000/msg03993.html
@@ -142,7 +142,7 @@ if [ "$TERM" = "screen" ]; then
             cmd=(${(z)${(e):-\$jt$num}})
             echo -n "k$cmd[1]:t\\") 2>/dev/null
     }
-    chpwd
+    chpwd () {}
 fi
 
 function ssh_screen(){
@@ -211,7 +211,9 @@ function imageinfo() {
 #個別設定を読み込む
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-if [[ -s /home/songmu/.rvm/scripts/rvm ]] ; then source /home/songmu/.rvm/scripts/rvm ; fi
+if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
+
+export PATH=$HOME/.nodebrew/current/lib/node_modules/.bin:$HOME/.nodebrew/current/bin:$PATH
 
 #
 # Set vi mode status bar

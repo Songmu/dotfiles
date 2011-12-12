@@ -616,6 +616,7 @@ let g:errormarker_warning_group = 'Todo'
 
 
 " vundle
+filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 Bundle 'gmarik/vundle'
@@ -633,5 +634,6 @@ Bundle 'mattn/webapi-vim'
 Bundle 'toritori0318/vim-redmine'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'mattn/vimplenote-vim'
+Bundle 'kchmck/vim-coffee-script'
 filetype plugin indent on     " required!
 
