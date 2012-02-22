@@ -635,5 +635,6 @@ Bundle 'toritori0318/vim-redmine'
 Bundle 'h1mesuke/unite-outline'
 Bundle 'mattn/vimplenote-vim'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'mattn/gist-vim'
 filetype plugin indent on     " required!
 
