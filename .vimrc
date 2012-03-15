@@ -83,6 +83,8 @@ au BufRead,BufNew,WinEnter * match WhitespaceEOL /\s\+$/
 
 set helplang=ja
 
+set foldmethod=manual
+
 "-----------------------
 " autocmd
 "------------------------

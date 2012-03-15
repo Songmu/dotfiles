@@ -103,6 +103,8 @@ alias screen='screen -U -D -RR'
 alias less='/usr/share/vim/vim73/macros/less.sh'
 alias pad="plackup -p 1978 -MPlack::App::Directory -e 'Plack::App::Directory->new->to_app'"
 
+alias perlsrc='perldoc -MPod::Strip'
+
 #改行のない出力をプロンプトで上書きするのを防ぐ
 unsetopt promptcr
 
@@ -216,7 +218,12 @@ if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
 
 export PATH=$HOME/.nodebrew/current/lib/node_modules/.bin:$HOME/.nodebrew/current/bin:$PATH
 
-[ -f ~/.zsh/git-completion.bash ] && source ~/.zsh/git-completion.bash
+if [[ -f ~/.zsh/git-completion.bash ]]
+then
+    autoload bashcompinit
+    bashcompinit
+    source ~/.zsh/git-completion.bash
+fi
 
 #
 # Set vi mode status bar
