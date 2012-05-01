@@ -19,5 +19,6 @@
     subup = submodule foreach 'git pull origin master'
     wd = diff --word-diff
     lg = log --graph --pretty=oneline --decorate --date=short --abbrev-commit --branches
+    dc = diff --cached
 [diff "swfv"]
     textconv = swfv

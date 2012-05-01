@@ -1,4 +1,6 @@
 --type-set=tx=.tx
 --type-set=mt=.mt
+--type-set=psgi=.psgi
 --ignore-dir=swf
 --ignore-dir=sql
+--ignore-dir=tmp

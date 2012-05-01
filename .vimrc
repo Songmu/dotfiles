@@ -93,7 +93,7 @@ augroup MyAutoCmd
 augroup END
 
 "mtとttをhtmlに
-autocmd MyAutoCmd BufNewFile,BufReadPost *.mt,*.tt set filetype=html
+autocmd MyAutoCmd BufNewFile,BufReadPost *.mt,*.tt,*.tx set filetype=html
 
 "psgiとtはperl
 autocmd MyAutoCmd BufNewFile,BufReadPost *.psgi,*.t set filetype=perl
@@ -638,5 +638,6 @@ Bundle 'h1mesuke/unite-outline'
 Bundle 'mattn/vimplenote-vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'mattn/gist-vim'
+Bundle 't9md/vim-textmanip'
 filetype plugin indent on     " required!
 
