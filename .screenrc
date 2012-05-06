@@ -38,7 +38,5 @@ bind l eval 'focus right'
 
 #split window
 bind s eval 'split' focus screen
-bind ^s eval 'split' focus screen
 bind v eval 'split -v' focus screen
-bind ^v eval 'split -v' focus screen
 
