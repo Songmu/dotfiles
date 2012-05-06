@@ -616,6 +616,15 @@ let g:errormarker_warning_group = 'Todo'
 "    autocmd BufWritePost *.pl,*.pm,*.psgi,*.t silent make %
 "endif
 
+xmap <Space>d <Plug>(textmanip-duplicate-down)
+nmap <Space>d <Plug>(textmanip-duplicate-down)
+xmap <Space>D <Plug>(textmanip-duplicate-up)
+nmap <Space>D <Plug>(textmanip-duplicate-up)
+
+xmap <C-j> <Plug>(textmanip-move-down)
+xmap <C-k> <Plug>(textmanip-move-up)
+xmap <C-h> <Plug>(textmanip-move-left)
+xmap <C-l> <Plug>(textmanip-move-right)
 
 " vundle
 filetype off
@@ -640,4 +649,16 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'mattn/gist-vim'
 Bundle 't9md/vim-textmanip'
 filetype plugin indent on     " required!
+
+if !exists("g:quickrun_config")
+    let g:quickrun_config={}
+endif
+
+let g:quickrun_config['_'] = {
+    \ 'outputter/buffer/split' : '%{winwidth(0) * 2 < winheight(0) * 5 ? "" : "vertical belowright"}',
+\ }
+
+let g:quickrun_config['md'] = {
+    \ 'type' : 'markdown',
+\ }
 

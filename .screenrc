@@ -7,7 +7,6 @@ defscrollback   10000
 # shelltitle "% |zsh"
 hardstatus on
 hardstatus alwayslastline "%`%-w%{=b bw}%n %t%{-}%+w"
-bind s
 bind x
 bind l
 
@@ -18,3 +17,28 @@ termcapinfo xterm* ti@:te@
 
 # 画面が残らないように
 altscreen on
+
+# Operate window
+bind w eval 'echo "Operate window"' 'command -c operate'
+bind -c operate ^]  command
+bind -c operate j eval 'focus down' 'command -c operate'
+bind -c operate k eval 'focus up' 'command -c operate'
+bind -c operate h eval 'focus left' 'command -c operate'
+bind -c operate l eval 'focus right' 'command -c operate'
+bind -c operate + eval 'resize -v +1' 'command -c operate'
+bind -c operate - eval 'resize -v -1' 'command -c operate'
+bind -c operate > eval 'resize -h +1' 'command -c operate'
+bind -c operate < eval 'resize -h -1' 'command -c operate'
+
+bind = eval 'resize -v ='
+bind j eval 'focus down'
+bind k eval 'focus up'
+bind h eval 'focus left'
+bind l eval 'focus right'
+
+#split window
+bind s eval 'split' focus screen
+bind ^s eval 'split' focus screen
+bind v eval 'split -v' focus screen
+bind ^v eval 'split -v' focus screen
+
