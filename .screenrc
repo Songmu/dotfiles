@@ -4,6 +4,10 @@ msgminwait      0
 autodetach      on
 defscrollback   10000
 
+defencoding utf8
+cjkwidth on
+term xterm-256color
+
 # shelltitle "% |zsh"
 hardstatus on
 hardstatus alwayslastline "%`%-w%{=b bw}%n %t%{-}%+w"

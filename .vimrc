@@ -149,9 +149,9 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 " □とか○の文字があってもカーソル位置がずれないようにする
-"if exists('&ambiwidth')
-"  set ambiwidth=double
-"endif
+if exists('&ambiwidth')
+  set ambiwidth=double
+endif
 
 "改行コード
 set fileformats=unix,dos,mac

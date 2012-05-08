@@ -1,4 +1,4 @@
 set show-date = local
 set show-rev-graph = yes
-set line-graphics = utf-8
+set line-graphics = ascii
 bind generic G move-last-line
