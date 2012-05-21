@@ -25,6 +25,8 @@ altscreen on
 # Operate window
 bind w eval 'echo "Operate window"' 'command -c operate'
 bind -c operate ^]  command
+bind -c operate p eval 'prev' 'command -c operate'
+bind -c operate n eval 'next' 'command -c operate'
 bind -c operate j eval 'focus down' 'command -c operate'
 bind -c operate k eval 'focus up' 'command -c operate'
 bind -c operate h eval 'focus left' 'command -c operate'
@@ -49,7 +51,6 @@ bufferfile 'exchange-file'
 bind p eval 'writebuf' 'exec sh -c "cat ~/.screen_listenerrc exchange-file | nc -w1 192.168.80.1 52224"' 'echo "paste to remote"'
 
 # trigger for layout sub-commands
-bind ^Y eval 'command -c layout' 'layout show'
 bind y  eval 'command -c layout' 'layout show'
 
 # create/remove layout

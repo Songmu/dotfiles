@@ -2,58 +2,33 @@
 screen 0
 screen 1
 screen 2
-screen 3
-screen 4
 
 # create layout
-layout new 0:layout0:vertical
-layout new 1:layout1:horizontal
-layout new 2:dummy
+layout new 0:full
+layout new 1:layout1:threepain
+layout new 2:layout2:vertical
 layout new 3
 
-# setup layout0
-layout select 0
+# setup layout1
+layout select 1
 split -v
 select 0
 focus right
-split
+resize -l 35%
 split
 select 1
 focus next
 select 2
-focus down
-select 3
-split -v
-focus bottom
-select 4
-focus up
+focus left
 
 # setup layout1
-layout select layout1:horizontal
-select 2
-split
-focus down
-select 1
+layout select 2
 split -v
-split -v
-split -v
-focus next
 select 0
 focus right
-select 3
-focus bottom
-select 4
-resize -v -l 20%
-focus top
-
-# setup layout2
-layout remove dummy
-layout select 3
-layout number 2
-layout title single
-
-select 0
+select 1
 
 # select layout0
-layout select 2
+layout select 0
+select 0
 layout show
