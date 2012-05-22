@@ -47,8 +47,8 @@ bind s eval 'split' focus screen
 bind v eval 'split -v' focus screen
 
 # screen listener
-bufferfile 'exchange-file'
-bind p eval 'writebuf' 'exec sh -c "cat ~/.screen_listenerrc exchange-file | nc -w1 192.168.80.1 52224"' 'echo "paste to remote"'
+bufferfile '.screen-exchange-file'
+bind p eval 'writebuf' 'exec sh -c "cat .screen-exchange-file | pbcopy"' 'echo "paste to remote"'
 
 # trigger for layout sub-commands
 bind y  eval 'command -c layout' 'layout show'
