@@ -648,6 +648,7 @@ Bundle 'mattn/vimplenote-vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'mattn/gist-vim'
 Bundle 't9md/vim-textmanip'
+Bundle 'kana/vim-tabpagecd'
 filetype plugin indent on     " required!
 
 if !exists("g:quickrun_config")
