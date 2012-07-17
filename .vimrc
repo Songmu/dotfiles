@@ -639,8 +639,6 @@ noremap <C-U><C-F> :UniteWithBufferDir -buffer-name=files file<CR>
 noremap <C-U><C-R> :Unite file_mru<CR>
 " レジスタ一覧
 noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
-" ファイルとバッファ
-noremap <C-U><C-U> :Unite buffer file_mru<CR>
 " 全部
 noremap <C-U><C-A> :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 " ESCキーを2回押すと終了する
