@@ -159,7 +159,7 @@ fi
 #w3m4alc
 function alc() {
   if [ $# != 0 ]; then
-    w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa" | \less
+    w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa" | \less +38
     #w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa"
   else
     echo 'usage: alc word'
