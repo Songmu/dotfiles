@@ -387,7 +387,8 @@ autocmd FileType html :setlocal path+=;/
 
 " align.vimのおぺれーた
 vmap <Space>a <leader>tsp
-vnoremap <Space>= :Align =><CR>
+vnoremap <Space>= :Align =<CR>
+vnoremap <Space>h :Align =><CR>
 
 " ウインドウ単位で開いたファイルの履歴をたどる
 " なんかvimgrepでバグる
@@ -632,18 +633,30 @@ xmap <C-l> <Plug>(textmanip-move-right)
 " 入力モードで開始する
 let g:unite_enable_start_insert=0
 " バッファ一覧
-noremap <C-U><C-B> :Unite buffer<CR>
+noremap <C-j><C-B> :Unite buffer<CR>
 " ファイル一覧
-noremap <C-U><C-F> :UniteWithBufferDir -buffer-name=files file<CR>
+noremap <C-j><C-F> :UniteWithBufferDir -buffer-name=files file<CR>
 " 最近使ったファイルの一覧
-noremap <C-U><C-R> :Unite file_mru<CR>
+noremap <C-j><C-R> :Unite file_mru<CR>
 " レジスタ一覧
-noremap <C-U><C-Y> :Unite -buffer-name=register register<CR>
+noremap <C-j><C-Y> :Unite -buffer-name=register register<CR>
 " 全部
-noremap <C-U><C-A> :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+noremap <C-j><C-A> :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+
+noremap <C-j><C-O> :Unite outline<CR>
+
+"----------------------------------------------------
+" 引用符等の設定
+"----------------------------------------------------
+" カッコやクオートなどを入力した際に左に自動で移動します
+inoremap {} {}<Left>
+inoremap [] []<Left>
+inoremap () ()<Left>
+inoremap "" ""<Left>
+inoremap <> <><Left>
 
 " vundle
 filetype off
@@ -669,6 +682,7 @@ Bundle 'mattn/gist-vim'
 Bundle 't9md/vim-textmanip'
 Bundle 'kana/vim-tabpagecd'
 Bundle 'tpope/vim-fugitive'
+Bundle 'taglist.vim'
 filetype plugin indent on     " required!
 
 if !exists("g:quickrun_config")

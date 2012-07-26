@@ -6,7 +6,7 @@
 [core]
     pager = less -r
     quotepath = false
-    excludesfile = /home/songmu/.gitignore_global
+    excludesfile = .gitignore_global
 [alias]
     co = checkout
     ci = commit
@@ -22,3 +22,5 @@
     dc = diff --cached
 [diff "swfv"]
     textconv = swfv
+[include]
+    path = .gitconfig.local
