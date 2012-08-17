@@ -617,6 +617,12 @@ let g:errormarker_warning_group = 'Todo'
 "    autocmd BufWritePost *.pl,*.pm,*.psgi,*.t silent make %
 "endif
 
+
+" clipboard
+nnoremap <Space>p :call system("pbcopy", @")<CR>
+nnoremap <Space>v :r! pbpaste<CR>
+
+" textmanip
 xmap <Space>d <Plug>(textmanip-duplicate-down)
 nmap <Space>d <Plug>(textmanip-duplicate-down)
 xmap <Space>D <Plug>(textmanip-duplicate-up)
@@ -683,6 +689,7 @@ Bundle 't9md/vim-textmanip'
 Bundle 'kana/vim-tabpagecd'
 Bundle 'tpope/vim-fugitive'
 Bundle 'taglist.vim'
+Bundle 'thinca/vim-localrc'
 filetype plugin indent on     " required!
 
 if !exists("g:quickrun_config")
