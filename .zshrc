@@ -8,6 +8,9 @@ stty -ixon
 autoload colors
 colors
 
+autoload zmv
+alias zmv='noglob zmv'
+
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn
 zstyle ':vcs_info:*' formats '%{'${fg[red]}'%}(%s %b) %{'$reset_color'%}'
