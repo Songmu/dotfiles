@@ -654,16 +654,6 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 noremap <C-j><C-O> :Unite outline<CR>
 
-"----------------------------------------------------
-" 引用符等の設定
-"----------------------------------------------------
-" カッコやクオートなどを入力した際に左に自動で移動します
-inoremap {} {}<Left>
-inoremap [] []<Left>
-inoremap () ()<Left>
-inoremap "" ""<Left>
-inoremap <> <><Left>
-
 " vundle
 filetype off
 set rtp+=~/.vim/vundle.git/
