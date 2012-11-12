@@ -6,7 +6,7 @@
 [core]
     pager = less -r
     quotepath = false
-    excludesfile = .gitignore_global
+    excludesfile = ~/.gitignore_global
 [alias]
     co = checkout
     ci = commit
@@ -23,4 +23,4 @@
 [diff "swfv"]
     textconv = swfv
 [include]
-    path = .gitconfig.local
+    path = ~/.gitconfig.local
