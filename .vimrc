@@ -110,10 +110,6 @@ autocmd MyAutoCmd BufNewFile,BufReadPost *.md set filetype=md
 "なぜかnoexpandtabになることがあるので
 "autocmd MyAutoCmd BufNewFile,BufReadPost * set expandtab
 
-"ディレクト自動移動
-autocmd MyAutoCmd BufNewFile,BufReadPost *
-\ execute ":lcd " . substitute(substitute(expand("%:p:h"), ' ', '\\ ', 'g'), '#', '\\#', 'g')
-
 " カレントバッファのファイルを再読み込み。filetypeがvimかsnippetsのときだけ。
 nnoremap <silent> <Space>r :<C-u>
 \ if &ft == 'vim' <Bar>
@@ -213,7 +209,7 @@ nnoremap <silent> <Space>th :set hlsearch!<CR>
 "タブ切り替え
 nnoremap <C-l> gt
 nnoremap <C-h> gT
-nmap <C-t> :tabnew .<cr>
+nmap <C-t> :tabnew %:h<cr>
 
 "タブ文字（\t）を入力
 inoremap <C-Tab> <C-v><Tab>
