@@ -1,7 +1,7 @@
 #文字コード
 export LANG=ja_JP.UTF-8
 
-PATH=$PATH:~/bin/
+PATH=/usr/local/sbin:$PATH:~/bin/
 stty -ixon
 
 #プロンプト
