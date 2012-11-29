@@ -344,7 +344,7 @@ nnoremap gs :<C-u>setf<Space>
 imap <Nul> <C-x><C-o>
 
 map gf <C-w>gf
-autocmd FileType perl set isfname-=-
+autocmd FileType perl set isfname-=- isfname-=/
 
 "------------------------
 " プラグインの設定
