@@ -24,3 +24,5 @@
     textconv = swfv
 [include]
     path = ~/.gitconfig.local
+[push]
+    default = simple
