@@ -689,6 +689,25 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-n>"
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
 
+function! s:pm_template()
+    let path = substitute(expand('%'), '.*lib/', '', 'g')
+    let path = substitute(path, '[\\/]', '::', 'g')
+    let path = substitute(path, '\.pm$', '', 'g')
+
+    call append(0, 'package ' . path . ';')
+    call append(1, 'use strict;')
+    call append(2, 'use warnings;')
+    call append(3, 'use utf8;')
+    call append(4, '')
+    call append(5, '')
+    call append(6, '')
+    call append(7, '1;')
+    call cursor(6, 0)
+    " echomsg path
+endfunction
+autocmd BufNewFile *.pm call s:pm_template()
+autocmd BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
+autocmd BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
 
 " vundle
 filetype off
@@ -717,6 +736,7 @@ Bundle 'kana/vim-tabpagecd'
 Bundle 'tpope/vim-fugitive'
 Bundle 'taglist.vim'
 Bundle 'thinca/vim-localrc'
+Bundle 'vim-perl/vim-perl'
 filetype plugin indent on     " required!
 
 if !exists("g:quickrun_config")
