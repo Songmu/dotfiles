@@ -9,3 +9,6 @@ colorscheme mycolor
 set guioptions+=b
 set nowrap
 set gfn=VL\ Gothic\ Regular:h11
+
+set formatoptions+=mM
+set textwidth=200
