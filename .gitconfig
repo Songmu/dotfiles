@@ -20,6 +20,9 @@
     wd = diff --word-diff
     lg = log --graph --pretty=oneline --decorate --date=short --abbrev-commit --branches
     dc = diff --cached
+    f  = flow
+    fh = flow hotfix
+    ff = flow feature
 [diff "swfv"]
     textconv = swfv
 [include]
