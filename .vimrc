@@ -85,6 +85,8 @@ set helplang=ja
 
 set foldmethod=manual
 
+set vb t_vb=
+
 "-----------------------
 " autocmd
 "------------------------
