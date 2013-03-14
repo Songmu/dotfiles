@@ -1,7 +1,7 @@
 #文字コード
 export LANG=ja_JP.UTF-8
 
-PATH=/usr/local/bin:/usr/local/sbin:$PATH:~/bin
+PATH=~/bin:/usr/local/bin:/usr/local/sbin:$PATH
 stty -ixon
 
 setopt COMBINING_CHARS
@@ -16,12 +16,6 @@ alias zmv='noglob zmv'
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git svn
 zstyle ':vcs_info:*' formats '%{'${fg[red]}'%}(%s %b) %{'$reset_color'%}'
-
-# z
-. `brew --prefix`/etc/profile.d/z.sh
-function precmd () {
-   _z --add "$(pwd -P)"
-}
 
 setopt prompt_subst
 precmd () {

@@ -41,6 +41,9 @@ set listchars=tab:>\
 "swapファイル作らない
 set noswapfile
 
+"backupskip for crontab
+set backupskip=/tmp/*,/private/tmp/*
+
 "backupしない
 set nobackup
 
