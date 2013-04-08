@@ -207,7 +207,11 @@ function imageinfo() {
 }
 
 #perlbrew
-[ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
+#[ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
+
+#plenv
+PATH=$HOME/.plenv/shims:$PATH
+if which plenv > /dev/null; then eval "$(plenv init -)"; fi
 
 #pythonbrew
 [ -f ~/.pythonbrew/etc/bashrc ] && source ~/.pythonbrew/etc/bashrc

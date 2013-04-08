@@ -23,6 +23,7 @@
     f  = flow
     fh = flow hotfix
     ff = flow feature
+    fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
 [diff "swfv"]
     textconv = swfv
 [include]
