@@ -4,6 +4,9 @@ export LANG=ja_JP.UTF-8
 PATH=~/bin:/usr/local/bin:/usr/local/sbin:$PATH
 stty -ixon
 
+# use 'exit' to exit.
+setopt IGNOREEOF
+
 setopt COMBINING_CHARS
 
 #プロンプト
