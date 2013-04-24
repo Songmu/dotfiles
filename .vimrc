@@ -112,6 +112,11 @@ autocmd MyAutoCmd BufNewFile,BufReadPost *.as set filetype=actionscript
 "markdownのfiletypeをセット
 autocmd MyAutoCmd BufNewFile,BufReadPost *.md set filetype=md
 
+"cs
+autocmd BufNewFile,BufRead *.cs set fenc=utf-8 bomb
+autocmd BufNewFile,BufRead *.cs set noexpandtab
+autocmd BufNewFile,BufRead *.cs set fileformat=dos
+
 "なぜかnoexpandtabになることがあるので
 "autocmd MyAutoCmd BufNewFile,BufReadPost * set expandtab
 
