@@ -296,6 +296,10 @@ nnoremap <C-y> <C-y>k
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
 
+"折り返しもカーソル移動
+nnoremap j gj
+nnoremap k gk
+
 " <C-u>とかのundo
 inoremap <C-u>  <C-g>u<C-u>
 inoremap <C-w>  <C-g>u<C-w>
