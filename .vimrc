@@ -774,6 +774,14 @@ NeoBundle 'taglist.vim'
 NeoBundle 'thinca/vim-localrc'
 NeoBundle 'vim-perl/vim-perl'
 NeoBundle 'vim-jp/vimdoc-ja'
+NeoBundleLazy 'nosami/Omnisharp', {
+\   'autoload': {'filetypes': ['cs']},
+\   'build': {
+\     'windows': 'MSBuild.exe server/OmniSharp.sln /p:Platform="Any CPU"',
+\     'mac': 'xbuild server/OmniSharp.sln',
+\     'unix': 'xbuild server/OmniSharp.sln',
+\   }
+\ }
 filetype plugin indent on     " required!
 
 if !exists("g:quickrun_config")
