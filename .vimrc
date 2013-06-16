@@ -753,7 +753,6 @@ Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/unite.vim'
 Bundle 'thinca/vim-ref'
 Bundle 'thinca/vim-quickrun'
-Bundle 'mattn/perl-completion.vim'
 Bundle 'tsaleh/vim-align'
 Bundle 'vim-scripts/closetag.vim'
 Bundle 'thinca/vim-quickrun'
@@ -771,6 +770,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'taglist.vim'
 Bundle 'thinca/vim-localrc'
 Bundle 'vim-perl/vim-perl'
+Bundle 'vim-jp/vimdoc-ja'
 filetype plugin indent on     " required!
 
 if !exists("g:quickrun_config")

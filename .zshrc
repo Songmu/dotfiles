@@ -1,7 +1,6 @@
 #文字コード
 export LANG=ja_JP.UTF-8
 
-PATH=~/bin:/usr/local/bin:/usr/local/sbin:$PATH
 stty -ixon
 
 # use 'exit' to exit.
@@ -99,7 +98,6 @@ precmd () {
     screen -X title $(basename $(print -P "%~"))
   fi
 }
-
 
 PROMPT2='[%n]> ' 
 
@@ -271,26 +269,6 @@ function imageinfo() {
     echo 'usage: imageinfo file [file..]'
   fi
 }
-
-#perlbrew
-#[ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
-
-#plenv
-export PATH=$HOME/.plenv/shims:$PATH
-if which plenv > /dev/null; then eval "$(plenv init -)"; fi
-
-#pythonbrew
-[ -f ~/.pythonbrew/etc/bashrc ] && source ~/.pythonbrew/etc/bashrc
-
-#nvm
-# [ -f ~/.nvm/nvm.sh ] && source ~/.nvm/nvm.sh
-
-#個別設定を読み込む
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
-
-if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
-
-export PATH=$HOME/.nodebrew/current/lib/node_modules/.bin:$HOME/.nodebrew/current/bin:$PATH
 
 if [[ -f ~/.zsh/git-completion.bash ]]
 then
