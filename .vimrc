@@ -743,34 +743,37 @@ autocmd BufNewFile *.pm call s:pm_template()
 autocmd BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
 autocmd BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
 
-" vundle
+" neobundle
 filetype off
-set rtp+=~/.vim/vundle.git/
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/unite.vim'
-Bundle 'thinca/vim-ref'
-Bundle 'thinca/vim-quickrun'
-Bundle 'tsaleh/vim-align'
-Bundle 'vim-scripts/closetag.vim'
-Bundle 'thinca/vim-quickrun'
-Bundle 'vim-scripts/errormarker.vim'
-Bundle 'ack.vim'
-Bundle 'mattn/webapi-vim'
-Bundle 'toritori0318/vim-redmine'
-Bundle 'h1mesuke/unite-outline'
-Bundle 'mattn/vimplenote-vim'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'mattn/gist-vim'
-Bundle 't9md/vim-textmanip'
-Bundle 'kana/vim-tabpagecd'
-Bundle 'tpope/vim-fugitive'
-Bundle 'taglist.vim'
-Bundle 'thinca/vim-localrc'
-Bundle 'vim-perl/vim-perl'
-Bundle 'vim-jp/vimdoc-ja'
+set rtp+=~/.vim/neobundle.vim
+if has('vim_starting')
+  set runtimepath+=~/.vim/neobundle.vim
+  call neobundle#rc(expand('~/.vim/neobundle'))
+endif
+
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'thinca/vim-ref'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'tsaleh/vim-align'
+NeoBundle 'vim-scripts/closetag.vim'
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'vim-scripts/errormarker.vim'
+NeoBundle 'ack.vim'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'toritori0318/vim-redmine'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'mattn/vimplenote-vim'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'mattn/gist-vim'
+NeoBundle 't9md/vim-textmanip'
+NeoBundle 'kana/vim-tabpagecd'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'taglist.vim'
+NeoBundle 'thinca/vim-localrc'
+NeoBundle 'vim-perl/vim-perl'
+NeoBundle 'vim-jp/vimdoc-ja'
 filetype plugin indent on     " required!
 
 if !exists("g:quickrun_config")
