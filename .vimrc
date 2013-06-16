@@ -774,7 +774,6 @@ NeoBundle 'taglist.vim'
 NeoBundle 'thinca/vim-localrc'
 NeoBundle 'vim-perl/vim-perl'
 NeoBundle 'vim-jp/vimdoc-ja'
-NeoBundle 'y-uuki/perl-local-lib-path.vim'
 
 NeoBundleLazy 'nosami/Omnisharp', {
 \   'autoload': {'filetypes': ['cs']},
@@ -797,6 +796,3 @@ let g:quickrun_config['_'] = {
 let g:quickrun_config['md'] = {
     \ 'type' : 'markdown',
 \ }
-
-let g:perl_local_lib_path = "extlib/lib/perl5"
-autocmd FileType perl PerlLocalLibPath
