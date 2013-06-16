@@ -101,7 +101,7 @@ augroup END
 autocmd MyAutoCmd BufNewFile,BufReadPost *.mt,*.tt,*.tx set filetype=html
 
 "psgiとtはperl
-autocmd MyAutoCmd BufNewFile,BufReadPost *.psgi,*.t set filetype=perl
+autocmd MyAutoCmd BufNewFile,BufReadPost *.psgi,*.t,cpanfile set filetype=perl
 
 "ruをrubyに
 autocmd MyAutoCmd BufNewFile,BufReadPost *.ru set filetype=ruby

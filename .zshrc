@@ -276,7 +276,7 @@ function imageinfo() {
 #[ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
 
 #plenv
-PATH=$HOME/.plenv/shims:$PATH
+export PATH=$HOME/.plenv/shims:$PATH
 if which plenv > /dev/null; then eval "$(plenv init -)"; fi
 
 #pythonbrew
