@@ -2,3 +2,5 @@ set show-date = local
 set show-rev-graph = yes
 set line-graphics = ascii
 bind generic G move-last-line
+bind main b !@hub browse -- commit/%(commit)
+bind diff b !@hub browse -- commit/%(commit)
