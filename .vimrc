@@ -773,7 +773,14 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'taglist.vim'
 NeoBundle 'vim-perl/vim-perl'
 NeoBundle 'vim-jp/vimdoc-ja'
-
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
 NeoBundleLazy 'nosami/Omnisharp', {
 \   'autoload': {'filetypes': ['cs']},
 \   'build': {
