@@ -101,14 +101,15 @@ precmd () {
 
 PROMPT2='[%n]> ' 
 
+fpath=(~/.zsh-completions $fpath)
 #補間
 autoload -U compinit
 compinit
 
 #履歴
 HISTFILE="$HOME/.zsh_history"
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=1000000
+SAVEHIST=1000000
 
 #エディタ
 export GIT_MERGE_AUTOEDIT=no
@@ -269,13 +270,6 @@ function imageinfo() {
     echo 'usage: imageinfo file [file..]'
   fi
 }
-
-if [[ -f ~/.zsh/git-completion.bash ]]
-then
-    autoload bashcompinit
-    bashcompinit
-    source ~/.zsh/git-completion.bash
-fi
 
 #
 # Set vi mode status bar
