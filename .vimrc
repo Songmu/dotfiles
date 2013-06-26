@@ -384,7 +384,7 @@ autocmd FileType perl set isfname-=- isfname-=/ isfname-=+
 " プラグインの設定
 "------------------------
 
-autocmd FileType perl nnoremap <Space>pr :Prove<CR>
+autocmd FileType perl nnoremap <Space>pr :!prove %<CR>
 
 " jslint
 function! Jslint()
