@@ -12,4 +12,7 @@ colorscheme mycolor
 set gfn=VL\ Gothic\ Regular:h11
 
 "set formatoptions+=mM
-set textwidth=200
+set textwidth=0
+
+" デフォルトvimrc_exampleのtextwidth設定上書き
+autocmd FileType text setlocal textwidth=0
