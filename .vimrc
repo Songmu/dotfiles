@@ -663,6 +663,12 @@ xmap <C-k> <Plug>(textmanip-move-up)
 xmap <C-h> <Plug>(textmanip-move-left)
 xmap <C-l> <Plug>(textmanip-move-right)
 
+" command履歴
+cnoremap <Up> <C-p>
+cnoremap <Down> <C-n>
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
 "------------------------------------
 " unite.vim
 "------------------------------------
