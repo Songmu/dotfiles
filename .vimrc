@@ -822,6 +822,8 @@ NeoBundleLazy 'nosami/Omnisharp', {
 \     'unix': 'xbuild server/OmniSharp.sln',
 \   }
 \ }
+NeoBundle 'soh335/unite-perl-module'
+
 filetype plugin indent on     " required!
 
 if !exists("g:quickrun_config")
