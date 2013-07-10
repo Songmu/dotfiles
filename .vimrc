@@ -754,9 +754,6 @@ nnoremap <sid>(command-line-enter) q:
 xnoremap <sid>(command-line-enter) q:
 nnoremap <sid>(command-line-norange) q:<C-u>
 
-nmap :  <sid>(command-line-enter)
-xmap :  <sid>(command-line-enter)
-
 autocmd MyAutoCmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin()
   nnoremap <buffer> q :<C-u>quit<CR>
@@ -770,6 +767,7 @@ function! s:init_cmdwin()
 
   startinsert!
 endfunction
+
 
 " syntaxtic
 let g:syntastic_perl_lib_path = 'lib'
