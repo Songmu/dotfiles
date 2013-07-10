@@ -749,6 +749,7 @@ autocmd BufNewFile *.pm call s:pm_template()
 autocmd BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
 autocmd BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
 
+" command line window cf. http://vim-users.jp/2010/07/hack161/
 nnoremap <sid>(command-line-enter) q:
 xnoremap <sid>(command-line-enter) q:
 nnoremap <sid>(command-line-norange) q:<C-u>
@@ -770,6 +771,9 @@ function! s:init_cmdwin()
   startinsert!
 endfunction
 
+" syntaxtic
+let g:syntastic_perl_lib_path = 'lib'
+let g:syntastic_perl_checkers = ['perl']
 
 " Unite
 function! s:unite_my_settings()
@@ -823,6 +827,8 @@ NeoBundleLazy 'nosami/Omnisharp', {
 \   }
 \ }
 NeoBundle 'soh335/unite-perl-module'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'airblade/vim-rooter'
 
 filetype plugin indent on     " required!
 
