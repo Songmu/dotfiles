@@ -100,6 +100,8 @@ augroup END
 "mtとttをhtmlに
 autocmd MyAutoCmd BufNewFile,BufReadPost *.mt,*.tt,*.tx set filetype=html
 
+" autocmd MyAutoCmd BufNewFile,BufReadPost *.tx set filetype=xslate
+
 "psgiとtはperl
 autocmd MyAutoCmd BufNewFile,BufReadPost *.psgi,*.t,cpanfile set filetype=perl
 
@@ -115,7 +117,7 @@ autocmd MyAutoCmd BufNewFile,BufReadPost *.md set filetype=md
 "cs
 autocmd BufNewFile,BufRead *.cs set fenc=utf-8 bomb
 autocmd BufNewFile,BufRead *.cs set noexpandtab
-autocmd BufNewFile,BufRead *.cs set fileformat=dos
+"autocmd BufNewFile,BufRead *.cs set fileformat=dos
 
 "なぜかnoexpandtabになることがあるので
 "autocmd MyAutoCmd BufNewFile,BufReadPost * set expandtab
@@ -825,8 +827,10 @@ NeoBundleLazy 'nosami/Omnisharp', {
 \   }
 \ }
 NeoBundle 'soh335/unite-perl-module'
-NeoBundle 'scrooloose/syntastic'
+"NeoBundle 'scrooloose/syntastic'
 NeoBundle 'airblade/vim-rooter'
+"NeoBundle 'othree/eregex.vim'
+NeoBundle 'motemen/xslate-vim'
 
 filetype plugin indent on     " required!
 

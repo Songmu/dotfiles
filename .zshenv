@@ -1,6 +1,6 @@
 # [ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
 
-PATH=~/bin:/usr/local/bin:/usr/local/sbin:$PATH
+PATH=~/bin:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH
 #plenv
 export PATH=$HOME/.plenv/shims:$PATH
 if which plenv > /dev/null; then eval "$(plenv init -)"; fi

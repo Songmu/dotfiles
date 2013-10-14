@@ -1,12 +1,13 @@
 [color]
     ui = true
 [user]
-    name = Masayuki Matsuki
+    name = Songmu
     email = y.songmu@gmail.com
 [core]
     pager = less -r
     quotepath = false
     excludesfile = ~/.gitignore_global
+    precomposeunicode = true
 [alias]
     co = checkout
     ci = commit
