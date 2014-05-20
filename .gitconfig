@@ -4,14 +4,13 @@
     name = Songmu
     email = y.songmu@gmail.com
 [core]
-    pager = less -r
     quotepath = false
     excludesfile = ~/.gitignore_global
     precomposeunicode = true
 [alias]
     co = checkout
     ci = commit
-    st = status
+    st = status -sb
 #    st = status -sb
     br = branch
     cp = cherry-pick
@@ -31,3 +30,9 @@
     path = ~/.gitconfig.local
 [push]
     default = simple
+[diff]
+    algorithm = histogram
+[pager]
+    log  = diff-highlight | less -r
+    show = diff-highlight | less -r
+    diff = diff-highlight | less -r
