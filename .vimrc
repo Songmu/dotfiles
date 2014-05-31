@@ -90,6 +90,8 @@ set foldmethod=manual
 
 set vb t_vb=
 
+set rtp+=$GOROOT/misc/vim
+
 "-----------------------
 " autocmd
 "------------------------
@@ -103,7 +105,7 @@ autocmd MyAutoCmd BufNewFile,BufReadPost *.mt,*.tt,*.tx set filetype=html
 " autocmd MyAutoCmd BufNewFile,BufReadPost *.tx set filetype=xslate
 
 "psgiとtはperl
-autocmd MyAutoCmd BufNewFile,BufReadPost *.psgi,*.t,cpanfile set filetype=perl
+autocmd MyAutoCmd BufNewFile,BufReadPost *.psgi,*.t,cpanfile,Daikufile set filetype=perl
 
 "ruをrubyに
 autocmd MyAutoCmd BufNewFile,BufReadPost *.ru set filetype=ruby
@@ -544,7 +546,7 @@ au! BufWritePost *.pm call s:check_package_name()
 
 " パスの追加
 let s:paths = split($PATH, ':')
-function! g:insert_path(path)
+function! g:Insert_path(path)
     let index = index(s:paths, a:path)
     if index != -1
         call remove(s:paths, index)
