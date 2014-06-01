@@ -90,7 +90,15 @@ set foldmethod=manual
 
 set vb t_vb=
 
+" Go
+let g:gofmt_command = 'goimports'
 set rtp+=$GOROOT/misc/vim
+exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+set completeopt=menu,preview
+
+au BufWritePre *.go Fmt
+au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4
+au FileType go compiler go
 
 "-----------------------
 " autocmd
@@ -833,6 +841,7 @@ NeoBundle 'soh335/unite-perl-module'
 NeoBundle 'airblade/vim-rooter'
 "NeoBundle 'othree/eregex.vim'
 NeoBundle 'motemen/xslate-vim'
+NeoBundle 'mattn/sonictemplate-vim'
 
 filetype plugin indent on     " required!
 
