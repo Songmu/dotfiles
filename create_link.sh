@@ -4,7 +4,7 @@ for dotfile in .?*
 do
     if [ $dotfile != '..' ] && [ $dotfile != '.git' ] && [ $dotfile != 'vimfiles' ] && [ $dotfile != '.gitmodules' ] && [ $dotfile != '.gitignore' ]
     then
-        ln -Fis "$PWD/$dotfile" $HOME
+        ln -is "$PWD/$dotfile" $HOME
     fi
 done
 

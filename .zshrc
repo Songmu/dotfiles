@@ -103,8 +103,15 @@ PROMPT2='[%n]> '
 
 fpath=(~/.zsh-completions $fpath)
 #補間
-autoload -U compinit
-compinit
+autoload -Uz compinit && compinit
+
+# cdr
+typeset -ga chpwd_functions
+autoload -U chpwd_recent_dirs cdr
+chpwd_functions+=chpwd_recent_dirs
+zstyle ":chpwd:*" recent-dirs-max 500
+zstyle ":chpwd:*" recent-dirs-default true
+zstyle ":completion:*" recent-dirs-insert always
 
 #履歴
 HISTFILE="$HOME/.zsh_history"
@@ -118,6 +125,7 @@ export EDITOR=vim
 setopt hist_ignore_dups
 setopt share_history
 setopt hist_ignore_space
+setopt hist_ignore_all_dups
 
 #キーバインド
 bindkey -v
@@ -126,12 +134,14 @@ autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end 
+bindkey "^N" history-beginning-search-forward-end
 
 bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 
-bindkey '^F' percol-src
+bindkey '^F' peco-src
+bindkey '^H' peco-select-history
+bindkey '^@' peco-cdr
 
 #ビープ音ならなさない
 setopt nobeep
@@ -356,6 +366,34 @@ function peco-src () {
     zle clear-screen
 }
 zle -N peco-src
+
+function peco-select-history() {
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    elif which gtac > /dev/null; then
+        tac="gtac"
+    else
+        tac="tail -r"
+    fi
+    BUFFER=$(history -n 1 | \
+        eval $tac | \
+        peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
+    zle clear-screen
+}
+zle -N peco-select-history
+
+
+function peco-cdr () {
+    local selected_dir=$(cdr -l | awk '{ print $2 }' | peco)
+    if [ -n "$selected_dir" ]; then
+        BUFFER="cd ${selected_dir}"
+        zle accept-line
+    fi
+    zle clear-screen
+}
+zle -N peco-cdr
 
 #
 # Temporary function to extend built-in widgets to display mode.
