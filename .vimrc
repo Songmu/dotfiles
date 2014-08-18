@@ -132,6 +132,9 @@ autocmd BufNewFile,BufRead *.cs set noexpandtab
 "なぜかnoexpandtabになることがあるので
 "autocmd MyAutoCmd BufNewFile,BufReadPost * set expandtab
 
+" Ruby
+autocmd BufNewFile,BufRead *.rb set sw=2 expandtab ts=2
+
 " カレントバッファのファイルを再読み込み。filetypeがvimかsnippetsのときだけ。
 nnoremap <silent> <Space>r :<C-u>
 \ if &ft == 'vim' <Bar>
@@ -842,6 +845,7 @@ NeoBundle 'airblade/vim-rooter'
 "NeoBundle 'othree/eregex.vim'
 NeoBundle 'motemen/xslate-vim'
 NeoBundle 'mattn/sonictemplate-vim'
+NeoBundle 'chase/vim-ansible-yaml'
 
 filetype plugin indent on     " required!
 

@@ -358,7 +358,7 @@ clearmode() {
 }
 
 function peco-src () {
-    local selected_dir=$(ghq list --full-path | peco --query "$LBUFFER")
+    local selected_dir=$(ghq list --full-path | perl -pe 's/(\Q$ENV{HOME}\E(.*$))/$2\0$1/' | peco --null --query "$LBUFFER")
     if [ -n "$selected_dir" ]; then
         BUFFER="cd ${selected_dir}"
         zle accept-line
