@@ -734,7 +734,8 @@ let g:neocomplcache_snippets_dir = "~/.vim/snippets"
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default'    : '',
-    \ 'perl'       : $HOME . '/.vim/dict/perl.dict'
+    \ 'perl'       : $HOME . '/.vim/dict/perl.dict',
+    \ 'scala'      : $HOME . '/.vim/dict/scala.dict'
     \ }
 
 " Define keyword.
@@ -744,8 +745,8 @@ endif
 let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
 " for snippets
-imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-n>"
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
+imap <expr><C-k> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
 
 function! s:pm_template()
     let path = substitute(expand('%'), '.*lib/', '', 'g')
@@ -806,6 +807,7 @@ endif
 
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'thinca/vim-quickrun'
@@ -883,3 +885,5 @@ let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
 let g:auto_ctags_filetype_mode = 1
 
 au BufNewFile,BufRead *.scala set tags+=.git/scala.tags
+
+let g:neosnippet#enable_snipmate_compatibility = 1
