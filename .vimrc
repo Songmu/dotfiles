@@ -839,6 +839,7 @@ NeoBundle 'motemen/xslate-vim'
 NeoBundle 'mattn/sonictemplate-vim'
 NeoBundle 'chase/vim-ansible-yaml'
 NeoBundle 'dgryski/vim-godef'
+NeoBundle 'derekwyatt/vim-scala'
 
 filetype plugin indent on     " required!
 
