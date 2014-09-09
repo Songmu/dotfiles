@@ -699,6 +699,9 @@ noremap <C-j><C-R> :Unite file_mru<CR>
 noremap <C-j><C-Y> :Unite -buffer-name=register register<CR>
 " 全部
 noremap <C-j><C-A> :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+
+nnoremap <silent> <C-j><C-p>  :<C-u>Unite file_rec/async:!<CR>
+
 " ESCキーを2回押すと終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
@@ -840,6 +843,8 @@ NeoBundle 'mattn/sonictemplate-vim'
 NeoBundle 'chase/vim-ansible-yaml'
 NeoBundle 'dgryski/vim-godef'
 NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'Shougo/neomru.vim'
 
 filetype plugin indent on     " required!
 
@@ -853,4 +858,20 @@ let g:quickrun_config['_'] = {
 
 let g:quickrun_config['md'] = {
     \ 'type' : 'markdown',
+\ }
+
+let g:tagbar_type_scala = {
+    \ 'ctagstype' : 'Scala',
+    \ 'kinds'     : [
+        \ 'p:packages:1',
+        \ 'V:values',
+        \ 'v:variables',
+        \ 'T:types',
+        \ 't:traits',
+        \ 'o:objects',
+        \ 'a:aclasses',
+        \ 'c:classes',
+        \ 'r:cclasses',
+        \ 'm:methods'
+    \ ]
 \ }
