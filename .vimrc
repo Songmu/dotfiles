@@ -797,6 +797,46 @@ function! s:unite_my_settings()
   nmap <buffer> <C-c> <Plug>(unite_redraw)
 endfunction
 
+" tagbar
+nmap <F8> :TagbarToggle<CR>
+
+if !exists("g:quickrun_config")
+    let g:quickrun_config={}
+endif
+
+let g:quickrun_config['_'] = {
+    \ 'outputter/buffer/split' : '%{winwidth(0) * 2 < winheight(0) * 5 ? "" : "vertical belowright"}',
+\ }
+
+let g:quickrun_config['md'] = {
+    \ 'type' : 'markdown',
+\ }
+
+let g:tagbar_type_scala = {
+    \ 'ctagstype' : 'Scala',
+    \ 'kinds'     : [
+        \ 'p:packages:1',
+        \ 'V:values',
+        \ 'v:variables',
+        \ 'T:types',
+        \ 't:traits',
+        \ 'o:objects',
+        \ 'a:aclasses',
+        \ 'c:classes',
+        \ 'r:cclasses',
+        \ 'm:methods'
+    \ ]
+\ }
+
+let g:auto_ctags = 1
+let g:auto_ctags_directory_list = ['.git', '.svn']
+let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
+let g:auto_ctags_filetype_mode = 1
+
+au BufNewFile,BufRead *.scala set tags+=.git/scala.tags
+
+let g:neosnippet#enable_snipmate_compatibility = 1
+
 " neobundle
 filetype off
 set rtp+=~/.vim/neobundle.vim
@@ -850,40 +890,3 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'soramugi/auto-ctags.vim'
 
 filetype plugin indent on     " required!
-
-if !exists("g:quickrun_config")
-    let g:quickrun_config={}
-endif
-
-let g:quickrun_config['_'] = {
-    \ 'outputter/buffer/split' : '%{winwidth(0) * 2 < winheight(0) * 5 ? "" : "vertical belowright"}',
-\ }
-
-let g:quickrun_config['md'] = {
-    \ 'type' : 'markdown',
-\ }
-
-let g:tagbar_type_scala = {
-    \ 'ctagstype' : 'Scala',
-    \ 'kinds'     : [
-        \ 'p:packages:1',
-        \ 'V:values',
-        \ 'v:variables',
-        \ 'T:types',
-        \ 't:traits',
-        \ 'o:objects',
-        \ 'a:aclasses',
-        \ 'c:classes',
-        \ 'r:cclasses',
-        \ 'm:methods'
-    \ ]
-\ }
-
-let g:auto_ctags = 1
-let g:auto_ctags_directory_list = ['.git', '.svn']
-let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
-let g:auto_ctags_filetype_mode = 1
-
-au BufNewFile,BufRead *.scala set tags+=.git/scala.tags
-
-let g:neosnippet#enable_snipmate_compatibility = 1
