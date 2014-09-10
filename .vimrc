@@ -822,6 +822,9 @@ if has('conceal')
 endif
 let g:neosnippet#enable_snipmate_compatibility = 1
 
+autocmd FileType scala :compiler sbt
+autocmd QuickFixCmdPost make if len(getqflist()) != 0 | copen | endif
+
 " neobundle
 filetype off
 set rtp+=~/.vim/neobundle.vim
