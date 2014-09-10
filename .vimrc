@@ -817,6 +817,9 @@ let g:auto_ctags_filetype_mode = 1
 
 au BufNewFile,BufRead *.scala set tags+=.git/scala.tags
 
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
 let g:neosnippet#enable_snipmate_compatibility = 1
 
 " neobundle
