@@ -135,24 +135,6 @@ autocmd BufNewFile,BufRead *.cs set noexpandtab
 " Ruby
 autocmd BufNewFile,BufRead *.rb set sw=2 expandtab ts=2
 
-" カレントバッファのファイルを再読み込み。filetypeがvimかsnippetsのときだけ。
-nnoremap <silent> <Space>r :<C-u>
-\ if &ft == 'vim' <Bar>
-\     source % <Bar>
-\ elseif &ft == 'snippet' <Bar>
-\     call SnipMateReload() <Bar>
-\ endif<CR>
-
-" s:snippetsを外からunletできないので以下の関数をplugin/snipMate.vimに書く
-function! SnipMateReload()
-    if &ft == 'snippet'
-        let ft = substitute(expand('%'), '.snippets', '', '')
-        call ResetSnippet(ft)
-        silent! call GetSnippets(g:snippets_dir, ft)
-    endif
-endfunction
-
-
 " オレオレgrep
 command! -complete=file -nargs=+ Grep call s:grep(<q-args>)
 function! s:grep(args)
