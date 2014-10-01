@@ -876,5 +876,6 @@ NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'soramugi/auto-ctags.vim'
+NeoBundle 'gre/play2vim'
 
 filetype plugin indent on     " required!
