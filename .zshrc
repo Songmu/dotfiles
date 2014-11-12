@@ -41,7 +41,7 @@ precmd () {
 
 PROMPT2='[%n]> '
 
-fpath=(~/.zsh-completions $fpath)
+fpath=(~/.zsh/zsh-completions/src(N-/) $fpath)
 #補間
 autoload -Uz compinit && compinit
 
