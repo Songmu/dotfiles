@@ -8,7 +8,6 @@ do
     fi
 done
 
-if [ ! -d ~/.vim ]
-then
-    ln -s ~/.dotfiles/vimfiles ~/.vim
+if [ ! -d ~/.vim ]; then
+    ln -s "$PWD/vimfiles" ~/.vim
 fi
