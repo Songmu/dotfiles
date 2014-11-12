@@ -7,66 +7,6 @@ stty -ixon
 setopt IGNOREEOF
 setopt COMBINING_CHARS
 
-# PROMPT
-#################################################
-# 色一覧
-#################################################
-# 00: なにもしない
-# 01: 太字化
-# 04: 下線
-# 05: 点滅
-# 07: 前背色反転
-# 08: 表示しない
-# 22: ノーマル化
-# 24: 下線なし
-# 25: 点滅なし
-# 27: 前背色反転なし
-# 30: 黒(前景色)
-# 31: 赤(前景色)
-# 32: 緑(前景色)
-# 33: 茶(前景色)
-# 34: 青(前景色)
-# 35: マゼンタ(前景色)
-# 36: シアン(前景色)
-# 37: 白(前景色)
-# 39: デフォルト(前景色)
-# 40: 黒(背景色)
-# 41: 赤(背景色)
-# 42: 緑(背景色)
-# 43: 茶(背景色)
-# 44: 青(背景色)
-# 45: マゼンタ(背景色)
-# 46: シアン(背景色)
-# 47: 白(背景色)
-# 49: デフォルト(背景色)
-
-#################################################
-# プロンプト表示フォーマット
-# http://zsh.sourceforge.net/Doc/Release/zsh_12.html#SEC40
-#################################################
-# %% %を表示
-# %) )を表示
-# %l 端末名省略形
-# %M ホスト名(FQDN)
-# %m ホスト名(サブドメイン)
-# %n ユーザー名
-# %y 端末名
-# %# rootなら#、他は%を表示
-# %? 直前に実行したコマンドの結果コード
-# %d ワーキングディレクトリ %/ でも可
-# %~ ホームディレクトリからのパス
-# %h ヒストリ番号 %! でも可
-# %a The observed action, i.e. "logged on" or "logged off".
-# %S (%s) 反転モードの開始/終了 %S abc %s とするとabcが反転
-# %U (%u) 下線モードの開始/終了 %U abc %u とするとabcに下線
-# %B (%b) 強調モードの開始/終了 %B abc %b とするとabcを強調
-# %t 時刻表示(12時間単位、午前/午後つき) %@ でも可
-# %T 時刻表示(24時間表示)
-# %* 時刻表示(24時間表示秒付き)
-# %w 日表示(dd) 日本語だと 曜日 日
-# %W 年月日表示(mm/dd/yy)
-# %D 年月日表示(yy-mm-dd)
-
 ##
 ## ^[ <- これエスケープ {C-v ESC}
 ##
@@ -94,12 +34,12 @@ precmd () {
 %{${fg[green]}%}[%n@%m]$%{${reset_color}%} "
   fi
 
-  if [ "$TERM" = "screen" ]; then
+  if [[ "$TERM" = "screen" ]]; then
     screen -X title $(basename $(print -P "%~"))
   fi
 }
 
-PROMPT2='[%n]> ' 
+PROMPT2='[%n]> '
 
 fpath=(~/.zsh-completions $fpath)
 #補間
@@ -115,8 +55,8 @@ zstyle ":completion:*" recent-dirs-insert always
 
 #履歴
 HISTFILE="$HOME/.zsh_history"
-HISTSIZE=1000000
-SAVEHIST=1000000
+HISTSIZE=10000000
+SAVEHIST=10000000
 
 #エディタ
 export GIT_MERGE_AUTOEDIT=no
@@ -171,19 +111,11 @@ esac
 
 alias ll='ls -l'
 
-alias pg="ps auxw | grep"
-
-alias svnadd="svn st | grep '^?' | awk '{ print \$2 }' | xargs svn add"
-alias svndel="svn st | grep '^!' | awk '{ print \$2 }' | xargs svn delete"
-
 alias gs="git svn"
 alias gi="git"
 alias gti="git"
 
 alias screen='screen -U -D -RR'
-
-alias less='/usr/share/vim/vim73/macros/less.sh'
-alias pad="plackup -p 1978 -MPlack::App::Directory -e 'Plack::App::Directory->new->to_app'"
 
 alias perlsrc='perldoc -MPod::Strip'
 
@@ -240,18 +172,9 @@ fi
 #w3m4alc
 function alc() {
   if [ $# != 0 ]; then
-    w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa" | \less +36
+    w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa" | \less +33
   else
     echo 'usage: alc word'
-  fi
-}
-
-#json_view
-function json_view() {
-  if [ $# != 0 ]; then
-    perl -MLWP::Simple -MJSON -MData::Dumper -we 'print Dumper decode_json get $ARGV[0]' $*
-  else
-    echo 'usage: json_view url'
   fi
 }
 
@@ -264,23 +187,6 @@ function pminfo() {
   fi
 }
 
-#url_decode
-function url_decode() {
-  if [ $# != 0 ]; then
-    perl -MURI::Escape -wle 'print uri_unescape $ARGV[0]' $*
-  else
-    echo 'usage: url_decode url'
-  fi
-}
-
-#imageinfo
-function imageinfo() {
-  if [ $# != 0 ]; then
-    perl -MImage::Info -MYAML -le 'print $_, "\n", Dump Image::Info::image_info($_) for @ARGV'
-  else
-    echo 'usage: imageinfo file [file..]'
-  fi
-}
 
 #
 # Set vi mode status bar
@@ -357,6 +263,41 @@ clearmode() {
     VIMODE= showmode
 }
 
+#
+# Temporary function to extend built-in widgets to display mode.
+#
+#   1: The name of the widget.
+#
+#   2: The mode string.
+#
+#   3 (optional): Beyond normal calculations, the number of additional
+#   lines to move down before printing the mode.  Defaults to zero.
+#
+makemodal () {
+    # Create new function
+    eval "$1() { zle .'$1'; ${2:+VIMODE='$2'}; showmode $3 }"
+
+    # Create new widget
+    zle -N "$1"
+}
+
+# Extend widgets
+makemodal vi-add-eol           INSERT
+makemodal vi-add-next          INSERT
+makemodal vi-change            INSERT
+makemodal vi-change-eol        INSERT
+makemodal vi-change-whole-line INSERT
+makemodal vi-insert            INSERT
+makemodal vi-insert-bol        INSERT
+makemodal vi-open-line-above   INSERT
+makemodal vi-substitute        INSERT
+makemodal vi-open-line-below   INSERT 1
+makemodal vi-replace           REPLACE
+makemodal vi-cmd-mode          NORMAL
+
+unfunction makemodal
+
+## peco
 function peco-src () {
     local selected_dir=$(ghq list --full-path | perl -pe 's/(\Q$ENV{HOME}\E(.*$))/$2\0$1/' | peco --null --query "$LBUFFER")
     if [ -n "$selected_dir" ]; then
@@ -394,37 +335,3 @@ function peco-cdr () {
     zle clear-screen
 }
 zle -N peco-cdr
-
-#
-# Temporary function to extend built-in widgets to display mode.
-#
-#   1: The name of the widget.
-#
-#   2: The mode string.
-#
-#   3 (optional): Beyond normal calculations, the number of additional
-#   lines to move down before printing the mode.  Defaults to zero.
-#
-makemodal () {
-    # Create new function
-    eval "$1() { zle .'$1'; ${2:+VIMODE='$2'}; showmode $3 }"
-
-    # Create new widget
-    zle -N "$1"
-}
-
-# Extend widgets
-makemodal vi-add-eol           INSERT
-makemodal vi-add-next          INSERT
-makemodal vi-change            INSERT
-makemodal vi-change-eol        INSERT
-makemodal vi-change-whole-line INSERT
-makemodal vi-insert            INSERT
-makemodal vi-insert-bol        INSERT
-makemodal vi-open-line-above   INSERT
-makemodal vi-substitute        INSERT
-makemodal vi-open-line-below   INSERT 1
-makemodal vi-replace           REPLACE
-makemodal vi-cmd-mode          NORMAL
-
-unfunction makemodal
