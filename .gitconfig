@@ -11,7 +11,6 @@
     co = checkout
     ci = commit
     st = status -sb
-#    st = status -sb
     br = branch
     cp = cherry-pick
     l  = log --date=local -10
@@ -24,8 +23,6 @@
     fh = flow hotfix
     ff = flow feature
     fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
-[diff "swfv"]
-    textconv = swfv
 [include]
     path = ~/.gitconfig.local
 [push]
