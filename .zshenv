@@ -1,9 +1,8 @@
-# [ -f ~/perl5/perlbrew/etc/bashrc ] && source ~/perl5/perlbrew/etc/bashrc
-
 PATH=~/bin:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH
-#plenv
-export PATH=$HOME/.plenv/shims:$PATH
+#plenv/rbenv
+export PATH=$HOME/.plenv/shims:$HOEM/.rbenv/shims:$PATH
 if which plenv > /dev/null; then eval "$(plenv init -)"; fi
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/dev
