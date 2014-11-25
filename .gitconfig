@@ -23,6 +23,7 @@
     fh = flow hotfix
     ff = flow feature
     fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
+    ag = "!git ls-files | xargs ag --pager=\"less -F -R\" --nogroup --color-match=0\\;31 --color-path=0\\;0 --no-numbers"
 [include]
     path = ~/.gitconfig.local
 [push]
