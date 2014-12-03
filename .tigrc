@@ -5,3 +5,6 @@ set diff-options = -m --first-parent
 bind generic G move-last-line
 bind main b !@hub browse -- commit/%(commit)
 bind diff b !@hub browse -- commit/%(commit)
+set vertical-split = no
+set split-view-height = 80%
+set diff-context = 5
