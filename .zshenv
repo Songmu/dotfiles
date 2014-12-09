@@ -8,5 +8,9 @@ export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/dev
 export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.nodebrew/current/lib/node_modules/.bin:$HOME/.nodebrew/current/bin:$PATH
 
+if [ "$(boot2docker status)" = "running" ]; then
+  $(boot2docker shellinit 2>/dev/null)
+fi
+
 #個別設定を読み込む
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
