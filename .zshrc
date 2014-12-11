@@ -336,3 +336,6 @@ function peco-cdr () {
     zle clear-screen
 }
 zle -N peco-cdr
+
+# added by travis gem
+[ -f /Users/Songmu/.travis/travis.sh ] && source /Users/Songmu/.travis/travis.sh
