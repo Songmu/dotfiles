@@ -91,13 +91,13 @@ set foldmethod=manual
 set vb t_vb=
 
 " Go
-let g:gofmt_command = 'goimports'
+let g:go_fmt_command = 'goimports'
 set rtp+=$GOROOT/misc/vim
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 exe "set rtp+=".globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
 set completeopt=menu,preview
 
-au BufWritePre *.go Fmt
+au BufWritePre *.go :GoFmt
 au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4
 au FileType go compiler go
 
@@ -881,5 +881,6 @@ NeoBundle 'gre/play2vim'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'clausreinke/typescript-tools'
 NeoBundle 'sorah/unite-ghq'
+NeoBundle 'fatih/vim-go'
 
 filetype plugin indent on     " required!
