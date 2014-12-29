@@ -34,5 +34,8 @@
     log  = diff-highlight | less -r
     show = diff-highlight | less -r
     diff = diff-highlight | less -r
+[url "git@github.com:"]
+    pushinsteadof = "git://github.com/"
+    pushinsteadof = "https://github.com/"
 [ghq]
     root = ~/dev/src

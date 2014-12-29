@@ -115,6 +115,7 @@ alias ll='ls -l'
 alias gs="git svn"
 alias gi="git"
 alias gti="git"
+alias be="bundle exec"
 
 alias screen='screen -U -D -RR'
 
