@@ -882,5 +882,6 @@ NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'clausreinke/typescript-tools'
 NeoBundle 'sorah/unite-ghq'
 NeoBundle 'fatih/vim-go'
+NeoBundle 'ekalinin/Dockerfile'
 
 filetype plugin indent on     " required!
