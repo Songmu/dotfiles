@@ -125,6 +125,8 @@ autocmd MyAutoCmd BufNewFile,BufReadPost *.as set filetype=actionscript
 "markdownのfiletypeをセット
 autocmd MyAutoCmd BufNewFile,BufReadPost *.md set filetype=md
 
+autocmd MyAutoCmd BufNewFile,BufReadPost Dockerfile set filetype=Dockerfile
+
 "cs
 autocmd BufNewFile,BufRead *.cs set fenc=utf-8 bomb
 autocmd BufNewFile,BufRead *.cs set noexpandtab
