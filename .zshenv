@@ -1,4 +1,4 @@
-PATH=~/bin:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:$PATH
+PATH=~/bin:/usr/local/bin:/usr/local/sbin:$PATH
 #plenv/rbenv
 export PATH=$HOME/.plenv/shims:$HOEM/.rbenv/shims:$PATH
 if which plenv > /dev/null; then eval "$(plenv init -)"; fi
