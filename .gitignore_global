@@ -2,3 +2,4 @@ localrc.vim
 .local.perl.vimrc
 .DS_Store
 .songmu/*
+.tmp/*

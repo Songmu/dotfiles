@@ -92,12 +92,16 @@ set vb t_vb=
 
 " Go
 let g:go_fmt_command = 'goimports'
+let g:go_fmt_autosave = 0
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
 set rtp+=$GOROOT/misc/vim
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 exe "set rtp+=".globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
 set completeopt=menu,preview
 
-au BufWritePre *.go :GoFmt
+" au BufWritePre *.go :GoFmt
 au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4
 au FileType go compiler go
 
@@ -129,6 +133,9 @@ autocmd MyAutoCmd BufNewFile,BufReadPost *.md set filetype=md
 autocmd BufNewFile,BufRead *.cs set fenc=utf-8 bomb
 autocmd BufNewFile,BufRead *.cs set noexpandtab
 "autocmd BufNewFile,BufRead *.cs set fileformat=dos
+
+"Docker
+autocmd MyAutoCmd BufNewFile,BufReadPost Dockerfile set filetype=Dockerfile
 
 "なぜかnoexpandtabになることがあるので
 "autocmd MyAutoCmd BufNewFile,BufReadPost * set expandtab
