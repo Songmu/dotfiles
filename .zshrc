@@ -27,7 +27,7 @@ precmd () {
   if [ -z "${SSH_CONNECTION}" ]; then
     PROMPT="
  %{${fg[yellow]}%}%~%{${reset_color}%} ${vcs_info_msg_0_}
-[%n]$ "
+[%*]$ "
   else
     PROMPT="
  %{${fg[yellow]}%}%~%{${reset_color}%} ${vcs_info_msg_0_}
@@ -40,6 +40,8 @@ precmd () {
 }
 
 PROMPT2='[%n]> '
+RPROMPT="%(?.%F{green}%?%f.%F{red}%?%f)"
+setopt transient_rprompt
 
 fpath=(~/.zsh/zsh-completions/src(N-/) $fpath)
 #補間
