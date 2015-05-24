@@ -835,6 +835,8 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 autocmd FileType scala :compiler sbt
 autocmd QuickFixCmdPost make if len(getqflist()) != 0 | copen | endif
 
+let g:vim_markdown_frontmatter=1
+
 " neobundle
 filetype off
 set rtp+=~/.vim/neobundle.vim
@@ -892,5 +894,7 @@ NeoBundle 'clausreinke/typescript-tools'
 NeoBundle 'sorah/unite-ghq'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'ekalinin/Dockerfile'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'plasticboy/vim-markdown'
 
 filetype plugin indent on     " required!

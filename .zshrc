@@ -121,6 +121,8 @@ alias screen='screen -U -D -RR'
 
 alias perlsrc='perldoc -MPod::Strip'
 
+alias ca='pygmentize -O style=vim -f console256 -g'
+
 #改行のない出力をプロンプトで上書きするのを防ぐ
 unsetopt promptcr
 
