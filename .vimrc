@@ -828,7 +828,8 @@ let g:auto_ctags_filetype_mode = 1
 au BufNewFile,BufRead *.scala set tags+=.git/scala.tags
 
 if has('conceal')
-  set conceallevel=2 concealcursor=i
+  " set conceallevel=2 concealcursor=i
+  set conceallevel=1 concealcursor=
 endif
 let g:neosnippet#enable_snipmate_compatibility = 1
 
@@ -836,6 +837,14 @@ autocmd FileType scala :compiler sbt
 autocmd QuickFixCmdPost make if len(getqflist()) != 0 | copen | endif
 
 let g:vim_markdown_frontmatter=1
+
+" json
+let g:vim_json_syntax_conceal = 0
+
+" open-browser
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
 
 " neobundle
 filetype off
@@ -896,5 +905,7 @@ NeoBundle 'fatih/vim-go'
 NeoBundle 'ekalinin/Dockerfile'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'plasticboy/vim-markdown'
+NeoBundle 'elzr/vim-json'
+NeoBundle 'tyru/open-browser.vim'
 
 filetype plugin indent on     " required!
