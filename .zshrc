@@ -44,6 +44,7 @@ RPROMPT="%(?.%F{green}%?%f.%F{red}%?%f)"
 setopt transient_rprompt
 
 fpath=(~/.zsh/zsh-completions/src(N-/) $fpath)
+fpath=(~/.zsh/my-completions(N-/) $fpath)
 #補間
 autoload -Uz compinit && compinit
 
