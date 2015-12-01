@@ -258,14 +258,6 @@ vnoremap <C-s> "zy:%s/<C-r>=escape(@z,'/')<CR>/
 inoremap <C-d> <Del>
 inoremap <C-h> <BackSpace>
 
-"コマンドモードでemacsチックに
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-d> <Del>
-cnoremap <C-h> <BackSpace>
-
 "コマンドモードの履歴
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
@@ -281,15 +273,8 @@ nnoremap <silent> es :<C-u>e ++enc=cp932<CR>
 "pasteモードトグル
 nnoremap <Space>tp :<C-u>set paste!<CR>
 
-
 "help
 nnoremap <Space>h :<C-u>vert bel h<Space>
-
-"git
-nnoremap <Space>g :<C-u>!git<Space>
-
-"行末まで削除
-inoremap <C-k> <C-o>D
 
 "補完候補があってもEnterは改行
 inoremap <expr> <CR> pumvisible() ? "\<C-e>\<CR>" : "\<CR>"
@@ -389,31 +374,6 @@ autocmd FileType perl set isfname-=- isfname-=/ isfname-=+
 "------------------------
 
 autocmd FileType perl nnoremap <Space>pr :!prove %<CR>
-
-" jslint
-function! Jslint()
-    let msg = system('/usr/local/bin/jsl -process ' . expand('%:p'))
-    let m = matchlist(msg, '\(\d\+\) error(s), \(\d\+\) warning(s)')
-    let error = m[1]
-    let warn  = m[2]
-    if (error == 0 && warn == 0)
-        echo 'syntax ok'
-    else
-        let msgs = split(msg, '\n')
-        let errors = []
-        for line in msgs
-            let m = matchlist(line, expand('%:p').'(\(\d\+\)): \(.*\)')
-            if len(m) != 0
-                call add(errors, printf('%s:%s: %s',
-                \                        expand('%:p'), m[1], m[2]))
-            endif
-        endfor
-        setlocal errorformat=%f:%l:%m
-        cgetexpr join(errors, "\n")
-        copen
-    endif
-endfunction
-autocmd! FileType javascript nnoremap <Space>jl :<C-u>call Jslint()<CR>
 
 "http://hail2u.net/blog/software/support-slash-started-relative-url-in-vim-gf.html
 set includeexpr=substitute(v:fname,'^\\/','','')
