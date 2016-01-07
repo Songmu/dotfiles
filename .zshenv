@@ -7,11 +7,14 @@ export PATH=$HOME/.plenv/shims:$HOEM/.rbenv/shims:$PATH
 if which plenv > /dev/null; then eval "$(plenv init -)"; fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-export PATH=~/bin:/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=~/bin:$PATH:/usr/local/bin:/usr/local/sbin
 
-if [ "$(boot2docker status)" = "running" ]; then
-  $(boot2docker shellinit 2>/dev/null)
+if command -v docker-machine > /dev/null; then
+  local machine=$(docker-machine ls | grep Running | head -n 1 | awk '{ print $1 }')
+  if [ "$machine" != "" ]; then
+    eval "$(docker-machine env $machine)"
+    export DOCKER_IP=$(docker-machine ip $machine)
+  fi
 fi
 
-#個別設定を読み込む
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
