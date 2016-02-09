@@ -70,9 +70,6 @@ setopt share_history
 setopt hist_ignore_space
 setopt hist_ignore_all_dups
 
-#キーバインド
-bindkey -v
-
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
@@ -208,66 +205,6 @@ readuntil () {
     do
         read -E -k 1 a
     done
-}
-
-#
-# If the $SHOWMODE variable is set, displays the vi mode, specified by
-# the $VIMODE variable, under the current command line.
-#
-# Arguments:
-#
-#   1 (optional): Beyond normal calculations, the number of additional
-#   lines to move down before printing the mode.  Defaults to zero.
-#
-showmode() {
-    typeset movedown
-    typeset row
-
-    # Get number of lines down to print mode
-    movedown=$(($(echo "$RBUFFER" | wc -l) + ${1:-0}))
-
-    # Get current row position
-    echo -n "\e[6n"
-    row="${${$(readuntil R)#*\[}%;*}"
-
-    # Are we at the bottom of the terminal?
-    if [ $((row+movedown)) -gt "$LINES" ]
-    then
-        # Scroll terminal up one line
-        echo -n "\e[1S"
-
-        # Move cursor up one line
-        echo -n "\e[1A"
-    fi
-
-    # Save cursor position
-    echo -n "\e[s"
-
-    # Move cursor to start of line $movedown lines down
-    echo -n "\e[$movedown;E"
-
-    # Change font attributes
-    echo -n "\e[1m"
-
-    # Has a mode been set?
-    if [ -n "$VIMODE" ]
-    then
-        # Print mode line
-        echo -n "-- $VIMODE -- "
-    else
-        # Clear mode line
-        echo -n "\e[0K"
-    fi
-
-    # Restore font
-    echo -n "\e[0m"
-
-    # Restore cursor position
-    echo -n "\e[u"
-}
-
-clearmode() {
-    VIMODE= showmode
 }
 
 #
