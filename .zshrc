@@ -191,56 +191,6 @@ function pminfo() {
   fi
 }
 
-
-#
-# Set vi mode status bar
-#
-
-#
-# Reads until the given character has been entered.
-#
-readuntil () {
-    typeset a
-    while [ "$a" != "$1" ]
-    do
-        read -E -k 1 a
-    done
-}
-
-#
-# Temporary function to extend built-in widgets to display mode.
-#
-#   1: The name of the widget.
-#
-#   2: The mode string.
-#
-#   3 (optional): Beyond normal calculations, the number of additional
-#   lines to move down before printing the mode.  Defaults to zero.
-#
-makemodal () {
-    # Create new function
-    eval "$1() { zle .'$1'; ${2:+VIMODE='$2'}; showmode $3 }"
-
-    # Create new widget
-    zle -N "$1"
-}
-
-# Extend widgets
-makemodal vi-add-eol           INSERT
-makemodal vi-add-next          INSERT
-makemodal vi-change            INSERT
-makemodal vi-change-eol        INSERT
-makemodal vi-change-whole-line INSERT
-makemodal vi-insert            INSERT
-makemodal vi-insert-bol        INSERT
-makemodal vi-open-line-above   INSERT
-makemodal vi-substitute        INSERT
-makemodal vi-open-line-below   INSERT 1
-makemodal vi-replace           REPLACE
-makemodal vi-cmd-mode          NORMAL
-
-unfunction makemodal
-
 ## peco
 function peco-src () {
     local selected_dir=$(ghq list --full-path | perl -pe 's/(\Q$ENV{HOME}\E(.*$))/$2\0$1/' | peco --null --query "$LBUFFER")
