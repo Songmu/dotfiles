@@ -749,6 +749,8 @@ endfunction
 
 " tagbar
 nmap <F8> :TagbarToggle<CR>
+let g:tagbar_left = 0
+let g:tagbar_autofocus = 1
 
 if !exists("g:quickrun_config")
     let g:quickrun_config={}
