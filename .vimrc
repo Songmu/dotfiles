@@ -96,7 +96,6 @@ let g:go_fmt_autosave = 0
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
-set rtp+=$GOROOT/misc/vim
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 exe "set rtp+=".globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
 set completeopt=menu,preview
@@ -862,11 +861,11 @@ NeoBundle 'gre/play2vim'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'clausreinke/typescript-tools'
 NeoBundle 'sorah/unite-ghq'
-NeoBundle 'fatih/vim-go'
 NeoBundle 'ekalinin/Dockerfile'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'vim-jp/vim-go-extra'
 
 filetype plugin indent on     " required!
