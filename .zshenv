@@ -1,6 +1,6 @@
 export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME/dev
-export PATH=$GOPATH/bin:$GOROOT/bin
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 #plenv/rbenv
 export PATH=$HOME/.plenv/shims:$HOME/.rbenv/shims:$PATH
