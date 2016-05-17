@@ -522,77 +522,6 @@ if (filereadable(local_vimrc))
     execute "source " . local_vimrc
 endif
 
-
-" ディレクトリが存在しなくてもディレクトリつくってファイル作成
-function! s:newFileOpen(file)
-    let dir = fnamemodify(a:file, ':h')
-    if !isdirectory(dir)
-        call mkdir(dir, 'p')
-    endif
-    execute 'edit ' . a:file
-endfunction
-command! -nargs=1 -complete=file New call s:newFileOpen(<q-args>)
-
-" MarkdownをHTMLにする
-function! s:markdown(line1, line2)
-    let markdown_insalled = s:exec_perl('
-    \   eval { require Text::Markdown };
-    \   print $@ ? 0 : 1;
-    \')
-
-    if !markdown_insalled
-        call s:error('Text::Markdown not installed')
-        return
-    endif
-
-    let md_text = join(getline(a:line1, a:line2), "\n")
-    let md_text = substitute(md_text, "'", "\\\\'", 'g')
-    let perl_code = "
-    \   use Text::Markdown qw/markdown/;
-    \   my $html;
-    \   eval { $html = markdown('" . md_text . "'); };
-    \   print $@ ? '' : $html;
-    \"
-
-    try
-        let html = s:exec_perl(perl_code)
-        if html == ''
-            throw 'parse error'
-        endif
-    catch /shell error/
-        call s:error('perl code invalid')
-        return
-    catch /parse error/
-        call s:error('parse error')
-        return
-    endtry
-
-    let html = substitute(html, "\n</code></pre>", "</code></pre>", 'g')
-
-    " replace
-    "silent execute a:line1 . ',' . a:line2 . 'delete _'
-    "call append(a:line1 - 1, split(html, "\n"))
-
-    " scratch window
-    execute 'new'
-    setlocal bufhidden=unload
-    setlocal nobuflisted
-    setlocal buftype=nofile
-    setlocal noswapfile
-    nnoremap <buffer> <silent> q <C-w>c
-    call append(0, split(html, "\n"))
-    1
-endfunction
-
-function! s:exec_perl(perl_code)
-    let ret = system('perl', a:perl_code)
-    if v:shell_error
-        throw 'shell error'
-    endif
-
-    return ret
-endfunction
-
 function! s:error(msg)
     echohl ErrorMsg
     echomsg a:msg
@@ -798,6 +727,7 @@ autocmd QuickFixCmdPost make if len(getqflist()) != 0 | copen | endif
 
 let g:vim_markdown_frontmatter=1
 let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_conceal = 0
 
 " json
 let g:vim_json_syntax_conceal = 0

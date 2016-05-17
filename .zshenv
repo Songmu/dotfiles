@@ -1,12 +1,7 @@
 export GOPATH=$HOME/dev
-PATH=$PATH:/usr/local/bin
-if which go > /dev/null; then
-  PATH=$(go env GOROOT)/bin:$PATH
-fi
-PATH=$GOPATH/bin:$PATH
+PATH=$HOME/.plenv/shims:$GOPATH/bin:$PATH:/usr/local/bin
 
 #plenv/rbenv
-PATH=$HOME/.plenv/shims:$PATH
 if which plenv > /dev/null; then eval "$(plenv init -)"; fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
