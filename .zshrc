@@ -193,8 +193,9 @@ function pminfo() {
 
 ## peco
 function peco-src () {
-    local selected_dir=$(ghq list --full-path | perl -pe 's/(\Q$ENV{HOME}\E(.*$))/$2\0$1/' | peco --null --query "$LBUFFER")
+    local selected_dir=$(ghq list | peco --query "$LBUFFER")
     if [ -n "$selected_dir" ]; then
+        selected_dir="$GOPATH/src/$selected_dir"
         BUFFER="cd ${selected_dir}"
         zle accept-line
     fi

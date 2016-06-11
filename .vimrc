@@ -96,6 +96,7 @@ let g:go_fmt_autosave = 0
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
+let g:go_def_mapping_enabled = 0
 
 set completeopt=menu,preview
 
@@ -586,6 +587,7 @@ au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 noremap <C-j><C-O> :Unite outline<CR>
+noremap <C-j><C-f> :Unite ghq<CR>
 
 "" neocomplecache
 " Disable AutoComplPop.
