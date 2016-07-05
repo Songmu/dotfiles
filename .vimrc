@@ -711,6 +711,21 @@ let g:tagbar_type_scala = {
     \ ]
 \ }
 
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : 'markdown2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
+
 " let g:auto_ctags = 1
 let g:auto_ctags_directory_list = ['.git', '.svn']
 let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
@@ -770,18 +785,8 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'taglist.vim'
 NeoBundle 'vim-perl/vim-perl'
 NeoBundle 'vim-jp/vimdoc-ja'
-NeoBundle 'Shougo/vimproc', {
-      \ 'build' : {
-      \     'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
 NeoBundle 'soh335/unite-perl-module'
-"NeoBundle 'scrooloose/syntastic'
 NeoBundle 'airblade/vim-rooter'
-"NeoBundle 'othree/eregex.vim'
 NeoBundle 'motemen/xslate-vim'
 NeoBundle 'mattn/sonictemplate-vim'
 NeoBundle 'chase/vim-ansible-yaml'

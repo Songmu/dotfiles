@@ -1,5 +1,8 @@
 export GOPATH=$HOME/dev
-PATH=$HOME/.plenv/shims:$GOPATH/bin:$PATH:/usr/local/bin
+export PATH=$HOME/.plenv/shims:$GOPATH/bin:$PATH:/usr/local/bin
+if which ghg > /dev/null; then
+  export PATH=$(ghg bin):$PATH
+fi
 
 #plenv/rbenv
 if which plenv > /dev/null; then eval "$(plenv init -)"; fi
