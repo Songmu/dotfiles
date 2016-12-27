@@ -609,6 +609,9 @@ vmap gx <Plug>(openbrowser-smart-search)
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 let g:ctrlp_user_command = 'files -a %s'
 
+noremap <leader>g :<c-u>CtrlPGhq<cr>
+noremap <leader>m :<c-u>CtrlPMixed<cr>
+
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
@@ -651,5 +654,6 @@ Plug 'elzr/vim-json'
 Plug 'tyru/open-browser.vim'
 Plug 'fatih/vim-go'
 Plug 'nixprime/cpsm'
+Plug 'justinmk/vim-dirvish'
 
 call plug#end()
