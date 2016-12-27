@@ -564,31 +564,6 @@ cnoremap <Down> <C-n>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-"------------------------------------
-" unite.vim
-"------------------------------------
-" 入力モードで開始する
-let g:unite_enable_start_insert=0
-" バッファ一覧
-noremap <C-j><C-B> :Unite buffer<CR>
-" ファイル一覧
-noremap <C-j><C-F> :UniteWithBufferDir -buffer-name=files file<CR>
-" 最近使ったファイルの一覧
-noremap <C-j><C-R> :Unite file_mru<CR>
-" レジスタ一覧
-noremap <C-j><C-Y> :Unite -buffer-name=register register<CR>
-" 全部
-noremap <C-j><C-A> :Unite UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
-
-nnoremap <silent> <C-j><C-p>  :<C-u>Unite file_rec/async:!<CR>
-
-" ESCキーを2回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
-
-noremap <C-j><C-O> :Unite outline<CR>
-noremap <C-j><C-f> :Unite ghq<CR>
-
 "" neocomplecache
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -673,11 +648,6 @@ endfunction
 let g:syntastic_perl_lib_path = 'lib'
 let g:syntastic_perl_checkers = ['perl']
 
-" Unite
-function! s:unite_my_settings()
-  nmap <buffer> <C-c> <Plug>(unite_redraw)
-endfunction
-
 " tagbar
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_left = 0
@@ -760,7 +730,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'Shougo/neocomplcache'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'Shougo/unite.vim'
 Plug 'thinca/vim-ref'
 Plug 'thinca/vim-quickrun'
 Plug 'thinca/vim-localrc'
@@ -772,7 +741,6 @@ Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/vimplenote-vim'
 Plug 'toritori0318/vim-redmine'
-Plug 'Shougo/unite-outline'
 Plug 'kchmck/vim-coffee-script'
 Plug 't9md/vim-textmanip'
 Plug 'kana/vim-tabpagecd'
@@ -780,7 +748,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'taglist.vim'
 Plug 'vim-perl/vim-perl'
 Plug 'vim-jp/vimdoc-ja'
-Plug 'soh335/unite-perl-module'
 Plug 'airblade/vim-rooter'
 Plug 'motemen/xslate-vim'
 Plug 'mattn/sonictemplate-vim'
@@ -793,7 +760,6 @@ Plug 'soramugi/auto-ctags.vim'
 Plug 'gre/play2vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'clausreinke/typescript-tools.vim'
-Plug 'sorah/unite-ghq'
 Plug 'ekalinin/Dockerfile'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
