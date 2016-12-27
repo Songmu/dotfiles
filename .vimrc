@@ -138,9 +138,6 @@ autocmd BufNewFile,BufRead *.cs set noexpandtab
 "Docker
 autocmd MyAutoCmd BufNewFile,BufReadPost Dockerfile set filetype=Dockerfile
 
-"なぜかnoexpandtabになることがあるので
-"autocmd MyAutoCmd BufNewFile,BufReadPost * set expandtab
-
 " Ruby
 autocmd BufNewFile,BufRead *.rb set sw=2 expandtab ts=2
 
@@ -386,101 +383,6 @@ vmap <Space>a <leader>tsp
 vnoremap <Space>= :Align =<CR>
 vnoremap <Space>h :Align =><CR>
 
-" ウインドウ単位で開いたファイルの履歴をたどる
-" なんかvimgrepでバグる
-function! FileJumpPush()
-    if !exists('w:histories')
-        let w:histories = []
-    endif
-    let buf = bufnr('%')
-    if count(w:histories, buf) == 0
-        call add(w:histories, buf)
-    endif
-endfunction
-
-function! FileJumpPrev()
-    if exists('w:histories')
-        let buf = bufnr('%')
-        let current = match(w:histories, '^'.buf.'$')
-        if current != 0 && exists('w:histories[current - 1]')
-            execute 'buffer ' . w:histories[current - 1]
-        endif
-    endif
-endfunction
-
-function! FileJumpNext()
-    if exists('w:histories')
-        let buf = bufnr('%')
-        let current = match(w:histories, '^'.buf.'$')
-        if exists('w:histories[current + 1]')
-            execute 'buffer ' . w:histories[current + 1]
-        endif
-    endif
-endfunction
-
-augroup FileJumpAutoCmd
-    autocmd!
-augroup END
-
-
-" see http://vim-users.jp/2009/11/hack96/
-autocmd FileType *
-\   if &l:omnifunc == ''
-\ |   setlocal omnifunc=syntaxcomplete#Complete
-\ | endif
-
-" perl-completion.vim
-"let g:def_perl_comp_bfunction = 1
-"let g:def_perl_comp_packagen  = 1
-"let g:acp_behaviorPerlOmniLength = 0
-
-" smartchr.vim
-"inoremap <expr> = smartchr#one_of(' = ', ' == ', ' === ', '=')
-"inoremap <expr> => smartchr#one_of(' => ', '=>')
-
-" rename
-function! DoRename(file)
-    execute "file " . a:file
-    call delete(expand('#'))
-    write!
-endfunction
-function! Rename(file, bang)
-    if filereadable(a:file)
-        if a:bang == '!'
-            call DoRename(a:file)
-        else
-            echohl ErrorMsg
-            echomsg 'File exists (add ! to override)'
-            echohl None
-        endif
-    else
-        call DoRename(a:file)
-    endif
-endfunction
-command! -nargs=1 -bang -complete=file Rename call Rename(<q-args>, "<bang>")
-
-
-"zen-coding
-let g:user_zen_leader_key = '<C-f>'
-let g:user_zen_settings = {
-\  'indentation' : '    ',
-\  'html': {
-\     'close_empty_element': 0,
-\     'snippets': {
-\        'html:5': "<!DOCTYPE html>\n"
-\                ."<html lang=\"${lang}\">\n"
-\                ."<head>\n"
-\                ."    <meta charset=\"${charset}\">\n"
-\                ."    <title></title>\n"
-\                ."</head>\n"
-\                ."<body>\n\t${child}|\n</body>\n"
-\                ."</html>"
-\     }
-\  }
-\}
-
-set virtualedit+=block
-
 " package名チェック
 function! s:get_package_name()
   let mx = '^\s*package\s\+\([^ ;]\+\)'
@@ -505,7 +407,6 @@ endfunction
 
 au! BufWritePost *.pm call s:check_package_name()
 
-
 " パスの追加
 let s:paths = split($PATH, ':')
 function! g:Insert_path(path)
@@ -528,20 +429,6 @@ function! s:error(msg)
     echomsg a:msg
     echohl None
 endfunction
-
-" errormarker
-let g:errormarker_errortext     = '!!'
-let g:errormarker_warningstext  = '??'
-let g:errormarker_errorgroup    = 'Error'
-let g:errormarker_warning_group = 'Todo'
-"let g:errormarker_erroricon = expand('~/.vim/signs/err.png')
-"let g:errormarker_erroricon = expand('~/.vim/signs/warn.png')
-
-"if !exists('g:flymake_enabled')
-"    let g:flymake_enabled = 1
-"    autocmd BufWritePost *.pl,*.pm,*.psgi,*.t silent make %
-"endif
-
 
 " clipboard
 nnoremap <Space>p :call system("pbcopy", @")<CR>
@@ -643,11 +530,6 @@ function! s:init_cmdwin()
   startinsert!
 endfunction
 
-
-" syntaxtic
-let g:syntastic_perl_lib_path = 'lib'
-let g:syntastic_perl_checkers = ['perl']
-
 " tagbar
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_left = 0
@@ -724,19 +606,21 @@ let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
+let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+let g:ctrlp_user_command = 'files -a %s'
+
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mattn/ctrlp-ghq'
 Plug 'Shougo/neocomplcache'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'thinca/vim-ref'
-Plug 'thinca/vim-quickrun'
-Plug 'thinca/vim-localrc'
 Plug 'tsaleh/vim-align'
 Plug 'vim-scripts/closetag.vim'
 Plug 'vim-scripts/errormarker.vim'
-Plug 'ack.vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/vimplenote-vim'
@@ -760,11 +644,12 @@ Plug 'soramugi/auto-ctags.vim'
 Plug 'gre/play2vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'clausreinke/typescript-tools.vim'
-Plug 'ekalinin/Dockerfile'
+Plug 'ekalinin/Dockerfile.vim'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'elzr/vim-json'
 Plug 'tyru/open-browser.vim'
 Plug 'fatih/vim-go'
+Plug 'nixprime/cpsm'
 
 call plug#end()
