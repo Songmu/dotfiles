@@ -1,3 +1,4 @@
+scriptencoding utf-8
 "------------------------
 " 基本設定
 "------------------------
@@ -17,13 +18,8 @@ set autoindent
 set incsearch
 set ignorecase
 set smartcase
-set nohlsearch
 
-"行数表示
-set number
-
-"対応する括弧表示しない
-set noshowmatch
+set number "行数表示
 
 "コマンドラインの高さ
 set cmdheight=1
@@ -41,9 +37,6 @@ set listchars=tab:>\
 "swapファイル作らない
 set noswapfile
 
-"backupskip for crontab
-set backupskip=/tmp/*,/private/tmp/*
-
 "backupしない
 set nobackup
 
@@ -58,16 +51,8 @@ set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']['.&ft.']'}
 set wildmenu
 set wildmode=list:longest,full
 
-"補完
-set complete=.,w,b,u,k
-"set completeopt=menu,preview,longest
-set pumheight=20
-
 "ftplugin有効
-filetype plugin on
-
-" 新規windowを右側に開く
-nnoremap <C-w>v :<C-u>belowright vnew<CR>
+filetype plugin indent on
 
 "windwowの高さ、幅
 "set winheight=100
@@ -76,18 +61,8 @@ set winwidth=78
 " 下に開く
 set splitbelow
 
-" 全角スペース
-highlight JpSpace cterm=underline ctermfg=red guifg=red
-au BufRead,BufNew * match JpSpace /　/
-
-" 行末スペース
-highlight WhitespaceEOL ctermbg=red guibg=red
-au BufRead,BufNew,WinEnter * match WhitespaceEOL /\s\+$/
-
 set helplang=ja
-
 set foldmethod=manual
-
 set vb t_vb=
 
 " Go
@@ -100,55 +75,40 @@ let g:go_def_mapping_enabled = 0
 
 set completeopt=menu,preview
 
-" au BufWritePre *.go :GoFmt
-au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4
-au FileType go compiler go
-
 "-----------------------
 " autocmd
 "------------------------
 augroup MyAutoCmd
   autocmd!
+
+  " 全角スペース
+  highlight JpSpace cterm=underline ctermfg=red guifg=red
+  au BufRead,BufNew * match JpSpace /　/
+
+  " 行末スペース
+  highlight WhitespaceEOL ctermbg=red guibg=red
+  au BufRead,BufNew,WinEnter * match WhitespaceEOL /\s\+$/
+
+  au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4
+  au FileType go compiler go
+  au BufNewFile,BufReadPost *.mt,*.tt,*.tx set filetype=html
+  au BufNewFile,BufReadPost *.psgi,*.t,cpanfile,Daikufile set filetype=perl
+  au BufNewFile,BufReadPost *.ru set filetype=ruby
+  au BufNewFile,BufReadPost *.md set filetype=md
+  au BufNewFile,BufReadPost Dockerfile set filetype=Dockerfile
+  au BufNewFile,BufRead *.rb set sw=2 expandtab ts=2
+  au FileType perl,cgi :compiler perl
+  au BufNewFile,BufRead *.scala set tags+=.git/scala.tags
+  au FileType perl set isfname-=- isfname-=/ isfname-=+
+  au FileType perl nnoremap <Space>pr :!prove %<CR>
+  au FileType html :setlocal path+=;/
+  au BufNewFile *.pm call s:pm_template()
+  au BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
+  au BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
+  au CmdwinEnter * call s:init_cmdwin()
+  au FileType scala :compiler sbt
+  au QuickFixCmdPost make if len(getqflist()) != 0 | copen | endif
 augroup END
-
-"mtとttをhtmlに
-autocmd MyAutoCmd BufNewFile,BufReadPost *.mt,*.tt,*.tx set filetype=html
-
-" autocmd MyAutoCmd BufNewFile,BufReadPost *.tx set filetype=xslate
-
-"psgiとtはperl
-autocmd MyAutoCmd BufNewFile,BufReadPost *.psgi,*.t,cpanfile,Daikufile set filetype=perl
-
-"ruをrubyに
-autocmd MyAutoCmd BufNewFile,BufReadPost *.ru set filetype=ruby
-
-"asをactionscriptに
-autocmd MyAutoCmd BufNewFile,BufReadPost *.as set filetype=actionscript
-
-"markdownのfiletypeをセット
-autocmd MyAutoCmd BufNewFile,BufReadPost *.md set filetype=md
-
-autocmd MyAutoCmd BufNewFile,BufReadPost Dockerfile set filetype=Dockerfile
-
-"cs
-autocmd BufNewFile,BufRead *.cs set fenc=utf-8 bomb
-autocmd BufNewFile,BufRead *.cs set noexpandtab
-"autocmd BufNewFile,BufRead *.cs set fileformat=dos
-
-"Docker
-autocmd MyAutoCmd BufNewFile,BufReadPost Dockerfile set filetype=Dockerfile
-
-" Ruby
-autocmd BufNewFile,BufRead *.rb set sw=2 expandtab ts=2
-
-" オレオレgrep
-command! -complete=file -nargs=+ Grep call s:grep(<q-args>)
-function! s:grep(args)
-    execute 'vimgrep' '/' . a:args . '/j **/*'
-    if len(getqflist()) != 0 | copen | endif
-endfunction
-
-autocmd FileType perl,cgi :compiler perl
 
 "-----------------------
 " 文字コードとかの設定
@@ -215,9 +175,6 @@ nnoremap ; :
 "単語検索
 nnoremap * g*
 nnoremap # g#
-
-"サーチハイライトトグル
-nnoremap <silent> <Space>th :set hlsearch!<CR>
 
 "タブ切り替え
 nnoremap <C-l> gt
@@ -292,91 +249,17 @@ nnoremap k gk
 inoremap <C-u>  <C-g>u<C-u>
 inoremap <C-w>  <C-g>u<C-w>
 
-" 行末までyank
-nnoremap Y y$
-
-" text object
-nnoremap gc `[v`]
-onoremap gc :normal gc<CR>
-
-onoremap <silent> q
-\      :for i in range(v:count1)
-\ <Bar>   call search('.\&\(\k\<Bar>\_s\)\@!', 'W')
-\ <Bar> endfor<CR>
-
-" コピペ
-nnoremap y "xy
-vnoremap y "xy
-nnoremap d "xd
-vnoremap d "xd
-nnoremap c "xc
-vnoremap c "xc
-vnoremap p "xp
-nnoremap <C-p> :<C-u>set opfunc=OverridePaste<CR>g@
-nnoremap <C-p><C-p> :<C-u>set opfunc=OverridePaste<CR>g@g@
-
-function! OverridePaste(type, ...)
-    if a:0
-        silent execute "normal! `<" . a:type . "`>\"xp"
-    elseif a:type == 'line'
-        silent execute "normal! '[V']\"xp"
-    elseif a:type == 'block'
-        silent execute "normal! `[\<C-V>`]\"xp"
-    else
-        silent execute "normal! `[v`]\"xp"
-    endif
-endfunction
-
-" インデント選択
-function! VisualCurrentIndentBlock(type)
-    let current_indent = indent('.')
-    let current_line   = line('.')
-    let current_col    = col('.')
-    let last_line      = line('$')
-
-    let start_line = current_line
-    while start_line != 1 && current_indent <= indent(start_line) || getline(start_line) == ''
-        let start_line -= 1
-    endwhile
-    if a:type ==# 'i'
-        let start_line += 1
-    endif
-
-    let end_line = current_line
-    while end_line != last_line && current_indent <= indent(end_line) || getline(end_line) == ''
-        let end_line += 1
-    endwhile
-    if a:type ==# 'i'
-        let end_line -= 1
-    endif
-
-    call cursor(start_line, current_col)
-    normal! V
-    call cursor(end_line, current_col)
-endfunction
-
-nnoremap vii :call VisualCurrentIndentBlock('i')<CR>
-nnoremap vai :call VisualCurrentIndentBlock('a')<CR>
-onoremap ii :normal vii<CR>
-onoremap ai :normal vai<CR>
-
-nnoremap gs :<C-u>setf<Space>
-
 " onmi補完 Ctrl+Space
 imap <Nul> <C-x><C-o>
 
 map gf <C-w>gf
-autocmd FileType perl set isfname-=- isfname-=/ isfname-=+
 
 "------------------------
 " プラグインの設定
 "------------------------
 
-autocmd FileType perl nnoremap <Space>pr :!prove %<CR>
-
 "http://hail2u.net/blog/software/support-slash-started-relative-url-in-vim-gf.html
 set includeexpr=substitute(v:fname,'^\\/','','')
-autocmd FileType html :setlocal path+=;/
 
 " align.vimのおぺれーた
 vmap <Space>a <leader>tsp
@@ -424,26 +307,9 @@ if (filereadable(local_vimrc))
     execute "source " . local_vimrc
 endif
 
-function! s:error(msg)
-    echohl ErrorMsg
-    echomsg a:msg
-    echohl None
-endfunction
-
 " clipboard
 nnoremap <Space>p :call system("pbcopy", @")<CR>
-nnoremap <Space>v :r! pbpaste<CR>
-
-" textmanip
-xmap <Space>d <Plug>(textmanip-duplicate-down)
-nmap <Space>d <Plug>(textmanip-duplicate-down)
-xmap <Space>D <Plug>(textmanip-duplicate-up)
-nmap <Space>D <Plug>(textmanip-duplicate-up)
-
-xmap <C-j> <Plug>(textmanip-move-down)
-xmap <C-k> <Plug>(textmanip-move-up)
-xmap <C-h> <Plug>(textmanip-move-left)
-xmap <C-l> <Plug>(textmanip-move-right)
+nnoremap <Space>v :r !pbpaste<CR>
 
 " command履歴
 cnoremap <Up> <C-p>
@@ -507,16 +373,12 @@ function! s:pm_template()
     call cursor(6, 0)
     " echomsg path
 endfunction
-autocmd BufNewFile *.pm call s:pm_template()
-autocmd BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
-autocmd BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
 
 " command line window cf. http://vim-users.jp/2010/07/hack161/
 nnoremap <sid>(command-line-enter) q:
 xnoremap <sid>(command-line-enter) q:
 nnoremap <sid>(command-line-norange) q:<C-u>
 
-autocmd MyAutoCmd CmdwinEnter * call s:init_cmdwin()
 function! s:init_cmdwin()
   nnoremap <buffer> q :<C-u>quit<CR>
   nnoremap <buffer> <TAB> :<C-u>quit<CR>
@@ -583,16 +445,10 @@ let g:auto_ctags_directory_list = ['.git', '.svn']
 let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
 let g:auto_ctags_filetype_mode = 1
 
-au BufNewFile,BufRead *.scala set tags+=.git/scala.tags
-
 if has('conceal')
-  " set conceallevel=2 concealcursor=i
   set conceallevel=1 concealcursor=
 endif
 let g:neosnippet#enable_snipmate_compatibility = 1
-
-autocmd FileType scala :compiler sbt
-autocmd QuickFixCmdPost make if len(getqflist()) != 0 | copen | endif
 
 let g:vim_markdown_frontmatter=1
 let g:vim_markdown_folding_disabled=1
@@ -609,8 +465,8 @@ vmap gx <Plug>(openbrowser-smart-search)
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 let g:ctrlp_user_command = 'files -a %s'
 
-noremap <leader>g :<c-u>CtrlPGhq<cr>
-noremap <leader>m :<c-u>CtrlPMixed<cr>
+noremap <silent> <leader>g :<c-u>CtrlPGhq<cr>
+noremap <silent> <leader>m :<c-u>CtrlPMixed<cr>
 
 " vim-plug
 call plug#begin('~/.vim/plugged')
@@ -623,14 +479,11 @@ Plug 'Shougo/neosnippet-snippets'
 Plug 'thinca/vim-ref'
 Plug 'tsaleh/vim-align'
 Plug 'vim-scripts/closetag.vim'
-Plug 'vim-scripts/errormarker.vim'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 Plug 'mattn/vimplenote-vim'
 Plug 'toritori0318/vim-redmine'
 Plug 'kchmck/vim-coffee-script'
-Plug 't9md/vim-textmanip'
-Plug 'kana/vim-tabpagecd'
 Plug 'tpope/vim-fugitive'
 Plug 'taglist.vim'
 Plug 'vim-perl/vim-perl'
@@ -642,7 +495,6 @@ Plug 'chase/vim-ansible-yaml'
 Plug 'dgryski/vim-godef'
 Plug 'derekwyatt/vim-scala'
 Plug 'majutsushi/tagbar'
-Plug 'Shougo/neomru.vim'
 Plug 'soramugi/auto-ctags.vim'
 Plug 'gre/play2vim'
 Plug 'leafgarland/typescript-vim'
