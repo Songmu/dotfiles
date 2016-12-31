@@ -5,7 +5,8 @@ scriptencoding utf-8
 
 "色設定
 syntax on
-colorscheme mycolor
+colorscheme molokai
+let g:rehash256 = 1
 
 "タブの設定
 set softtabstop=4
@@ -163,7 +164,7 @@ function! MyTabLabel(n)
   return expand("#".buflist[winnr - 1].":t")
 endfunction
 
-" 開いてるファイルにのディレクトリに移動
+" 開いてるファイルのディレクトリに移動
 command! -nargs=0 CD :execute 'lcd ' . expand("%:p:h")
 
 "------------------------
