@@ -3,7 +3,7 @@
         "C-p": "peco.SelectUp",
         "C-n": "peco.SelectDown",
         "C-c": "peco.Cancel",
-        "C-t": "peco.ToggleSelection",
-        "C-r": "peco.RotateMatcher"
+        "C-t": "peco.ToggleSelectionAndSelectNext",
+        "C-r": "peco.RotateFilter"
     }
 }
