@@ -6,6 +6,7 @@ scriptencoding utf-8
 "色設定
 syntax on
 colorscheme molokai
+set t_Co=256
 
 "タブの設定
 set softtabstop=4
