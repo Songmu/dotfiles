@@ -90,7 +90,7 @@ setopt nobeep
 
 #cd
 setopt auto_cd
-setopt auto_pushd 
+setopt auto_pushd
 setopt pushd_ignore_dups
 
 #lsと補間にでる一覧の色
@@ -112,17 +112,11 @@ linux*)
 esac
 
 alias ll='ls -l'
-
 alias gs="git svn"
 alias gi="git"
 alias gti="git"
 alias be="bundle exec"
-
 alias screen='screen -U -D -RR'
-
-alias perlsrc='perldoc -MPod::Strip'
-
-alias ca='pygmentize -O style=vim -f console256 -g'
 
 #改行のない出力をプロンプトで上書きするのを防ぐ
 unsetopt promptcr
