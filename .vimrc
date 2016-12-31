@@ -6,7 +6,6 @@ scriptencoding utf-8
 "色設定
 syntax on
 colorscheme molokai
-let g:rehash256 = 1
 
 "タブの設定
 set softtabstop=4
@@ -46,7 +45,6 @@ set autoread
 
 "ステータスラインの表示設定
 set laststatus=2
-set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']['.&ft.']'}%=%l,%c%V%8P
 
 "exモードの補完
 set wildmenu
@@ -507,5 +505,6 @@ Plug 'tyru/open-browser.vim'
 Plug 'fatih/vim-go'
 Plug 'nixprime/cpsm'
 Plug 'justinmk/vim-dirvish'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
