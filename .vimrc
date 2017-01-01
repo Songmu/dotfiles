@@ -84,14 +84,9 @@ set completeopt=menu,preview
 "------------------------
 augroup MyAutoCmd
   autocmd!
-
-  " 全角スペース
-  highlight JpSpace cterm=underline ctermfg=red guifg=red
-  au BufRead,BufNew * match JpSpace /　/
-
-  " 行末スペース
+  " 全角・行末スペース
   highlight WhitespaceEOL ctermbg=red guibg=red
-  au BufRead,BufNew,WinEnter * match WhitespaceEOL /\s\+$/
+  au BufRead,BufNew,WinEnter * match WhitespaceEOL /\(　\|\s\+$\)/
 
   au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4
   au FileType go compiler go
@@ -157,6 +152,8 @@ function! MyTabLabel(n)
   let winnr = tabpagewinnr(a:n)
   return expand("#".buflist[winnr - 1].":t")
 endfunction
+
+set virtualedit+=block
 
 "------------------------
 " キーバインド
