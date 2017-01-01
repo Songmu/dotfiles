@@ -158,9 +158,6 @@ function! MyTabLabel(n)
   return expand("#".buflist[winnr - 1].":t")
 endfunction
 
-" 開いてるファイルのディレクトリに移動
-command! -nargs=0 CD :execute 'lcd ' . expand("%:p:h")
-
 "------------------------
 " キーバインド
 "------------------------
@@ -369,7 +366,7 @@ function! s:pm_template()
     " echomsg path
 endfunction
 
-" command line window cf. http://vim-users.jp/2010/07/hack161/
+" command line window cf. http://vim-jp.org/vim-users-jp/2010/07/14/Hack-161.html
 nnoremap <sid>(command-line-enter) q:
 xnoremap <sid>(command-line-enter) q:
 nnoremap <sid>(command-line-norange) q:<C-u>
@@ -458,7 +455,7 @@ nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-let g:ctrlp_user_command = 'files -a %s'
+let g:ctrlp_user_command = 'files -A -a %s'
 
 noremap <silent> <leader>g :<c-u>CtrlPGhq<cr>
 noremap <silent> <leader>m :<c-u>CtrlPMixed<cr>
