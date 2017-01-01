@@ -1,4 +1,16 @@
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
 scriptencoding utf-8
+
+" □とか○の文字があってもカーソル位置がずれないようにする
+if exists('&ambiwidth')
+  set ambiwidth=double
+endif
+
+"改行コード
+set fileformats=unix,dos,mac
+
 "------------------------
 " 基本設定
 "------------------------
@@ -108,22 +120,13 @@ augroup MyAutoCmd
   au CmdwinEnter * call s:init_cmdwin()
   au FileType scala :compiler sbt
   au QuickFixCmdPost make if len(getqflist()) != 0 | copen | endif
+
+  " see http://vim-jp.org/vim-users-jp/2009/11/01/Hack-96.html
+  au FileType *
+  \   if &l:omnifunc == ''
+  \ |   setlocal omnifunc=syntaxcomplete#Complete
+  \ | endif
 augroup END
-
-"-----------------------
-" 文字コードとかの設定
-"------------------------
-set termencoding=utf-8
-set encoding=utf-8
-set fileencoding=utf-8
-
-" □とか○の文字があってもカーソル位置がずれないようにする
-if exists('&ambiwidth')
-  set ambiwidth=double
-endif
-
-"改行コード
-set fileformats=unix,dos,mac
 
 " タブラインの設定
 set tabline=%!MyTabLine()
