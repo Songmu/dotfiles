@@ -47,13 +47,8 @@ set showtabline=2
 set list
 set listchars=tab:>\ 
 
-"swapファイル作らない
 set noswapfile
-
-"backupしない
 set nobackup
-
-"他で編集されたら読み込み直す
 set autoread
 
 "ステータスラインの表示設定
@@ -62,9 +57,6 @@ set laststatus=2
 "exモードの補完
 set wildmenu
 set wildmode=list:longest,full
-
-"ftplugin有効
-filetype plugin indent on
 
 "windwowの高さ、幅
 "set winheight=100
@@ -512,3 +504,5 @@ Plug 'justinmk/vim-dirvish'
 Plug 'itchyny/lightline.vim'
 
 call plug#end()
+
+filetype plugin indent on
