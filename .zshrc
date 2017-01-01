@@ -266,4 +266,4 @@ peco-mackerel-host () {
 zle -N peco-mackerel-host
 
 # added by travis gem
-[ -f /Users/Songmu/.travis/travis.sh ] && source /Users/Songmu/.travis/travis.sh
+[ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
