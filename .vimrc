@@ -32,8 +32,6 @@ set incsearch
 set ignorecase
 set smartcase
 
-set number "行数表示
-
 "コマンドラインの高さ
 set cmdheight=1
 
