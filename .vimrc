@@ -443,12 +443,14 @@ noremap <silent> <leader>m :<c-u>CtrlPMixed<cr>
 let g:ctrlp_ghq_default_action = 'e'
 let g:ctrlp_ghq_cache_enabled = 1
 
+let g:go_snippet_engine = 'neosnippet'
+
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-ghq'
-Plug 'Shougo/neocomplcache'
+Plug 'Shougo/neocomplete'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'thinca/vim-ref'
