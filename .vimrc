@@ -472,6 +472,7 @@ Plug 'fatih/vim-go'
 Plug 'nixprime/cpsm'
 Plug 'justinmk/vim-dirvish'
 Plug 'itchyny/lightline.vim'
+Plug 'rking/ag.vim'
 
 call plug#end()
 
