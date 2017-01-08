@@ -97,6 +97,7 @@ augroup MyAutoCmd
   au FileType perl nnoremap <Space>pr :!prove %<CR>
   au FileType html setlocal path+=;/
   au BufNewFile *.pm set ft=perl | call sonictemplate#apply('package', 'n')
+  au BufWritePost *.pm call s:check_package_name()
   au BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
   au BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
   au CmdwinEnter * call s:init_cmdwin()
@@ -278,18 +279,6 @@ function! s:check_package_name()
   endif
 endfunction
 
-au! BufWritePost *.pm call s:check_package_name()
-
-" パスの追加
-let s:paths = split($PATH, ':')
-function! g:Insert_path(path)
-    let index = index(s:paths, a:path)
-    if index != -1
-        call remove(s:paths, index)
-    endif
-    call insert(s:paths, a:path)
-    let $PATH = join(s:paths, ':')
-endfunction
 
 " local設定ファイル
 let local_vimrc = $HOME."/.vimrc.local"
