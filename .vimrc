@@ -451,24 +451,24 @@ Plug 'tsaleh/vim-align'
 Plug 'vim-scripts/closetag.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'taglist.vim'
-Plug 'vim-perl/vim-perl'
+Plug 'vim-perl/vim-perl', { 'for': 'perl' }
 Plug 'vim-jp/vimdoc-ja'
 Plug 'airblade/vim-rooter'
 Plug 'motemen/xslate-vim'
 Plug 'mattn/sonictemplate-vim'
 Plug 'chase/vim-ansible-yaml'
-Plug 'derekwyatt/vim-scala'
+Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'majutsushi/tagbar'
 Plug 'soramugi/auto-ctags.vim'
-Plug 'gre/play2vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'clausreinke/typescript-tools.vim'
-Plug 'ekalinin/Dockerfile.vim'
+Plug 'gre/play2vim', { 'for': 'scala' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'clausreinke/typescript-tools.vim', { 'for': 'typescript' }
+Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'elzr/vim-json'
 Plug 'tyru/open-browser.vim'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'nixprime/cpsm'
 Plug 'justinmk/vim-dirvish'
 Plug 'itchyny/lightline.vim'
