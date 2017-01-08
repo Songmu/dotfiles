@@ -101,6 +101,8 @@ augroup MyAutoCmd
   au BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
   au CmdwinEnter * call s:init_cmdwin()
   au QuickFixCmdPost make if len(getqflist()) != 0 | copen | endif
+  au User DirvishEnter let b:dirvish.showhidden = 1
+  au FileType dirvish call fugitive#detect(@%)
 
   " see http://vim-jp.org/vim-users-jp/2009/11/01/Hack-96.html
   au FileType *
@@ -433,6 +435,8 @@ let g:ctrlp_user_command = 'files -A -a %s'
 
 noremap <silent> <leader>g :<c-u>CtrlPGhq<cr>
 noremap <silent> <leader>m :<c-u>CtrlPMixed<cr>
+let g:ctrlp_ghq_default_action = 'e'
+let g:ctrlp_ghq_cache_enabled = 1
 
 " vim-plug
 call plug#begin('~/.vim/plugged')
