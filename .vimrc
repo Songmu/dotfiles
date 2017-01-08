@@ -95,7 +95,7 @@ augroup MyAutoCmd
   au BufNewFile,BufRead *.scala set tags+=.git/scala.tags
   au FileType perl set isfname-=- isfname-=/ isfname-=+
   au FileType perl nnoremap <Space>pr :!prove %<CR>
-  au FileType html :setlocal path+=;/
+  au FileType html setlocal path+=;/
   au BufNewFile *.pm set ft=perl | call sonictemplate#apply('package', 'n')
   au BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
   au BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
@@ -103,6 +103,7 @@ augroup MyAutoCmd
   au QuickFixCmdPost make if len(getqflist()) != 0 | copen | endif
   au User DirvishEnter let b:dirvish.showhidden = 1
   au FileType dirvish call fugitive#detect(@%)
+  au FileType go call s:setGoImportPaths()
 
   " see http://vim-jp.org/vim-users-jp/2009/11/01/Hack-96.html
   au FileType *
@@ -110,6 +111,10 @@ augroup MyAutoCmd
   \ |   setlocal omnifunc=syntaxcomplete#Complete
   \ | endif
 augroup END
+
+function! s:setGoImportPaths()
+  let &l:path = join([go#util#goroot() . "/src", go#util#gopath() . "/src", &l:path], ",")
+endfunction
 
 " タブラインの設定
 set tabline=%!MyTabLine()
@@ -468,7 +473,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'elzr/vim-json'
 Plug 'tyru/open-browser.vim'
-Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go'
 Plug 'nixprime/cpsm'
 Plug 'justinmk/vim-dirvish'
 Plug 'itchyny/lightline.vim'
