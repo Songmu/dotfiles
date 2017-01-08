@@ -87,23 +87,19 @@ augroup MyAutoCmd
   au BufRead,BufNew,WinEnter * match WhitespaceEOL /\(　\|\s\+$\)/
 
   au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4
-  au FileType go compiler go
   au BufNewFile,BufReadPost *.mt,*.tt,*.tx set filetype=html
   au BufNewFile,BufReadPost *.psgi,*.t,cpanfile,Daikufile set filetype=perl
   au BufNewFile,BufReadPost *.ru set filetype=ruby
-  au BufNewFile,BufReadPost *.md set filetype=md
   au BufNewFile,BufReadPost Dockerfile set filetype=Dockerfile
   au BufNewFile,BufRead *.rb set sw=2 expandtab ts=2
-  au FileType perl,cgi :compiler perl
   au BufNewFile,BufRead *.scala set tags+=.git/scala.tags
   au FileType perl set isfname-=- isfname-=/ isfname-=+
   au FileType perl nnoremap <Space>pr :!prove %<CR>
   au FileType html :setlocal path+=;/
-  au BufNewFile *.pm call s:pm_template()
+  au BufNewFile *.pm set ft=perl | call sonictemplate#apply('package', 'n')
   au BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
   au BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
   au CmdwinEnter * call s:init_cmdwin()
-  au FileType scala :compiler sbt
   au QuickFixCmdPost make if len(getqflist()) != 0 | copen | endif
 
   " see http://vim-jp.org/vim-users-jp/2009/11/01/Hack-96.html
@@ -267,7 +263,7 @@ endfunction
 function! s:check_package_name()
   let path = substitute(expand('%:p'), '\\', '/', 'g')
   let name = substitute(s:get_package_name(), '::', '/', 'g') . '.pm'
-  if path[-len(name):] != name
+  if path[-len(name):] !=# name
     echohl WarningMsg
     echomsg "ぱっけーじめいと、ほぞんされているぱすが、ちがうきがします！"
     echomsg "ちゃんとなおしてください＞＜"
@@ -343,23 +339,6 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 " for snippets
 imap <expr><C-k> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
-
-function! s:pm_template()
-    let path = substitute(expand('%'), '.*lib/', '', 'g')
-    let path = substitute(path, '[\\/]', '::', 'g')
-    let path = substitute(path, '\.pm$', '', 'g')
-
-    call append(0, 'package ' . path . ';')
-    call append(1, 'use strict;')
-    call append(2, 'use warnings;')
-    call append(3, 'use utf8;')
-    call append(4, '')
-    call append(5, '')
-    call append(6, '')
-    call append(7, '1;')
-    call cursor(6, 0)
-    " echomsg path
-endfunction
 
 " command line window cf. http://vim-jp.org/vim-users-jp/2010/07/14/Hack-161.html
 nnoremap <sid>(command-line-enter) q:
