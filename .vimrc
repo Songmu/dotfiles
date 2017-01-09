@@ -153,10 +153,6 @@ function! MyTabMove(c)
   execute ':tabmove ' . target
 endfunction
 
-
-"タブ文字（\t）を入力
-inoremap <C-Tab> <C-v><Tab>
-
 "ビジュアルモードで選択して検索
 vnoremap * "zy:let @/ = @z<CR>n
 
