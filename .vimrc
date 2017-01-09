@@ -360,7 +360,6 @@ function! s:CallCtrlPBasedOnGitStatus()
   endif
 
   let s:git_status = system('git rev-parse --is-inside-git-dir')
-  echom "hoge"
   if v:shell_error == 0
     let b:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
     execute 'CtrlP'
