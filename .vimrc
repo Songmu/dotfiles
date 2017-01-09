@@ -353,6 +353,26 @@ vmap gx <Plug>(openbrowser-smart-search)
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 let g:ctrlp_user_command = 'files -A -a %s'
 
+" https://hail2u.net/blog/software/ctrlp-and-git-ls-files.html
+function! s:CallCtrlPBasedOnGitStatus()
+  if exists('b:ctrlp_user_command')
+    unlet b:ctrlp_user_command
+  endif
+
+  let s:git_status = system('git rev-parse --is-inside-git-dir')
+  echom "hoge"
+  if v:shell_error == 0
+    let b:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+    execute 'CtrlP'
+  elseif v:shell_error == 128
+    execute 'CtrlPCurFile'
+  else
+    execute 'CtrlP'
+  endif
+endfunction
+
+let g:ctrlp_map = '<Nop>'
+noremap <silent> <C-p> :<C-u>call <SID>CallCtrlPBasedOnGitStatus()<CR>
 noremap <silent> <leader>g :<c-u>CtrlPGhq<cr>
 noremap <silent> <leader>m :<c-u>CtrlPMixed<cr>
 let g:ctrlp_ghq_default_action = 'e'
