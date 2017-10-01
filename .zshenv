@@ -7,6 +7,7 @@ fi
 #plenv/rbenv
 if which plenv > /dev/null; then eval "$(plenv init -)"; fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
 
 export PATH=~/bin:$PATH:/usr/local/sbin
 

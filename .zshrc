@@ -256,9 +256,9 @@ peco-mackerel-host () {
     host=$(echo "$res" | cut -f2)
 
     if [ $mode_append_only = 1 ]; then
-        LBUFFER+="$host"
+        LBUFFER+="ssh $host"
     else
-        modify-current-argument "$host"
+        modify-current-argument "ssh $host"
     fi
 
     zle reset-prompt

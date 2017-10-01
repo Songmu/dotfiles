@@ -48,6 +48,7 @@ set listchars=tab:>\
 set noswapfile
 set nobackup
 set autoread
+set backupcopy=yes
 
 "ステータスラインの表示設定
 set laststatus=2
@@ -91,6 +92,7 @@ augroup MyAutoCmd
   au BufNewFile,BufReadPost *.psgi,*.t,cpanfile,Daikufile set filetype=perl
   au BufNewFile,BufReadPost *.ru set filetype=ruby
   au BufNewFile,BufReadPost Dockerfile set filetype=Dockerfile
+  au BufNewFile,BufReadPost Capfile* set filetype=ruby
   au BufNewFile,BufRead *.rb set sw=2 expandtab ts=2
   au BufNewFile,BufRead *.scala set tags+=.git/scala.tags
   au FileType perl set isfname-=- isfname-=/ isfname-=+
@@ -277,7 +279,7 @@ function! s:init_cmdwin()
 endfunction
 
 " tagbar
-nmap <F8> :TagbarToggle<CR>
+nmap <C-j><C-o> :TagbarToggle<CR>
 let g:tagbar_left = 0
 let g:tagbar_autofocus = 1
 
