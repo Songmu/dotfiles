@@ -382,7 +382,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-ghq'
-Plug 'Shougo/neocomplete'
+Plug 'maralla/completor.vim'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'thinca/vim-ref'
