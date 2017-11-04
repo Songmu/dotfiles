@@ -256,10 +256,6 @@ cnoremap <Down> <C-n>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
-" for snippets
-imap <expr><C-k> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-
 " command line window cf. http://vim-jp.org/vim-users-jp/2010/07/14/Hack-161.html
 nnoremap <sid>(command-line-enter) q:
 xnoremap <sid>(command-line-enter) q:
@@ -334,7 +330,6 @@ let g:auto_ctags_filetype_mode = 1
 if has('conceal')
   set conceallevel=1 concealcursor=
 endif
-let g:neosnippet#enable_snipmate_compatibility = 1
 
 let g:vim_markdown_frontmatter=1
 let g:vim_markdown_folding_disabled=1
@@ -375,16 +370,13 @@ noremap <silent> <leader>m :<c-u>CtrlPMixed<cr>
 let g:ctrlp_ghq_default_action = 'e'
 let g:ctrlp_ghq_cache_enabled = 1
 
-let g:go_snippet_engine = 'neosnippet'
-
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-ghq'
 Plug 'maralla/completor.vim'
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
+Plug 'SirVer/ultisnips'
 Plug 'thinca/vim-ref'
 Plug 'tsaleh/vim-align'
 Plug 'vim-scripts/closetag.vim'
