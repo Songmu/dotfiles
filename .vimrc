@@ -19,6 +19,8 @@ set fileformats=unix,dos,mac
 syntax on
 colorscheme molokai
 set t_Co=256
+hi Comment ctermfg=102
+hi Visual  ctermbg=236
 
 "タブの設定
 set softtabstop=4
@@ -345,7 +347,7 @@ nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-let g:ctrlp_user_command = 'files -A -a %s'
+let g:ctrlp_user_command = 'files -a %s'
 
 " https://hail2u.net/blog/software/ctrlp-and-git-ls-files.html
 function! s:CallCtrlPBasedOnGitStatus()
