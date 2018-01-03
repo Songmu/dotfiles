@@ -8,3 +8,4 @@ bind diff b !@hub browse -- commit/%(commit)
 set vertical-split = no
 set split-view-height = 80%
 set diff-context = 5
+set diff-highlight = true

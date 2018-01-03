@@ -407,6 +407,7 @@ Plug 'nixprime/cpsm'
 Plug 'justinmk/vim-dirvish'
 Plug 'itchyny/lightline.vim'
 Plug 'rking/ag.vim'
+Plug 'rhysd/ghpr-blame.vim'
 
 call plug#end()
 
