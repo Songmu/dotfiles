@@ -185,7 +185,7 @@ function ssh_screen(){
     eval server=\${$#}
     \screen -t $server ssh "$@"
 }
-if [ "$TERM" = "screen" ]; then
+if [[ "$TERM" =~ ^screen ]]; then
     alias ssh='ssh_screen'
 fi
 
