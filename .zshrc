@@ -5,6 +5,8 @@ stty -ixon
 
 source ~/.zplug/init.zsh
 
+zplug "mafredri/zsh-async"
+zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
@@ -27,9 +29,6 @@ setopt COMBINING_CHARS
 ##
 ## ^[ <- これエスケープ {C-v ESC}
 ##
-
-autoload colors
-colors
 
 autoload zmv
 alias zmv='noglob zmv'
