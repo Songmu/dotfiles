@@ -177,15 +177,6 @@ function alc() {
   fi
 }
 
-#pminfo
-function pminfo() {
-  if [ $# != 0 ]; then
-    perl -le 'eval "require $ARGV[0]";print ${"${ARGV[0]}::VERSION"};print qx/perldoc -ml $ARGV[0]/' $*
-  else
-    echo 'usage: pminfo perlmodule'
-  fi
-}
-
 ## peco
 function peco-src () {
     local selected_dir=$(ghq list | peco --query "$LBUFFER")
