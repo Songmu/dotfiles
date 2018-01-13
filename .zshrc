@@ -12,6 +12,7 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "chrissicool/zsh-256color"
+zplug "~/.zsh/my-completions", from:local, use:"*"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -63,10 +64,6 @@ precmd () {
 PROMPT2='[%n]> '
 RPROMPT="%(?.%F{green}%?%f.%F{red}%?%f)"
 setopt transient_rprompt
-
-fpath=(~/.zsh/my-completions(N-/) $fpath)
-#補間
-autoload -Uz compinit && compinit
 
 # cdr
 typeset -ga chpwd_functions
