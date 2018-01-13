@@ -24,9 +24,13 @@ fi
 # Then, source plugins and add commands to $PATH
 zplug load
 
-chpwd() {
-    _cdd_chpwd
+cleanup_cdd() {
+  if [ -n "$WINDOW" ]; then
+    _cdd_delete $WINDOW
+  fi
 }
+
+add-zsh-hook zshexit cleanup_cdd
 
 # use 'exit' to exit.
 setopt IGNOREEOF
@@ -65,9 +69,10 @@ PROMPT2='[%n]> '
 RPROMPT="%(?.%F{green}%?%f.%F{red}%?%f)"
 setopt transient_rprompt
 
-# cdr
+# chpwd cdr
 typeset -ga chpwd_functions
 autoload -U chpwd_recent_dirs cdr
+chpwd_functions+=_cdd_chpwd
 chpwd_functions+=chpwd_recent_dirs
 zstyle ":chpwd:*" recent-dirs-max 500
 zstyle ":chpwd:*" recent-dirs-default true
