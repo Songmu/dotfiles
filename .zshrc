@@ -29,7 +29,6 @@ cleanup_cdd() {
     _cdd_delete $WINDOW
   fi
 }
-
 add-zsh-hook zshexit cleanup_cdd
 
 # use 'exit' to exit.
@@ -144,7 +143,7 @@ alias screen='screen -U -D -RR'
 unsetopt promptcr
 
 #screenのステータスラインに最後に実行したコマンドを表示
-if [ "$TERM" = "screen" ]; then
+if [[ "$TERM" =~ ^screen ]]; then
     #chpwd () { echo -n "_`dirs`\\" }
     preexec() {
         # see [zsh-workers:13180]
