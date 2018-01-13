@@ -5,6 +5,7 @@ stty -ixon
 
 source ~/.zplug/init.zsh
 
+zplug "m4i/cdd", use:"cdd"
 zplug "mafredri/zsh-async"
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
@@ -21,6 +22,10 @@ if ! zplug check --verbose; then
 fi
 # Then, source plugins and add commands to $PATH
 zplug load
+
+chpwd() {
+    _cdd_chpwd
+}
 
 # use 'exit' to exit.
 setopt IGNOREEOF
@@ -59,7 +64,6 @@ PROMPT2='[%n]> '
 RPROMPT="%(?.%F{green}%?%f.%F{red}%?%f)"
 setopt transient_rprompt
 
-fpath=(~/.zsh/zsh-completions/src(N-/) $fpath)
 fpath=(~/.zsh/my-completions(N-/) $fpath)
 #補間
 autoload -Uz compinit && compinit
