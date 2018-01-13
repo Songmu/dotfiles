@@ -4,10 +4,9 @@ if which ghg > /dev/null; then
   export PATH=$(ghg bin):$PATH
 fi
 
-#plenv/rbenv
-if which plenv > /dev/null; then eval "$(plenv init -)"; fi
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
+for env_cmd in plenv rbenv nodenv; do
+  if which $env_cmd > /dev/null; then eval "$($env_cmd init -)"; fi
+done
 
 export PATH=~/bin:$PATH:/usr/local/sbin
 
