@@ -59,7 +59,7 @@ precmd () {
 %{${fg[green]}%}[%n@%m]$%{${reset_color}%} "
   fi
 
-  if [[ "$TERM" = "screen" ]]; then
+  if [[ "$TERM" =~ ^screen ]]; then
     screen -X title $(basename $(print -P "%~"))
   fi
 }
