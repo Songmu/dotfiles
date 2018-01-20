@@ -1,10 +1,8 @@
-#文字コード
 export LANG=en_US.UTF-8
 
 stty -ixon
 
 source ~/.zplug/init.zsh
-
 zplug "m4i/cdd", use:"cdd"
 zplug "mafredri/zsh-async"
 zplug "zsh-users/zsh-syntax-highlighting"
@@ -13,14 +11,6 @@ zplug "zsh-users/zsh-completions"
 zplug "chrissicool/zsh-256color"
 zplug "~/.zsh/my-completions", from:local, use:"*"
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-  printf "Install? [y/N]: "
-  if read -q; then
-    echo; zplug install
-  fi
-fi
-# Then, source plugins and add commands to $PATH
 zplug load
 
 cleanup_cdd() {
@@ -271,3 +261,7 @@ zle -N peco-mackerel-host
 
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
+
+if (which zprof > /dev/null 2>&1); then
+  zprof
+fi

@@ -1,3 +1,5 @@
+# zmodload zsh/zprof && zprof
+
 export GOPATH=$HOME/dev
 export PATH=$HOME/.plenv/shims:$GOPATH/bin:$PATH:/usr/local/bin
 if which ghg > /dev/null; then
