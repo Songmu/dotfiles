@@ -1,5 +1,5 @@
 #文字コード
-export LANG=ja_JP.UTF-8
+export LANG=en_US.UTF-8
 
 stty -ixon
 
@@ -29,25 +29,22 @@ cleanup_cdd() {
     _cdd_delete $WINDOW
   fi
 }
+# add-zsh-hook have loaded in zplug
 add-zsh-hook zshexit cleanup_cdd
+add-zsh-hook chpwd _cdd_chpwd
 
 # use 'exit' to exit.
 setopt IGNOREEOF
 setopt COMBINING_CHARS
 
-##
-## ^[ <- これエスケープ {C-v ESC}
-##
-
-autoload zmv
+autoload -U zmv
 alias zmv='noglob zmv'
 
 autoload -Uz vcs_info
-zstyle ':vcs_info:*' enable git svn
 zstyle ':vcs_info:*' formats '%{'${fg[red]}'%}(%s %b) %{'$reset_color'%}'
 
 setopt prompt_subst
-precmd () {
+my_precmd () {
   LANG=en_US.UTF-8 vcs_info
   if [ -z "${SSH_CONNECTION}" ]; then
     PROMPT="
@@ -63,16 +60,15 @@ precmd () {
     screen -X title $(basename $(print -P "%~"))
   fi
 }
+add-zsh-hook precmd my_precmd
 
 PROMPT2='[%n]> '
 RPROMPT="%(?.%F{green}%?%f.%F{red}%?%f)"
 setopt transient_rprompt
 
 # chpwd cdr
-typeset -ga chpwd_functions
 autoload -U chpwd_recent_dirs cdr
-chpwd_functions+=_cdd_chpwd
-chpwd_functions+=chpwd_recent_dirs
+add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ":chpwd:*" recent-dirs-max 500
 zstyle ":chpwd:*" recent-dirs-default true
 zstyle ":completion:*" recent-dirs-insert always
@@ -91,7 +87,7 @@ setopt share_history
 setopt hist_ignore_space
 setopt hist_ignore_all_dups
 
-autoload history-search-end
+autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
@@ -133,11 +129,9 @@ linux*)
 esac
 
 alias ll='ls -l'
-alias gs="git svn"
 alias gi="git"
 alias gti="git"
 alias be="bundle exec"
-alias screen='screen -U -D -RR'
 
 #改行のない出力をプロンプトで上書きするのを防ぐ
 unsetopt promptcr
@@ -145,7 +139,7 @@ unsetopt promptcr
 #screenのステータスラインに最後に実行したコマンドを表示
 if [[ "$TERM" =~ ^screen ]]; then
     #chpwd () { echo -n "_`dirs`\\" }
-    preexec() {
+    set_screen_status() {
         # see [zsh-workers:13180]
         # http://www.zsh.org/mla/workers/2000/msg03993.html
         emulate -L zsh
@@ -158,7 +152,7 @@ if [[ "$TERM" =~ ^screen ]]; then
                     cmd=(builtin jobs -l $cmd[2])
                 fi
                 ;;
-            %*) 
+            %*)
                 cmd=(builtin jobs -l $cmd[1])
                 ;;
             cd)
@@ -178,19 +172,20 @@ if [[ "$TERM" =~ ^screen ]]; then
             cmd=(${(z)${(e):-\$jt$num}})
             echo -n "k$cmd[1]:t\\") 2>/dev/null
     }
+    add-zsh-hook preexec set_screen_status
     chpwd () {}
 fi
 
-function ssh_screen(){
+ssh_screen() {
     eval server=\${$#}
-    \screen -t $server ssh "$@"
+    screen -t $server ssh "$@"
 }
 if [[ "$TERM" =~ ^screen ]]; then
     alias ssh='ssh_screen'
 fi
 
 #w3m4alc
-function alc() {
+alc() {
   if [ $# != 0 ]; then
     w3m "http://eow.alc.co.jp/$*/UTF-8/?ref=sa" | \less +33
   else
@@ -199,7 +194,7 @@ function alc() {
 }
 
 ## peco
-function peco-src () {
+peco-src () {
     local selected_dir=$(ghq list | peco --query "$LBUFFER")
     if [ -n "$selected_dir" ]; then
         selected_dir="$GOPATH/src/$selected_dir"
@@ -210,7 +205,7 @@ function peco-src () {
 }
 zle -N peco-src
 
-function peco-select-history() {
+peco-select-history() {
     local tac
     if which tac > /dev/null; then
         tac="tac"
@@ -228,7 +223,7 @@ function peco-select-history() {
 zle -N peco-select-history
 
 
-function peco-cdr () {
+peco-cdr () {
     local selected_dir=$(cdr -l | awk '{ print $2 }' | peco)
     if [ -n "$selected_dir" ]; then
         BUFFER="cd ${selected_dir}"
