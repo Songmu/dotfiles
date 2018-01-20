@@ -2,9 +2,11 @@ export LANG=en_US.UTF-8
 
 stty -ixon
 
-if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
-  zcompile ~/.zshrc
+zshrc=$HOME/.zshrc
+if [ -L zshrc ]; then
+  zshrc=$(readlink $zshrc)
 fi
+[ $zshrc -nt ~/.zshrc.zwc ] && zcompile ~/.zshrc
 
 source ~/.zplug/init.zsh
 zplug "m4i/cdd", use:"cdd"
