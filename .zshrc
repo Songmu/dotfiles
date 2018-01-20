@@ -8,7 +8,6 @@ source ~/.zplug/init.zsh
 zplug "m4i/cdd", use:"cdd"
 zplug "mafredri/zsh-async"
 zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
 zplug "chrissicool/zsh-256color"
@@ -138,7 +137,6 @@ unsetopt promptcr
 
 #screenのステータスラインに最後に実行したコマンドを表示
 if [[ "$TERM" =~ ^screen ]]; then
-    #chpwd () { echo -n "_`dirs`\\" }
     set_screen_status() {
         # see [zsh-workers:13180]
         # http://www.zsh.org/mla/workers/2000/msg03993.html
@@ -173,7 +171,6 @@ if [[ "$TERM" =~ ^screen ]]; then
             echo -n "k$cmd[1]:t\\") 2>/dev/null
     }
     add-zsh-hook preexec set_screen_status
-    chpwd () {}
 fi
 
 ssh_screen() {
