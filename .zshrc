@@ -2,6 +2,10 @@ export LANG=en_US.UTF-8
 
 stty -ixon
 
+if [ ~/.zshrc -nt ~/.zshrc.zwc ]; then
+  zcompile ~/.zshrc
+fi
+
 source ~/.zplug/init.zsh
 zplug "m4i/cdd", use:"cdd"
 zplug "mafredri/zsh-async"
