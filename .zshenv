@@ -1,4 +1,6 @@
-# zmodload zsh/zprof && zprof
+if [[ $ZPROF_DEBUG != "" ]]; then
+  zmodload zsh/zprof && zprof
+fi
 
 export GOPATH=$HOME/dev
 export PATH=$HOME/.plenv/shims:$GOPATH/bin:$PATH:/usr/local/bin
