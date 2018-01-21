@@ -3,3 +3,4 @@ localrc.vim
 .DS_Store
 .songmu/*
 .tmp/*
+*.zwc

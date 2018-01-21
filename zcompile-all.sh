@@ -1,4 +1,4 @@
 #!/bin/zsh
-for f in $(find .zplug/repos -name "*.zsh"); do
+for f in $(find .zplug -name "*.zsh"); do
   zcompile $f
 done
