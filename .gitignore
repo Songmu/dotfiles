@@ -1,3 +1,2 @@
-vimfiles/neobundle/
-vimfiles/plugged/
-vimfiles/.netrwhist
+.vim/plugged
+.vim/.netrwhist
