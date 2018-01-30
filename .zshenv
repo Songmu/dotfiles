@@ -9,7 +9,7 @@ if which ghg > /dev/null; then
 fi
 
 for env_cmd in plenv rbenv nodenv; do
-  if which $env_cmd > /dev/null; then eval "$($env_cmd init -)"; fi
+  if which $env_cmd > /dev/null; then eval "$($env_cmd init --no-rehash -)"; fi
 done
 
 export PATH=~/bin:$PATH:/usr/local/sbin
