@@ -24,7 +24,7 @@ rbenv() {
   rbenv "$@"
 }
 
-rbenv() {
+nodenv() {
   init_env nodenv
   nodenv "$@"
 }
