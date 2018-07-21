@@ -1,12 +1,10 @@
 set encoding=utf-8
-set termencoding=utf-8
-set fileencoding=utf-8
 scriptencoding utf-8
 
-" □とか○の文字があってもカーソル位置がずれないようにする
-if exists('&ambiwidth')
-  set ambiwidth=double
-endif
+unlet! skip_default_vim
+source $VIMRUNTIME/defaults.vim
+
+set ambiwidth=double
 
 "改行コード
 set fileformats=unix,dos,mac
@@ -19,8 +17,8 @@ set fileformats=unix,dos,mac
 syntax on
 colorscheme molokai
 set t_Co=256
-hi Comment ctermfg=102
-hi Visual  ctermbg=236
+highlight Comment ctermfg=102
+highlight Visual  ctermbg=236
 
 "タブの設定
 set softtabstop=4
@@ -30,15 +28,11 @@ set expandtab
 set autoindent
 
 "検索
-set incsearch
 set ignorecase
 set smartcase
 
 "コマンドラインの高さ
 set cmdheight=1
-
-"バックスペースで何でも消したい
-set backspace=indent,eol,start
 
 "タブバー常に表示
 set showtabline=2
@@ -86,7 +80,7 @@ set completeopt=menu,preview
 " autocmd
 "------------------------
 augroup MyAutoCmd
-  autocmd!
+  au!
   " 全角・行末スペース
   highlight WhitespaceEOL ctermbg=red guibg=red
   au BufRead,BufNew,WinEnter * match WhitespaceEOL /\(　\|\s\+$\)/
@@ -138,12 +132,12 @@ nnoremap # g#
 "タブ切り替え
 nnoremap <C-l> gt
 nnoremap <C-h> gT
-nmap <C-t> :tabnew %:h<cr>
+nmap <C-t> :<C-u>tabnew %:h<cr>
 
 " 現在のタブを右へ移動
-nnoremap <Tab>n :MyTabMoveRight<CR>
+nnoremap <Tab>n :<C-u>MyTabMoveRight<CR>
 " 現在のタブを左へ移動
-nnoremap <Tab>p :MyTabMoveLeft<CR>
+nnoremap <Tab>p :<C-u>MyTabMoveLeft<CR>
 command! -count=1 MyTabMoveRight call MyTabMove(<count>)
 command! -count=1 MyTabMoveLeft  call MyTabMove(-<count>)
 function! MyTabMove(c)
