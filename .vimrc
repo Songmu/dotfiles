@@ -349,25 +349,23 @@ let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 let g:ctrlp_use_caching=0
 let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
 
-" https://hail2u.net/blog/software/ctrlp-and-git-ls-files.html
-function! s:CallCtrlPBasedOnGitStatus()
-  if exists('b:ctrlp_user_command')
-    unlet b:ctrlp_user_command
-  endif
+command! -nargs=1 CtrlPGrep call s:ctrlp_grep(<f-args>)
 
-  let s:git_status = system('git rev-parse --is-inside-git-dir')
-  if v:shell_error == 0
-    let b:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
-    execute 'CtrlP'
-  elseif v:shell_error == 128
-    execute 'CtrlPCurFile'
-  else
-    execute 'CtrlP'
+function! s:ctrlp_grep(pat)
+  if a:pat != ""
+    let l:result = join(split(system('git ls-files'), "\n"))
+    execute 'vimgrep' a:pat . ' ' . l:result
+    if len(getqflist()) > 0
+      CtrlPQuickfix
+      cclose
+    else
+      echo 'no matches found'
+    endif
   endif
 endfunction
 
 let g:ctrlp_map = '<Nop>'
-noremap <silent> <C-p> :<C-u>call <SID>CallCtrlPBasedOnGitStatus()<CR>
+noremap <silent> <C-p>     :<C-u>CtrlP<CR>
 noremap <silent> <leader>g :<c-u>CtrlPGhq<cr>
 noremap <silent> <leader>m :<c-u>CtrlPMixed<cr>
 let g:ctrlp_ghq_default_action = 'e'
