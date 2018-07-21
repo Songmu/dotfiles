@@ -76,6 +76,8 @@ let g:go_auto_type_info = 1
 
 set completeopt=menu,preview
 
+set grepprg=ag\ --nogroup\ --nocolor
+
 "-----------------------
 " autocmd
 "------------------------
@@ -102,9 +104,11 @@ augroup MyAutoCmd
   au BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
   au CmdwinEnter * call s:init_cmdwin()
   au QuickFixCmdPost make if len(getqflist()) != 0 | copen | endif
+  au QuickFixCmdPost *grep* cwindow
   au User DirvishEnter let b:dirvish.showhidden = 1
   au FileType dirvish call fugitive#detect(@%)
   au FileType go call s:setGoImportPaths()
+
 
   " see http://vim-jp.org/vim-users-jp/2009/11/01/Hack-96.html
   au FileType *
@@ -342,7 +346,8 @@ nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
 let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-let g:ctrlp_user_command = 'files -a %s'
+let g:ctrlp_use_caching=0
+let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
 
 " https://hail2u.net/blog/software/ctrlp-and-git-ls-files.html
 function! s:CallCtrlPBasedOnGitStatus()
