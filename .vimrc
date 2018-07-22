@@ -76,7 +76,8 @@ let g:go_auto_type_info = 1
 
 set completeopt=menu,preview
 
-set grepprg=ag\ --nogroup\ --nocolor
+set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
+set grepformat^=%f:%l:%c:%m  " file:line:column:message
 
 "-----------------------
 " autocmd
@@ -353,14 +354,14 @@ command! -nargs=1 CtrlPGrep call s:ctrlp_grep(<f-args>)
 
 function! s:ctrlp_grep(pat)
   if a:pat != ""
-    let l:result = join(split(system('git ls-files'), "\n"))
-    execute 'vimgrep' a:pat . ' ' . l:result
+    execute 'silent grep!' a:pat . ' ' . expand('%:p:h')
     if len(getqflist()) > 0
       CtrlPQuickfix
       cclose
     else
       echo 'no matches found'
     endif
+    redraw!
   endif
 endfunction
 
