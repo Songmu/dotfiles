@@ -110,10 +110,6 @@ augroup MyAutoCmd
   au User DirvishEnter let b:dirvish.showhidden = 1
   au FileType dirvish call fugitive#detect(@%)
   au FileType go call s:setGoImportPaths()
-  au VimEnter * RainbowParenthesesToggle
-  au Syntax * RainbowParenthesesLoadRound
-  au Syntax * RainbowParenthesesLoadSquare
-  au Syntax * RainbowParenthesesLoadBraces
 
   " see http://vim-jp.org/vim-users-jp/2009/11/01/Hack-96.html
   au FileType *
@@ -412,7 +408,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'rking/ag.vim'
 Plug 'rhysd/ghpr-blame.vim'
 Plug 'keith/swift.vim'
-Plug 'kien/rainbow_parentheses.vim'
 
 call plug#end()
 
