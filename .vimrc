@@ -409,6 +409,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'rking/ag.vim'
 Plug 'rhysd/ghpr-blame.vim'
 Plug 'keith/swift.vim'
+Plug 'kien/rainbow_parentheses.vim'
 
 call plug#end()
 
