@@ -30,6 +30,7 @@ set autoindent
 "検索
 set ignorecase
 set smartcase
+set hlsearch
 
 "コマンドラインの高さ
 set cmdheight=1
@@ -66,7 +67,7 @@ set vb t_vb=
 
 " Go
 let g:go_fmt_command = 'goimports'
-let g:go_fmt_autosave = 0
+let g:go_fmt_autosave = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
