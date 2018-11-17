@@ -69,18 +69,16 @@ zstyle ":chpwd:*" recent-dirs-default true
 zstyle ":completion:*" recent-dirs-insert always
 
 #履歴
-HISTFILE="$HOME/.zsh_history"
+HISTFILE="$HOME/Dropbox/.zsh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
-
-#エディタ
-export GIT_MERGE_AUTOEDIT=no
-export EDITOR=vim
 
 setopt hist_ignore_dups
 setopt share_history
 setopt hist_ignore_space
 setopt hist_ignore_all_dups
+setopt hist_reduce_blanks
+setopt hist_no_store
 
 autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
@@ -96,6 +94,10 @@ bindkey '^]' peco-src
 bindkey '^H' peco-select-history
 bindkey '^@' peco-cdr
 bindkey '^f' peco-mackerel-host
+
+#エディタ
+export GIT_MERGE_AUTOEDIT=no
+export EDITOR=vim
 
 #ビープ音ならなさない
 setopt nobeep
