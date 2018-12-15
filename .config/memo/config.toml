@@ -1,6 +1,7 @@
 memodir = "/Users/Songmu/Dropbox/memo"
 editor = "vim"
-column = 20
+column = 50
+width = 120
 selectcmd = "peco"
 grepcmd = "grep -nH ${PATTERN} ${FILES}"
 assetsdir = "."
