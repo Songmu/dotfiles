@@ -171,14 +171,6 @@ if [[ "$TERM" =~ ^screen ]]; then
     add-zsh-hook preexec set_screen_status
 fi
 
-ssh_screen() {
-    eval server=\${$#}
-    screen -t $server ssh "$@"
-}
-if [[ "$TERM" =~ ^screen ]]; then
-    alias ssh='ssh_screen'
-fi
-
 #w3m4alc
 alc() {
   if [ $# != 0 ]; then
