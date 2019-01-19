@@ -259,6 +259,12 @@ peco-mackerel-host () {
 }
 zle -N peco-mackerel-host
 
+peco-peep () {
+    local pid=$(ps -x -o user,pid,command | tail -n +2 | peco | awk '{ print $2 }')
+    peep $pid -- peep-notify pushbullet
+}
+alias pe="peco-peep"
+
 # added by travis gem
 [ -f ~/.travis/travis.sh ] && source ~/.travis/travis.sh
 
