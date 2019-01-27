@@ -36,6 +36,7 @@ autoload -U zmv
 alias zmv='noglob zmv'
 
 autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' formats '%{'${fg[red]}'%}(%s %b) %{'$reset_color'%}'
 zstyle ':vcs_info:*' disable-patterns "$HOME/"
 zstyle ':vcs_info:*' disable-patterns "/Users/Songmu/temporary/"
