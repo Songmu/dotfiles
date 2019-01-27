@@ -419,7 +419,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'elzr/vim-json'
 Plug 'tyru/open-browser.vim'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nixprime/cpsm'
 Plug 'justinmk/vim-dirvish'
 Plug 'itchyny/lightline.vim'
