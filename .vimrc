@@ -72,7 +72,7 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_def_mapping_enabled = 0
-" let g:go_def_mode = 'godef'
+let g:go_def_mode = 'gopls'
 let g:go_info_mode = 'guru'
 let g:go_auto_type_info = 1
 
@@ -379,18 +379,6 @@ let g:memolist_template_dir_path = $HOME . "/.vim/template/memolist"
 let g:memolist_delimiter_yaml_start = "---"
 let g:memolist_delimiter_yaml_end = "---"
 
-if executable('bingo')
-  augroup LspGo
-    au!
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'go-lang',
-        \ 'cmd': {server_info->['bingo', '-mode', 'stdio']},
-        \ 'whitelist': ['go'],
-        \ })
-    au FileType go setlocal omnifunc=lsp#complete
-  augroup END
-endif
-
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
@@ -428,12 +416,6 @@ Plug 'rking/ag.vim'
 Plug 'rhysd/ghpr-blame.vim'
 Plug 'keith/swift.vim'
 Plug 'glidenote/memolist.vim'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'natebosch/vim-lsc'
-let g:lsp_async_completion = 1
 
 call plug#end()
 
