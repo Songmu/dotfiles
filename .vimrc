@@ -397,10 +397,8 @@ Plug 'airblade/vim-rooter'
 Plug 'motemen/xslate-vim'
 Plug 'mattn/sonictemplate-vim'
 Plug 'chase/vim-ansible-yaml'
-Plug 'derekwyatt/vim-scala', { 'for': 'scala' }
 Plug 'majutsushi/tagbar'
 Plug 'soramugi/auto-ctags.vim'
-Plug 'gre/play2vim', { 'for': 'scala' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'clausreinke/typescript-tools.vim', { 'for': 'typescript' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
