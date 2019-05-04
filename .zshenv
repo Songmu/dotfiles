@@ -30,5 +30,6 @@ nodenv() {
 }
 
 export PATH=~/bin:$PATH:/usr/local/sbin
+export GOPROXY=https://proxy.golang.org
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
