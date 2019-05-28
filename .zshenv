@@ -29,7 +29,6 @@ nodenv() {
   nodenv "$@"
 }
 
-export PATH=~/bin:$PATH:/usr/local/sbin
-export GOPROXY=https://proxy.golang.org
+export PATH=~/bin:/usr/local/opt/ruby/bin:$PATH:/usr/local/sbin
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
