@@ -379,6 +379,8 @@ let g:memolist_template_dir_path = $HOME . "/.vim/template/memolist"
 let g:memolist_delimiter_yaml_start = "---"
 let g:memolist_delimiter_yaml_end = "---"
 
+nnoremap <silent><Space>f :<C-u>call tnite#start(["sh", "-c", "git ls-files \| peco"], "tabedit")<CR>
+
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
@@ -414,6 +416,7 @@ Plug 'rking/ag.vim'
 Plug 'rhysd/ghpr-blame.vim'
 Plug 'keith/swift.vim'
 Plug 'glidenote/memolist.vim'
+Plug 'pocke/tnite.vim'
 
 call plug#end()
 
