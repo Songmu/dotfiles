@@ -43,5 +43,3 @@
     rebase = preserve
 [merge]
     ff = false
-[credential]
-    helper = cache --timeout=3600
