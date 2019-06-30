@@ -39,7 +39,5 @@
     pushinsteadof = "https://github.com/"
 [ghq]
     root = ~/dev/src
-[pull]
-    rebase = preserve
 [merge]
     ff = false
