@@ -43,3 +43,5 @@
     ff = false
 [credential]
     helper = cache --timeout=3600
+[pull]
+    rebase = yes
