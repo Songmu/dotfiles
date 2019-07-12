@@ -335,10 +335,6 @@ if has('conceal')
   set conceallevel=1 concealcursor=
 endif
 
-let g:vim_markdown_frontmatter=1
-let g:vim_markdown_folding_disabled=1
-let g:vim_markdown_conceal = 0
-
 " json
 let g:vim_json_syntax_conceal = 0
 
@@ -405,7 +401,6 @@ Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'clausreinke/typescript-tools.vim', { 'for': 'typescript' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'elzr/vim-json'
 Plug 'tyru/open-browser.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
