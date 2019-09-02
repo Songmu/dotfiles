@@ -45,7 +45,7 @@ function awx() {
   local aws_profile="$1"
   if [ -z "$aws_profile" ]; then
     local conf=${AWS_CONFIG_FILE:-~/.aws/config}
-    aws_profile=$(cat $conf | perl -nle '/^\[(?:profile )?(.*?)\]$/ && print $1' | peco)
+    aws_profile=$(grep "^\[.*\]" $conf | tr -d "[]" | sed -e "s/^profile //" | peco)
   fi
   if [ -z "${aws_profile}" ]; then return 1; fi
   export AWS_DEFAULT_PROFILE=$aws_profile
