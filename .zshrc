@@ -41,16 +41,28 @@ zstyle ':vcs_info:*' formats '%{'${fg[red]}'%}(%s %b) %{'$reset_color'%}'
 zstyle ':vcs_info:*' disable-patterns "$HOME/"
 zstyle ':vcs_info:*' disable-patterns "/Users/Songmu/temporary/"
 
+function awx() {
+  local aws_profile="$1"
+  if [ -z "$aws_profile" ]; then
+    local conf=${AWS_CONFIG_FILE:-~/.aws/config}
+    aws_profile=$(cat $conf | perl -nle '/^\[(?:profile )?(.*?)\]$/ && print $1' | peco)
+  fi
+  if [ -z "${aws_profile}" ]; then return 1; fi
+  export AWS_DEFAULT_PROFILE=$aws_profile
+}
+
 setopt prompt_subst
 my_precmd () {
   LANG=en_US.UTF-8 vcs_info
+  local aws_profile=${AWS_DEFAULT_PROFILE:-default}
+
   if [ -z "${SSH_CONNECTION}" ]; then
     PROMPT="
- %{${fg[yellow]}%}%~%{${reset_color}%} ${vcs_info_msg_0_}
+%{${fg[yellow]}%}%~%{${reset_color}%} ${vcs_info_msg_0_}(aws $aws_profile)
 [%*]$ "
   else
     PROMPT="
- %{${fg[yellow]}%}%~%{${reset_color}%} ${vcs_info_msg_0_}
+%{${fg[yellow]}%}%~%{${reset_color}%} ${vcs_info_msg_0_}
 %{${fg[green]}%}[%n@%m]$%{${reset_color}%} "
   fi
 
@@ -211,7 +223,6 @@ peco-select-history() {
     zle clear-screen
 }
 zle -N peco-select-history
-
 
 peco-cdr () {
     local selected_dir=$(cdr -l | awk '{ print $2 }' | peco)
