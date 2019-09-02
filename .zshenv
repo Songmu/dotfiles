@@ -3,7 +3,7 @@ if [[ $ZPROF_DEBUG != "" ]]; then
 fi
 
 export GOPATH=$HOME/dev
-export PATH=$HOME/.plenv/shims:$GOPATH/bin:$PATH:/usr/local/bin
+export PATH=$HOME/xtensa-esp32-elf/bin:$HOME/.plenv/shims:$GOPATH/bin:$PATH:/usr/local/bin
 if which ghg > /dev/null; then
   export PATH=$(ghg bin):$PATH
 fi
