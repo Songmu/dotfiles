@@ -41,24 +41,31 @@ zstyle ':vcs_info:*' formats '%{'${fg[red]}'%}(%s %b) %{'$reset_color'%}'
 zstyle ':vcs_info:*' disable-patterns "$HOME/"
 zstyle ':vcs_info:*' disable-patterns "/Users/Songmu/temporary/"
 
-function awx() {
+awx-profiles() {
+    local conf=${AWS_CONFIG_FILE:-~/.aws/config}
+    grep "^\[.*\]" $conf | tr -d "[]" | sed -e "s/^profile //"
+}
+
+awx-complete() {
+    _values "awx-complete" $(awx-profiles)
+}
+
+awx() {
   local aws_profile="$1"
   if [ -z "$aws_profile" ]; then
-    local conf=${AWS_CONFIG_FILE:-~/.aws/config}
-    aws_profile=$(grep "^\[.*\]" $conf | tr -d "[]" | sed -e "s/^profile //" | peco)
+    aws_profile=$(awx-profiles | peco)
   fi
   if [ -z "${aws_profile}" ]; then return 1; fi
   export AWS_DEFAULT_PROFILE=$aws_profile
 }
+compdef awx-complete awx
 
 setopt prompt_subst
 my_precmd () {
   LANG=en_US.UTF-8 vcs_info
-  local aws_profile=${AWS_DEFAULT_PROFILE:-default}
-
   if [ -z "${SSH_CONNECTION}" ]; then
     PROMPT="
-%{${fg[yellow]}%}%~%{${reset_color}%} ${vcs_info_msg_0_}(aws $aws_profile)
+%{${fg[yellow]}%}%~%{${reset_color}%} ${vcs_info_msg_0_}(aws ${AWS_CONFIG_FILE:-default})
 [%*]$ "
   else
     PROMPT="
