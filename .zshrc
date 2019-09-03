@@ -65,7 +65,7 @@ my_precmd () {
   LANG=en_US.UTF-8 vcs_info
   if [ -z "${SSH_CONNECTION}" ]; then
     PROMPT="
-%{${fg[yellow]}%}%~%{${reset_color}%} ${vcs_info_msg_0_}(aws ${AWS_CONFIG_FILE:-default})
+%{${fg[yellow]}%}%~%{${reset_color}%} ${vcs_info_msg_0_}(aws ${AWS_DEFAULT_PROFILE:-default})
 [%*]$ "
   else
     PROMPT="
