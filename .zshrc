@@ -113,9 +113,9 @@ bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 
 bindkey '^]' peco-src
-bindkey '^H' peco-select-history
+bindkey '^^' peco-select-history
 bindkey '^@' peco-cdr
-bindkey '^f' peco-mackerel-host
+# bindkey '^f' peco-mackerel-host
 
 #エディタ
 export GIT_MERGE_AUTOEDIT=no
@@ -282,6 +282,9 @@ zle -N peco-mackerel-host
 
 peco-peep () {
     local pid=$(ps -x -o user,pid,command | tail -n +2 | peco | awk '{ print $2 }')
+    if [ -z $pid ]; then
+      return
+    fi
     peep $pid -- peep-notify pushbullet
 }
 alias pe="peco-peep"
