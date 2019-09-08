@@ -279,7 +279,7 @@ function! s:init_cmdwin()
 endfunction
 
 " tagbar
-nmap <C-j><C-o> :TagbarToggle<CR>
+nmap <C-a><C-o> :TagbarToggle<CR>
 let g:tagbar_left = 0
 let g:tagbar_autofocus = 1
 

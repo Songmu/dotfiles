@@ -31,4 +31,5 @@ nodenv() {
 
 export PATH=~/bin:/usr/local/opt/ruby/bin:$PATH:/usr/local/sbin
 
+[ -f /usr/local/share/zsh/site-functions/_aws ] && source /usr/local/share/zsh/site-functions/_aws
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local

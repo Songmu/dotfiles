@@ -20,7 +20,7 @@ zplug "~/.zsh/my-completions", from:local, use:"*"
 zplug load
 
 cleanup_cdd() {
-  if [ -n "$WINDOW" ]; then
+  if [ -n "$WINDOW" ] && [ -f $CDD_FILE ]; then
     _cdd_delete $WINDOW
   fi
 }
