@@ -184,9 +184,6 @@ nnoremap <silent> es :<C-u>e ++enc=cp932<CR>
 "pasteモードトグル
 nnoremap <Space>tp :<C-u>set paste!<CR>
 
-"help
-nnoremap <Space>h :<C-u>vert bel h<Space>
-
 "補完候補があってもEnterは改行
 inoremap <expr> <CR> pumvisible() ? "\<C-e>\<CR>" : "\<CR>"
 
