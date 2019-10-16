@@ -409,6 +409,7 @@ Plug 'rhysd/ghpr-blame.vim'
 Plug 'keith/swift.vim'
 Plug 'glidenote/memolist.vim'
 Plug 'pocke/tnite.vim'
+Plug 'b4b4r07/vim-hcl'
 
 call plug#end()
 
