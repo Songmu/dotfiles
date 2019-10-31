@@ -73,7 +73,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_def_mapping_enabled = 0
 let g:go_def_mode = 'gopls'
-let g:go_info_mode = 'guru'
+let g:go_info_mode = 'gopls'
 let g:go_auto_type_info = 1
 
 set completeopt=menu,preview
