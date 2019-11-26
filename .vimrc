@@ -110,6 +110,7 @@ augroup MyAutoCmd
   au User DirvishEnter let b:dirvish.showhidden = 1
   au FileType dirvish call fugitive#detect(@%)
   au FileType go call s:setGoImportPaths()
+  au BufRead,BufNewFile nginx/*.conf set ft=nginx
 
   " see http://vim-jp.org/vim-users-jp/2009/11/01/Hack-96.html
   au FileType *
@@ -409,6 +410,7 @@ Plug 'keith/swift.vim'
 Plug 'glidenote/memolist.vim'
 Plug 'pocke/tnite.vim'
 Plug 'b4b4r07/vim-hcl'
+Plug 'chr4/nginx.vim'
 
 call plug#end()
 
