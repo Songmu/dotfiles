@@ -73,7 +73,7 @@ let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_auto_type_info = 1
-let g:go_def_mapping_enabled = 1
+let g:go_def_mapping_enabled = 0
 
 set completeopt=menu,preview
 
