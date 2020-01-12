@@ -39,6 +39,7 @@
     pushinsteadof = "https://github.com/"
 [ghq]
     root = ~/dev/src
+    completeUser = false
 [merge]
     ff = false
 [credential]
