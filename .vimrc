@@ -65,16 +65,6 @@ set helplang=ja
 set foldmethod=manual
 set vb t_vb=
 
-" Go
-let g:go_fmt_command = 'goimports'
-let g:go_gorename_command = 'gopls'
-let g:go_fmt_autosave = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_auto_type_info = 1
-let g:go_def_mapping_enabled = 0
-
 set completeopt=menu,preview
 
 set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
@@ -367,6 +357,13 @@ let g:memolist_template_dir_path = $HOME . "/.vim/template/memolist"
 let g:memolist_delimiter_yaml_start = "---"
 let g:memolist_delimiter_yaml_end = "---"
 
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = 0
+let g:asyncomplete_popup_delay = 200
+let g:lsp_text_edit_enabled = 1
+
 nnoremap <silent><Space>f :<C-u>call tnite#start(["sh", "-c", "git ls-files \| peco"], "tabedit", {})<CR>
 
 " vim-plug
@@ -394,7 +391,6 @@ Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'godlygeek/tabular'
 Plug 'elzr/vim-json'
 Plug 'tyru/open-browser.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nixprime/cpsm'
 Plug 'justinmk/vim-dirvish'
 Plug 'itchyny/lightline.vim'
@@ -405,6 +401,15 @@ Plug 'glidenote/memolist.vim'
 Plug 'pocke/tnite.vim'
 Plug 'b4b4r07/vim-hcl'
 Plug 'chr4/nginx.vim'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-lsp-icons'
+Plug 'mattn/vim-goimports'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 
 call plug#end()
 
