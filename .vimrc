@@ -323,11 +323,6 @@ let g:tagbar_type_markdown = {
     \ 'sort': 0,
 \ }
 
-" let g:auto_ctags = 1
-let g:auto_ctags_directory_list = ['.git', '.svn']
-let g:auto_ctags_tags_args = '--tag-relative --recurse --sort=yes'
-let g:auto_ctags_filetype_mode = 1
-
 if has('conceal')
   set conceallevel=1 concealcursor=
 endif
@@ -393,7 +388,6 @@ Plug 'motemen/xslate-vim'
 Plug 'mattn/sonictemplate-vim'
 Plug 'chase/vim-ansible-yaml'
 Plug 'majutsushi/tagbar'
-Plug 'soramugi/auto-ctags.vim'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'clausreinke/typescript-tools.vim', { 'for': 'typescript' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
