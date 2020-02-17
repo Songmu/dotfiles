@@ -108,7 +108,7 @@ augroup MyAutoCmd
   au QuickFixCmdPost make if len(getqflist()) != 0 | copen | endif
   au QuickFixCmdPost *grep* cwindow
   au User DirvishEnter let b:dirvish.showhidden = 1
-  au FileType dirvish call fugitive#detect(@%)
+  au FileType dirvish call FugitiveDetect(@%)
   au FileType go call s:setGoImportPaths()
   au BufRead,BufNewFile nginx/*.conf set ft=nginx
 
