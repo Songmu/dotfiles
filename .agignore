@@ -2,5 +2,4 @@ vendor/
 root/assets
 local.swagger.nature.global/
 swagger.nature.global/
-*_test.go
 scripts/
