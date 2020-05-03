@@ -93,7 +93,6 @@ augroup MyAutoCmd
   au BufNewFile,BufReadPost Dockerfile set filetype=Dockerfile
   au BufNewFile,BufReadPost Capfile* set filetype=ruby
   au BufNewFile,BufRead *.rb set sw=2 expandtab ts=2
-  au BufNewFile,BufRead *.scala set tags+=.git/scala.tags
   au FileType perl set isfname-=- isfname-=/ isfname-=+
   au FileType perl nnoremap <Space>pr :!prove %<CR>
   au FileType html setlocal path+=;/
@@ -287,22 +286,6 @@ let g:quickrun_config['_'] = {
 
 let g:quickrun_config['md'] = {
     \ 'type' : 'markdown',
-\ }
-
-let g:tagbar_type_scala = {
-    \ 'ctagstype' : 'Scala',
-    \ 'kinds'     : [
-        \ 'p:packages:1',
-        \ 'V:values',
-        \ 'v:variables',
-        \ 'T:types',
-        \ 't:traits',
-        \ 'o:objects',
-        \ 'a:aclasses',
-        \ 'c:classes',
-        \ 'r:cclasses',
-        \ 'm:methods'
-    \ ]
 \ }
 
 let g:tagbar_type_markdown = {
