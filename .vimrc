@@ -77,9 +77,6 @@ let g:go_def_mapping_enabled = 0
 
 set completeopt=menu,preview
 
-set grepprg=ag\ --nogroup\ --nocolor\ --vimgrep
-set grepformat^=%f:%l:%c:%m  " file:line:column:message
-
 "-----------------------
 " autocmd
 "------------------------
@@ -389,9 +386,7 @@ Plug 'vim-scripts/taglist.vim'
 Plug 'vim-perl/vim-perl', { 'for': 'perl' }
 Plug 'vim-jp/vimdoc-ja'
 Plug 'airblade/vim-rooter'
-Plug 'motemen/xslate-vim'
 Plug 'mattn/sonictemplate-vim'
-Plug 'chase/vim-ansible-yaml'
 Plug 'majutsushi/tagbar'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'clausreinke/typescript-tools.vim', { 'for': 'typescript' }
