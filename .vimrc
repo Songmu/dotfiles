@@ -354,6 +354,21 @@ if executable('rg')
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
+let g:lightline = {
+  \ 'component_function': {
+  \   'filename': 'LightlineFilename',
+  \ }
+  \ }
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
+
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
