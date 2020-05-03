@@ -409,6 +409,7 @@ Plug 'glidenote/memolist.vim'
 Plug 'pocke/tnite.vim'
 Plug 'b4b4r07/vim-hcl'
 Plug 'chr4/nginx.vim'
+Plug 'mattn/vim-asyncgrep'
 
 call plug#end()
 
