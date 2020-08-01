@@ -65,15 +65,16 @@ set helplang=ja
 set foldmethod=manual
 set vb t_vb=
 
-" Go
-let g:go_fmt_command = 'goimports'
-let g:go_gorename_command = 'gopls'
-let g:go_fmt_autosave = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_auto_type_info = 1
-let g:go_def_mapping_enabled = 0
+nmap <silent> gd :LspDefinition<CR>
+nmap <silent> <C-]> :LspDefinition<CR>
+nmap <silent> <f2> :LspRename<CR>
+nmap <silent> <Leader>d :LspTypeDefinition<CR>
+nmap <silent> <Leader>r :LspReferences<CR>
+nmap <silent> <Leader>i :LspImplementation<CR>
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:asyncomplete_popup_delay = 200
+let g:lsp_text_edit_enabled = 1
 
 set completeopt=menu,preview
 
@@ -105,7 +106,6 @@ augroup MyAutoCmd
   au QuickFixCmdPost *grep* cwindow
   au User DirvishEnter let b:dirvish.showhidden = 1
   au FileType dirvish call FugitiveDetect(@%)
-  au FileType go call s:setGoImportPaths()
   au BufRead,BufNewFile nginx/*.conf set ft=nginx
 
   " see http://vim-jp.org/vim-users-jp/2009/11/01/Hack-96.html
@@ -114,10 +114,6 @@ augroup MyAutoCmd
   \ |   setlocal omnifunc=syntaxcomplete#Complete
   \ | endif
 augroup END
-
-function! s:setGoImportPaths()
-  let &l:path = join([go#util#goroot() . "/src", go#util#gopath() . "/src", &l:path], ",")
-endfunction
 
 set virtualedit+=block
 
@@ -392,7 +388,6 @@ Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'godlygeek/tabular'
 Plug 'elzr/vim-json'
 Plug 'tyru/open-browser.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nixprime/cpsm'
 Plug 'justinmk/vim-dirvish'
 Plug 'itchyny/lightline.vim'
@@ -403,6 +398,12 @@ Plug 'pocke/tnite.vim'
 Plug 'b4b4r07/vim-hcl'
 Plug 'chr4/nginx.vim'
 Plug 'mattn/vim-asyncgrep'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-goimports'
 
 call plug#end()
 
