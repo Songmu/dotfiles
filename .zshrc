@@ -115,7 +115,6 @@ bindkey "^S" history-incremental-search-forward
 bindkey '^]' peco-src
 bindkey '^^' peco-select-history
 bindkey '^@' peco-cdr
-# bindkey '^f' peco-mackerel-host
 
 #エディタ
 export GIT_MERGE_AUTOEDIT=no
@@ -240,45 +239,6 @@ peco-cdr () {
     zle clear-screen
 }
 zle -N peco-cdr
-
-autoload -U modify-current-argument
-autoload -U split-shell-arguments
-
-peco-mackerel-host () {
-    local mode_append_only=0
-    local REPLY
-    local reply
-
-    split-shell-arguments
-    if [ $(($REPLY % 2)) -eq 0 ]; then
-        # query by word under cursor
-        query_arg="--query=$reply[$REPLY]"
-    elif [ -n "${LBUFFER##* }" ]; then
-        # query by word just before cursor
-        query_arg="--query=${LBUFFER##* }"
-    else
-        # no word detected
-        query_arg='--query='
-        mode_append_only=1
-    fi
-
-    res=$(mkr-hosts-tsv | eval peco "$query_arg")
-    if [ -z "$res" ]; then
-        zle reset-prompt
-        return 1
-    fi
-
-    host=$(echo "$res" | cut -f2)
-
-    if [ $mode_append_only = 1 ]; then
-        LBUFFER+="ssh $host"
-    else
-        modify-current-argument "ssh $host"
-    fi
-
-    zle reset-prompt
-}
-zle -N peco-mackerel-host
 
 peco-peep () {
     local pid=$(ps -x -o user,pid,command | tail -n +2 | peco | awk '{ print $2 }')
