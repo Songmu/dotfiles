@@ -77,6 +77,16 @@ let g:lsp_diagnostics_echo_cursor = 1
 let g:asyncomplete_popup_delay = 200
 let g:lsp_text_edit_enabled = 1
 
+let g:lsp_settings = {
+\  "css-languageserver": {
+\    "workspace_config": {
+\      "scss": {
+\        "validate": v:false
+\      }
+\    }
+\  }
+\}
+
 set completeopt=menu,preview
 
 "-----------------------
