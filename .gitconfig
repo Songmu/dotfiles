@@ -48,3 +48,5 @@
     rebase = yes
 [submodule]
     fetchJobs = 4
+[http]
+	cookiefile = /Users/Songmu/.gitcookies
