@@ -48,5 +48,7 @@
     rebase = yes
 [submodule]
     fetchJobs = 4
+[init]
+    defaultBranch = main
 [http]
 	cookiefile = /Users/Songmu/.gitcookies
