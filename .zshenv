@@ -2,6 +2,8 @@ if [[ $ZPROF_DEBUG != "" ]]; then
   zmodload zsh/zprof && zprof
 fi
 
+eval "$(direnv hook zsh)"
+
 export GOPATH=$HOME/dev
 export PATH=$HOME/xtensa-esp32-elf/bin:$HOME/.plenv/libexec:$HOME/.plenv/shims:$GOPATH/bin:$PATH:/usr/local/bin
 if which ghg > /dev/null; then
