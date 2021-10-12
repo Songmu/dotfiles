@@ -4,3 +4,8 @@ localrc.vim
 .songmu/*
 .tmp/*
 *.zwc
+
+.classpath
+.factorypath
+.project
+.settings
