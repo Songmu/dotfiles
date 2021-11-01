@@ -4,8 +4,20 @@ fi
 
 eval "$(direnv hook zsh)"
 
-export GOPATH=$HOME/dev
-export PATH=$HOME/xtensa-esp32-elf/bin:$HOME/.plenv/libexec:$HOME/.plenv/shims:$GOPATH/bin:$PATH:/usr/local/bin
+export GOPATH=~/dev
+
+typeset -U path PATH
+path=(
+    /opt/homebrew/bin(N-/)
+    ~/bin
+    /usr/local/opt/ruby/bin
+    ~/.plenv/libexec
+    ~/.plenv/shims
+    $GOPATH/bin
+    /usr/local/bin
+    $PATH
+    /usr/local/sbin # nagios plugins
+)
 if which ghg > /dev/null; then
   export PATH=$(ghg bin):$PATH
 fi
@@ -30,8 +42,6 @@ nodenv() {
   init_env nodenv
   nodenv "$@"
 }
-
-export PATH=~/bin:/usr/local/opt/ruby/bin:$PATH:/usr/local/sbin
 
 [ -f /usr/local/share/zsh/site-functions/_aws ] && source /usr/local/share/zsh/site-functions/_aws
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
