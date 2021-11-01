@@ -9,7 +9,7 @@ defencoding utf8
 cjkwidth on
 #term xterm-256color
 
-shell /usr/local/bin/zsh
+shell zsh
 # shelltitle "% |zsh"
 hardstatus on
 hardstatus alwayslastline "%`%-w%{=b bw}%n %t%{-}%+w"
