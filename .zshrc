@@ -28,28 +28,26 @@ cleanup_cdd() {
 add-zsh-hook zshexit cleanup_cdd
 add-zsh-hook chpwd _cdd_chpwd
 
-
-
 if (( $+commands[sw_vers] )) && (( $+commands[arch] )); then
     zsh() {
         local arch=$(uname -m)
         if  [[ "$arch" == "arm64" ]]; then
-            exec arch -arch arm64 /opt/homebrew/bin/zsh
+            exec arch -arch arm64e /opt/homebrew/bin/zsh
         elif [[ "$arch" == "x86_64" ]]; then
             exec arch -arch x86_64 /usr/local/bin/zsh
         fi
         exec /bin/zsh
     }
 
-    [[ -x /usr/local/bin/brew ]] && alias brew="arch -arch x86_64 /usr/local/bin/brew"
+    [[ -x /usr/local/bin/brew ]] && alias xbrew="arch -arch x86_64 /usr/local/bin/brew"
     alias x64='exec arch -x86_64 /usr/local/bin/zsh'
-    alias a64='exec arch -arm64 /opt/homebrew/bin/zsh'
+    alias a64='exec arch -arm64e /opt/homebrew/bin/zsh'
     switch-arch() {
         local arch=$(uname -m)
         if  [[ "$arch" == "arm64" ]]; then
             exec arch -arch x86_64 /usr/local/bin/zsh
         elif [[ "$arch" == "x86_64" ]]; then
-            exec arch -arch arm64 /opt/homebrew/bin/zsh
+            exec arch -arch arm64e /opt/homebrew/bin/zsh
         fi
         exec /bin/zsh
     }
