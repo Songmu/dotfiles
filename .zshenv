@@ -43,5 +43,13 @@ nodenv() {
   nodenv "$@"
 }
 
+
+_arch=$(uname -m)
+if [[ $_arch == arm64 ]]; then
+    eval $(/opt/homebrew/bin/brew shellenv)
+elif [[ $_arch == x86_64 ]]; then
+    eval $(/usr/local/bin/brew shellenv)
+fi
+
 [ -f /usr/local/share/zsh/site-functions/_aws ] && source /usr/local/share/zsh/site-functions/_aws
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
