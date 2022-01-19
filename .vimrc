@@ -104,6 +104,7 @@ augroup MyAutoCmd
   au BufNewFile,BufReadPost *.ru set filetype=ruby
   au BufNewFile,BufReadPost Dockerfile set filetype=Dockerfile
   au BufNewFile,BufReadPost Capfile* set filetype=ruby
+  au BufNewFile,BufReadPost *.graphqls set filetype=graphql
   au BufNewFile,BufRead *.rb set sw=2 expandtab ts=2
   au FileType perl set isfname-=- isfname-=/ isfname-=+
   au FileType perl nnoremap <Space>pr :!prove %<CR>
@@ -416,6 +417,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-goimports'
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'jparise/vim-graphql'
 
 call plug#end()
 
