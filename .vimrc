@@ -418,6 +418,7 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-goimports'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'jparise/vim-graphql'
+Plug 'artur-shaik/vim-javacomplete2'
 
 call plug#end()
 

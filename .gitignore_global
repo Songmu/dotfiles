@@ -9,3 +9,4 @@ localrc.vim
 .factorypath
 .project
 .settings
+.envrc
