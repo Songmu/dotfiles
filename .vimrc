@@ -99,6 +99,7 @@ augroup MyAutoCmd
   au BufRead,BufNew,WinEnter * match WhitespaceEOL /\(　\|\s\+$\)/
 
   au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4
+  au BufNewFile,BufRead *.java set sw=2 ts=2
   au BufNewFile,BufReadPost *.mt,*.tt,*.tx set filetype=html
   au BufNewFile,BufReadPost *.psgi,*.t,cpanfile,Daikufile set filetype=perl
   au BufNewFile,BufReadPost *.ru set filetype=ruby
