@@ -74,8 +74,11 @@ nmap <silent> <Leader>i :LspImplementation<CR>
 let g:lsp_diagnostics_enabled = 1
 let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
-let g:asyncomplete_popup_delay = 200
 let g:lsp_text_edit_enabled = 1
+let g:asyncomplete_popup_delay = 200
+let g:asyncomplete_remove_duplicates = 1
+let g:asyncomplete_smart_completion = 1
+let g:asyncomplete_auto_popup = 1
 
 let g:lsp_settings = {
 \  "css-languageserver": {
@@ -419,7 +422,11 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-goimports'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'jparise/vim-graphql'
-Plug 'artur-shaik/vim-javacomplete2'
+" Plug 'artur-shaik/vim-javacomplete2'
+Plug 'w0rp/ale'
+Plug 'google/vim-maktaba'
+Plug 'bazelbuild/vim-bazel'
+Plug 'tpope/vim-classpath'
 
 call plug#end()
 
