@@ -283,11 +283,6 @@ function! s:init_cmdwin()
   startinsert!
 endfunction
 
-" tagbar
-nmap <C-a><C-o> :TagbarToggle<CR>
-let g:tagbar_left = 0
-let g:tagbar_autofocus = 1
-
 if !exists("g:quickrun_config")
     let g:quickrun_config={}
 endif
@@ -378,7 +373,6 @@ Plug 'vim-perl/vim-perl', { 'for': 'perl' }
 Plug 'vim-jp/vimdoc-ja'
 Plug 'airblade/vim-rooter'
 Plug 'mattn/sonictemplate-vim'
-Plug 'majutsushi/tagbar'
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'clausreinke/typescript-tools.vim', { 'for': 'typescript' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
