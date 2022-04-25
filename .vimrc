@@ -373,8 +373,6 @@ Plug 'vim-perl/vim-perl', { 'for': 'perl' }
 Plug 'vim-jp/vimdoc-ja'
 Plug 'airblade/vim-rooter'
 Plug 'mattn/sonictemplate-vim'
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-Plug 'clausreinke/typescript-tools.vim', { 'for': 'typescript' }
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'godlygeek/tabular'
 Plug 'elzr/vim-json'
