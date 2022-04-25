@@ -427,6 +427,7 @@ Plug 'w0rp/ale'
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
 Plug 'tpope/vim-classpath'
+Plug 'peitalin/vim-jsx-typescript'
 
 call plug#end()
 
