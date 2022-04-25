@@ -87,6 +87,9 @@ let g:lsp_settings = {
 \        "validate": v:false
 \      }
 \    }
+\  },
+\  "efm-langserver": {
+\    "disabled": v:false
 \  }
 \}
 
@@ -109,12 +112,13 @@ augroup MyAutoCmd
   au BufNewFile,BufReadPost Dockerfile set filetype=Dockerfile
   au BufNewFile,BufReadPost Capfile* set filetype=ruby
   au BufNewFile,BufReadPost *.graphqls set filetype=graphql
-  au BufNewFile,BufRead *.rb set sw=2 expandtab ts=2
+  au BufNewFile,BufRead *.rb,*.ts,*.tsx set sw=2 expandtab ts=2
   au FileType perl set isfname-=- isfname-=/ isfname-=+
   au FileType perl nnoremap <Space>pr :!prove %<CR>
   au FileType html setlocal path+=;/
   au BufNewFile *.pm set ft=perl | call sonictemplate#apply('package', 'n')
   au BufWritePost *.pm call s:check_package_name()
+  au BufWritePre *.ts,*.tsx call execute('LspDocumentFormatSync --server=efm-langserver')
   au BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
   au BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
   au CmdwinEnter * call s:init_cmdwin()
