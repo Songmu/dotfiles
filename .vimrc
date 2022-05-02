@@ -404,7 +404,6 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'jparise/vim-graphql'
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
-Plug 'tpope/vim-classpath'
 
 call plug#end()
 
