@@ -88,6 +88,9 @@ let g:lsp_settings = {
 \      }
 \    }
 \  },
+\  "java-language-server": {
+\    "cmd": "/Users/Songmu/dev/src/github.com/draftcode/java-language-server/dist/lang_server_mac.sh"
+\  },
 \  "efm-langserver": {
 \    "disabled": v:false
 \  }
@@ -118,7 +121,7 @@ augroup MyAutoCmd
   au FileType html setlocal path+=;/
   au BufNewFile *.pm set ft=perl | call sonictemplate#apply('package', 'n')
   au BufWritePost *.pm call s:check_package_name()
-  au BufWritePre *.ts,*.tsx call execute('LspDocumentFormatSync --server=efm-langserver')
+  au BufWritePre *.ts,*.tsx,*.java call execute('LspDocumentFormatSync --server=efm-langserver')
   au BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
   au BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
   au CmdwinEnter * call s:init_cmdwin()
@@ -399,8 +402,6 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'mattn/vim-goimports'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'jparise/vim-graphql'
-" Plug 'artur-shaik/vim-javacomplete2'
-Plug 'w0rp/ale'
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
 Plug 'tpope/vim-classpath'
