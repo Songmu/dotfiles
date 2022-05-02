@@ -121,7 +121,7 @@ augroup MyAutoCmd
   au FileType html setlocal path+=;/
   au BufNewFile *.pm set ft=perl | call sonictemplate#apply('package', 'n')
   au BufWritePost *.pm call s:check_package_name()
-  au BufWritePre *.ts,*.tsx,*.java call execute('LspDocumentFormatSync --server=efm-langserver')
+  au BufWritePre *.ts,*.tsx,*.java,*.go call execute('LspDocumentFormatSync --server=efm-langserver')
   au BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
   au BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
   au CmdwinEnter * call s:init_cmdwin()
@@ -399,7 +399,6 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
-Plug 'mattn/vim-goimports'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'jparise/vim-graphql'
 Plug 'google/vim-maktaba'
