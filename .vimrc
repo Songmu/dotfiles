@@ -342,7 +342,6 @@ Plug 'vim-jp/vimdoc-ja'
 Plug 'airblade/vim-rooter'
 Plug 'mattn/sonictemplate-vim'
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
-Plug 'godlygeek/tabular'
 Plug 'elzr/vim-json'
 Plug 'tyru/open-browser.vim'
 Plug 'nixprime/cpsm'
