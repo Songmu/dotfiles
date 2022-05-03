@@ -128,12 +128,6 @@ augroup MyAutoCmd
   au User DirvishEnter let b:dirvish.showhidden = 1
   au FileType dirvish call FugitiveDetect(@%)
   au BufRead,BufNewFile nginx/*.conf set ft=nginx
-
-  " see http://vim-jp.org/vim-users-jp/2009/11/01/Hack-96.html
-  au FileType *
-  \   if &l:omnifunc == ''
-  \ |   setlocal omnifunc=syntaxcomplete#Complete
-  \ | endif
 augroup END
 
 set virtualedit+=block
