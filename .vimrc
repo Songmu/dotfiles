@@ -376,7 +376,6 @@ Plug 'tsaleh/vim-align'
 Plug 'vim-scripts/closetag.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-scripts/taglist.vim'
-Plug 'vim-perl/vim-perl', { 'for': 'perl' }
 Plug 'vim-jp/vimdoc-ja'
 Plug 'airblade/vim-rooter'
 Plug 'mattn/sonictemplate-vim'
