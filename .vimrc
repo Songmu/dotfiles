@@ -120,7 +120,6 @@ augroup MyAutoCmd
   au FileType perl nnoremap <Space>pr :!prove %<CR>
   au FileType html setlocal path+=;/
   au BufNewFile *.pm set ft=perl | call sonictemplate#apply('package', 'n')
-  au BufWritePost *.pm call s:check_package_name()
   au BufWritePre *.ts,*.tsx,*.java,*.go call execute('LspDocumentFormatSync --server=efm-langserver')
   au BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
   au BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
@@ -232,29 +231,6 @@ set includeexpr=substitute(v:fname,'^\\/','','')
 vmap <Space>a <leader>tsp
 vnoremap <Space>= :Align =<CR>
 vnoremap <Space>h :Align =><CR>
-
-" package名チェック
-function! s:get_package_name()
-  let mx = '^\s*package\s\+\([^ ;]\+\)'
-  for line in getline(1, 5)
-    if line =~ mx
-      return substitute(matchstr(line, mx), mx, '\1', '')
-    endif
-  endfor
-  return ""
-endfunction
-
-function! s:check_package_name()
-  let path = substitute(expand('%:p'), '\\', '/', 'g')
-  let name = substitute(s:get_package_name(), '::', '/', 'g') . '.pm'
-  if path[-len(name):] !=# name
-    echohl WarningMsg
-    echomsg "ぱっけーじめいと、ほぞんされているぱすが、ちがうきがします！"
-    echomsg "ちゃんとなおしてください＞＜"
-    echohl None
-  endif
-endfunction
-
 
 " local設定ファイル
 let local_vimrc = $HOME."/.vimrc.local"
