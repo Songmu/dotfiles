@@ -118,6 +118,7 @@ augroup MyAutoCmd
   au BufNewFile,BufRead *.rb,*.ts,*.tsx set sw=2 expandtab ts=2
   au FileType perl set isfname-=- isfname-=/ isfname-=+
   au FileType html setlocal path+=;/
+  au FileType go setlocal iskeyword+=/ iskeyword+=.
   au BufNewFile *.pm set ft=perl | call sonictemplate#apply('package', 'n')
   au BufWritePre *.ts,*.tsx,*.java,*.go call execute('LspDocumentFormatSync --server=efm-langserver')
   au BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
@@ -333,6 +334,8 @@ function! LightlineFilename()
   return expand('%')
 endfunction
 
+let g:ref_godoc_cmd = 'go doc -all'
+
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
@@ -369,6 +372,7 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'jparise/vim-graphql'
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
+Plug 'obcat/vim-ref-godoc'
 
 call plug#end()
 
