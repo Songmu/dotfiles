@@ -338,7 +338,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-ghq'
-Plug 'maralla/completor.vim'
 Plug 'SirVer/ultisnips'
 Plug 'thinca/vim-ref'
 Plug 'tsaleh/vim-align'
