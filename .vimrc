@@ -117,7 +117,6 @@ augroup MyAutoCmd
   au BufNewFile,BufReadPost *.graphqls set filetype=graphql
   au BufNewFile,BufRead *.rb,*.ts,*.tsx set sw=2 expandtab ts=2
   au FileType perl set isfname-=- isfname-=/ isfname-=+
-  au FileType perl nnoremap <Space>pr :!prove %<CR>
   au FileType html setlocal path+=;/
   au BufNewFile *.pm set ft=perl | call sonictemplate#apply('package', 'n')
   au BufWritePre *.ts,*.tsx,*.java,*.go call execute('LspDocumentFormatSync --server=efm-langserver')
