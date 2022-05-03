@@ -260,14 +260,6 @@ function! s:init_cmdwin()
   startinsert!
 endfunction
 
-if !exists("g:quickrun_config")
-    let g:quickrun_config={}
-endif
-
-let g:quickrun_config['_'] = {
-    \ 'outputter/buffer/split' : '%{winwidth(0) * 2 < winheight(0) * 5 ? "" : "vertical belowright"}',
-\ }
-
 if has('conceal')
   set conceallevel=1 concealcursor=
 endif
