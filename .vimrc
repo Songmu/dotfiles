@@ -272,8 +272,8 @@ let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
-let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
-let g:ctrlp_use_caching=0
+let g:ctrlp_match_func = { 'match' : 'ctrlp_matchfuzzy#matcher' }
+let g:ctrlp_use_caching=1
 let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
 
 command! -nargs=1 CtrlPGrep call s:ctrlp_grep(<f-args>)
@@ -344,7 +344,6 @@ Plug 'mattn/sonictemplate-vim'
 Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
 Plug 'elzr/vim-json'
 Plug 'tyru/open-browser.vim'
-Plug 'nixprime/cpsm'
 Plug 'justinmk/vim-dirvish'
 Plug 'itchyny/lightline.vim'
 Plug 'rhysd/ghpr-blame.vim'
@@ -362,6 +361,7 @@ Plug 'jparise/vim-graphql'
 Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
 Plug 'obcat/vim-ref-godoc'
+Plug 'mattn/ctrlp-matchfuzzy'
 
 call plug#end()
 
