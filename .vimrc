@@ -89,7 +89,7 @@ let g:lsp_settings = {
 \    }
 \  },
 \  "java-language-server": {
-\    "cmd": "/Users/Songmu/dev/src/github.com/draftcode/java-language-server/dist/lang_server_mac.sh"
+\    "cmd": $HOME . "/dev/src/github.com/draftcode/java-language-server/dist/lang_server_mac.sh"
 \  },
 \  "efm-langserver": {
 \    "disabled": v:false
