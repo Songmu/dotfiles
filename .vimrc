@@ -80,6 +80,11 @@ let g:asyncomplete_remove_duplicates = 1
 let g:asyncomplete_smart_completion = 1
 let g:asyncomplete_auto_popup = 1
 
+function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
+endfunction
+
 let g:lsp_settings = {
 \  "css-languageserver": {
 \    "workspace_config": {
@@ -118,7 +123,6 @@ augroup MyAutoCmd
   au BufNewFile,BufRead *.rb,*.ts,*.tsx set sw=2 expandtab ts=2
   au FileType perl set isfname-=- isfname-=/ isfname-=+
   au FileType html setlocal path+=;/
-  au FileType go setlocal iskeyword+=/ iskeyword+=.
   au BufNewFile *.pm set ft=perl | call sonictemplate#apply('package', 'n')
   au BufWritePre *.ts,*.tsx,*.java,*.go call execute('LspDocumentFormatSync --server=efm-langserver')
   au BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
@@ -129,6 +133,7 @@ augroup MyAutoCmd
   au User DirvishEnter let b:dirvish.showhidden = 1
   au FileType dirvish call FugitiveDetect(@%)
   au BufRead,BufNewFile nginx/*.conf set ft=nginx
+  au User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
 set virtualedit+=block
