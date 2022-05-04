@@ -65,6 +65,14 @@ set helplang=ja
 set foldmethod=manual
 set vb t_vb=
 
+" ref. https://note.com/yasukotelin/n/na87dc604e042
+set completeopt=menuone,noinsert,preview
+
+" 補完表示時のEnterで改行をしない
+inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
+inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-n>"
+inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
+
 nmap <silent> gd :LspDefinition<CR>
 nmap <silent> <C-]> :LspDefinition<CR>
 nmap <silent> <f2> :LspRename<CR>
@@ -100,8 +108,6 @@ let g:lsp_settings = {
 \    "disabled": v:false
 \  }
 \}
-
-set completeopt=menu,preview
 
 "-----------------------
 " autocmd
@@ -182,10 +188,6 @@ vnoremap <C-s> "zy:%s/<C-r>=escape(@z,'/')<CR>/
 inoremap <C-d> <Del>
 inoremap <C-h> <BackSpace>
 
-"コマンドモードの履歴
-cnoremap <C-p> <Up>
-cnoremap <C-n> <Down>
-
 "コマンドモードでペースト
 cnoremap <C-y> <C-r>"
 
@@ -196,9 +198,6 @@ nnoremap <silent> es :<C-u>e ++enc=cp932<CR>
 
 "pasteモードトグル
 nnoremap <Space>tp :<C-u>set paste!<CR>
-
-"補完候補があってもEnterは改行
-inoremap <expr> <CR> pumvisible() ? "\<C-e>\<CR>" : "\<CR>"
 
 "スクロール
 nnoremap <C-e> <C-e>j
@@ -242,8 +241,6 @@ nnoremap <Space>p :call system("pbcopy", @")<CR>
 nnoremap <Space>v :r !pbpaste<CR>
 
 " command履歴
-cnoremap <Up> <C-p>
-cnoremap <Down> <C-n>
 cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 
