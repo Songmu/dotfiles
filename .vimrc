@@ -275,8 +275,8 @@ nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
 let g:ctrlp_match_func = { 'match' : 'ctrlp_matchfuzzy#matcher' }
-let g:ctrlp_use_caching=1
-let g:ctrlp_user_command='ag %s -i --nocolor --nogroup -g ""'
+let g:ctrlp_user_command='rg %s --files --color=never --glob ""'
+let g:ctrlp_use_caching=0
 
 command! -nargs=1 CtrlPGrep call s:ctrlp_grep(<f-args>)
 
