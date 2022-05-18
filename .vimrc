@@ -300,12 +300,6 @@ noremap <silent> <leader>m :<c-u>CtrlPMixed<cr>
 let g:ctrlp_ghq_default_action = 'e'
 let g:ctrlp_ghq_cache_enabled = 1
 
-let g:memolist_path = $HOME . "/Dropbox/memo"
-let g:memolist_memo_suffix = "md"
-let g:memolist_template_dir_path = $HOME . "/.vim/template/memolist"
-let g:memolist_delimiter_yaml_start = "---"
-let g:memolist_delimiter_yaml_end = "---"
-
 nnoremap <silent><Space>f :<C-u>call tnite#start(["sh", "-c", "git ls-files \| peco"], "tabedit", {})<CR>
 
 if executable('rg')
@@ -349,7 +343,6 @@ Plug 'tyru/open-browser.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'itchyny/lightline.vim'
 Plug 'rhysd/ghpr-blame.vim'
-Plug 'glidenote/memolist.vim'
 Plug 'pocke/tnite.vim'
 Plug 'b4b4r07/vim-hcl'
 Plug 'chr4/nginx.vim'
