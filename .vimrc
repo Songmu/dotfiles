@@ -291,7 +291,7 @@ function! s:ctrlp_grep(...)
   endif
 
   if pat != ""
-    execute 'silent grep!' pat . ' ' . expand('%:p:h')
+    execute 'silent grep!' pat . ' ' . getcwd()
     if len(getqflist()) > 0
       CtrlPQuickfix
       cclose
