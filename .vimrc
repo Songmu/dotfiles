@@ -225,11 +225,6 @@ map gf <C-w>gf
 "http://hail2u.net/blog/software/support-slash-started-relative-url-in-vim-gf.html
 set includeexpr=substitute(v:fname,'^\\/','','')
 
-" align.vimのおぺれーた
-vmap <Space>a <leader>tsp
-vnoremap <Space>= :Align =<CR>
-vnoremap <Space>h :Align =><CR>
-
 " local設定ファイル
 let local_vimrc = $HOME."/.vimrc.local"
 if (filereadable(local_vimrc))
@@ -341,7 +336,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-ghq'
 Plug 'SirVer/ultisnips'
 Plug 'thinca/vim-ref'
-Plug 'tsaleh/vim-align'
 Plug 'vim-scripts/closetag.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-jp/vimdoc-ja'
