@@ -305,8 +305,6 @@ noremap <silent> <Space>h :<c-u>CtrlPGhq<cr>
 let g:ctrlp_ghq_default_action = 'e'
 let g:ctrlp_ghq_cache_enabled = 1
 
-nnoremap <silent><Space>f :<C-u>call tnite#start(["sh", "-c", "git ls-files \| peco"], "tabedit", {})<CR>
-
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
   set grepformat=%f:%l:%c:%m,%f:%l:%m
@@ -347,7 +345,6 @@ Plug 'tyru/open-browser.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'itchyny/lightline.vim'
 Plug 'rhysd/ghpr-blame.vim'
-Plug 'pocke/tnite.vim'
 Plug 'b4b4r07/vim-hcl'
 Plug 'chr4/nginx.vim'
 Plug 'mattn/vim-asyncgrep'
