@@ -276,13 +276,22 @@ vmap gx <Plug>(openbrowser-smart-search)
 
 let g:ctrlp_match_func = { 'match' : 'ctrlp_matchfuzzy#matcher' }
 let g:ctrlp_user_command='rg %s --files --color=never --glob ""'
+" to install files do `go install github.com/mattn/files@latest`
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard', 'files -a %s']
 let g:ctrlp_use_caching=0
 
-command! -nargs=1 CtrlPGrep call s:ctrlp_grep(<f-args>)
+command! -nargs=? CtrlPGrep call s:ctrlp_grep(<f-args>)
 
-function! s:ctrlp_grep(pat)
-  if a:pat != ""
-    execute 'silent grep!' a:pat . ' ' . expand('%:p:h')
+function! s:ctrlp_grep(...)
+  let l:pat = ""
+  if a:0 >= 1
+    let pat = a:1
+  else
+    let pat = input('pattern?: ')
+  endif
+
+  if pat != ""
+    execute 'silent grep!' pat . ' ' . expand('%:p:h')
     if len(getqflist()) > 0
       CtrlPQuickfix
       cclose
@@ -294,9 +303,10 @@ function! s:ctrlp_grep(pat)
 endfunction
 
 let g:ctrlp_map = '<Nop>'
-noremap <silent> <C-p>     :<C-u>CtrlP<CR>
-noremap <silent> <leader>g :<c-u>CtrlPGhq<cr>
-noremap <silent> <leader>m :<c-u>CtrlPMixed<cr>
+noremap <silent> <C-p>    :<c-u>CtrlP<cr>
+noremap <silent> <Space>g :<c-u>CtrlPGrep<cr>
+noremap <silent> <Space>m :<c-u>CtrlPMixed<cr>
+noremap <silent> <Space>h :<c-u>CtrlPGhq<cr>
 let g:ctrlp_ghq_default_action = 'e'
 let g:ctrlp_ghq_cache_enabled = 1
 
