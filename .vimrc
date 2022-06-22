@@ -358,6 +358,7 @@ Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
 Plug 'obcat/vim-ref-godoc'
 Plug 'mattn/ctrlp-matchfuzzy'
+Plug 'github/copilot.vim'
 
 call plug#end()
 
