@@ -140,6 +140,7 @@ augroup MyAutoCmd
   au FileType dirvish call FugitiveDetect(@%)
   au BufRead,BufNewFile nginx/*.conf set ft=nginx
   au User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+  au BufReadCmd *.srcjar call zip#Browse(expand("<amatch>"))
 augroup END
 
 set virtualedit+=block
