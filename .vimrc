@@ -361,6 +361,7 @@ Plug 'obcat/vim-ref-godoc'
 Plug 'mattn/ctrlp-matchfuzzy'
 Plug 'github/copilot.vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'udalov/kotlin-vim'
 
 call plug#end()
 
