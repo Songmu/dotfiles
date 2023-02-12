@@ -10,3 +10,5 @@ localrc.vim
 .project
 .settings
 .envrc
+
+.idea
