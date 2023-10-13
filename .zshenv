@@ -8,8 +8,8 @@ export GOPATH=~/dev
 
 typeset -U path PATH
 path=(
-    /opt/homebrew/bin(N-/)
     ~/bin
+    /opt/homebrew/bin(N-/)
     /usr/local/opt/ruby/bin
     ~/.plenv/libexec
     ~/.plenv/shims
