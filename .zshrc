@@ -267,29 +267,6 @@ peco-cdr () {
 }
 zle -N peco-cdr
 
-peco-peep () {
-    local pid=$(ps -x -o user,pid,command | tail -n +2 | peco | awk '{ print $2 }')
-    if [ -z $pid ]; then
-      return
-    fi
-    peep $pid -- peep-notify pushbullet
-}
-alias pe="peco-peep"
-
-ghq-cd () {
-  if [ -n "$1" ]; then
-    dir="$(ghq list --full-path --exact "$1")"
-    if [ -z "$dir" ]; then
-      echo "no directroies found for '$1'"
-      return 1
-    fi
-    cd "$dir"
-    return
-  fi
-  echo 'usage: ghq-cd $repo'
-  return 1
-}
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
