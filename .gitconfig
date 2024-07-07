@@ -30,6 +30,9 @@
     default = simple
 [diff]
     algorithm = histogram
+[diff "lockb"]
+    textconv = bun
+    binary = true
 [pager]
     log  = diff-highlight | less -r
     show = diff-highlight | less -r
@@ -51,4 +54,4 @@
 [init]
     defaultBranch = main
 [http]
-	cookiefile = /Users/Songmu/.gitcookies
+    cookiefile = /Users/Songmu/.gitcookies

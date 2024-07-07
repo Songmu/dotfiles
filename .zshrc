@@ -277,6 +277,8 @@ if [ -f '/Users/Songmu/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/Songmu/g
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/Songmu/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/Songmu/google-cloud-sdk/completion.zsh.inc'; fi
 
+eval "$(mise activate zsh)"
+
 if (which zprof > /dev/null 2>&1); then
   zprof
 fi

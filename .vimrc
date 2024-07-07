@@ -362,6 +362,8 @@ Plug 'mattn/ctrlp-matchfuzzy'
 Plug 'github/copilot.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'udalov/kotlin-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'styled-components/vim-styled-components'
 
 call plug#end()
 
