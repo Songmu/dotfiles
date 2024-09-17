@@ -126,6 +126,8 @@ augroup MyAutoCmd
   au BufNewFile,BufReadPost Dockerfile set filetype=Dockerfile
   au BufNewFile,BufReadPost Capfile* set filetype=ruby
   au BufNewFile,BufReadPost *.graphqls set filetype=graphql
+  au BufNewfile,BufReadPost *.tmpl set filetype=gotmpl
+
   au BufNewFile,BufRead *.rb,*.ts,*.tsx set sw=2 expandtab ts=2
   au FileType perl set isfname-=- isfname-=/ isfname-=+
   au FileType html setlocal path+=;/
@@ -364,6 +366,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'udalov/kotlin-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'styled-components/vim-styled-components'
+Plug 'ddollar/golang-template.vim'
 
 call plug#end()
 
