@@ -23,5 +23,10 @@ return {
             mods = "CMD",
             action = wezterm.action.PasteFrom "Clipboard",
         },
+        {
+            key = "c",
+            mods = "CMD",
+            action = wezterm.action.CopyTo "Clipboard",
+        },
     }
 }
