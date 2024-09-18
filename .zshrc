@@ -182,12 +182,13 @@ alias be="bundle exec"
 unsetopt promptcr
 
 #screenのステータスラインに最後に実行したコマンドを表示
-if [[ "$TERM" =~ ^screen ]]; then
+if [[ "$SCREEN" == "1" ]]; then
     set_screen_status() {
         # see [zsh-workers:13180]
         # http://www.zsh.org/mla/workers/2000/msg03993.html
         emulate -L zsh
         local -a cmd; cmd=(${(z)2})
+        local dir=$(basename $(print -P "%~"))
         case $cmd[1] in
             fg)
                 if (( $#cmd == 1 )); then
@@ -205,16 +206,15 @@ if [[ "$TERM" =~ ^screen ]]; then
                 fi
                 ;&
             *)
-                echo -n "k$cmd[1]:t\\"
+                echo -n "k$cmd[1]:t:$dir\\"
                 return
                 ;;
         esac
 
         local -A jt; jt=(${(kv)jobtexts})
-
         $cmd >>(read num rest
             cmd=(${(z)${(e):-\$jt$num}})
-            echo -n "k$cmd[1]:t\\") 2>/dev/null
+            echo -n "k$cmd[1]:t:$dir\\") 2>/dev/null
     }
     add-zsh-hook preexec set_screen_status
 fi
