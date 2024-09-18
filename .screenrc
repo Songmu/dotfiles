@@ -4,11 +4,11 @@ vbell           off
 msgminwait      0
 autodetach      on
 defscrollback   10000
+term xterm-256color
 truecolor       on
 
 defencoding utf8
 cjkwidth on
-#term xterm-256color
 
 shell zsh
 # shelltitle "% |zsh"
