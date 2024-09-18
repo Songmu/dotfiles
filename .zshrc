@@ -201,10 +201,8 @@ if [[ "$SCREEN" == "1" ]]; then
                 cmd=(builtin jobs -l $cmd[1])
                 ;;
             cd)
-                if (( $#cmd == 2)); then
-                    cmd[1]=$cmd[2]
-                fi
-                ;&
+                return
+                ;;
             *)
                 echo -n "k$cmd[1]:t:$dir\\"
                 return
