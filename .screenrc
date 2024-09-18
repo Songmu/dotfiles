@@ -10,10 +10,11 @@ truecolor       on
 defencoding utf8
 cjkwidth on
 
+setenv SCREEN 1
 shell zsh
-# shelltitle "% |zsh"
 hardstatus on
-hardstatus alwayslastline "%`%-w%{=4 7;4}%n %t%{-}%+w"
+shelltitle "$ |zsh"
+hardstatus alwayslastline "%`%-w%{=d 7;4}%n %t%{-}%+w"
 bind x
 bind l
 

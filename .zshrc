@@ -100,7 +100,7 @@ my_precmd () {
 %{${fg[green]}%}[%n@%m]$%{${reset_color}%} "
   fi
 
-  if [[ "$TERM" =~ ^screen ]]; then
+  if [[ "$SCREEN" == "1" ]]; then
     screen -X title $(basename $(print -P "%~"))
   fi
 }
