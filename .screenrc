@@ -4,6 +4,7 @@ vbell           off
 msgminwait      0
 autodetach      on
 defscrollback   10000
+truecolor       on
 
 defencoding utf8
 cjkwidth on
@@ -12,7 +13,7 @@ cjkwidth on
 shell zsh
 # shelltitle "% |zsh"
 hardstatus on
-hardstatus alwayslastline "%`%-w%{=b bw}%n %t%{-}%+w"
+hardstatus alwayslastline "%`%-w%{=4 7;4}%n %t%{-}%+w"
 bind x
 bind l
 
