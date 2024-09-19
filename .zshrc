@@ -176,7 +176,6 @@ esac
 alias ll='ls -l'
 alias gi="git"
 alias gti="git"
-alias be="bundle exec"
 
 #改行のない出力をプロンプトで上書きするのを防ぐ
 unsetopt promptcr

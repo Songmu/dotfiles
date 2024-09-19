@@ -33,17 +33,6 @@ plenv() {
   plenv "$@"
 }
 
-rbenv() {
-  init_env rbenv
-  rbenv "$@"
-}
-
-nodenv() {
-  init_env nodenv
-  nodenv "$@"
-}
-
-
 _arch=$(uname -m)
 if [[ $_arch == arm64 ]]; then
     eval $(/opt/homebrew/bin/brew shellenv)
