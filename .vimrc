@@ -68,6 +68,8 @@ set vb t_vb=
 " ref. https://note.com/yasukotelin/n/na87dc604e042
 set completeopt=menuone,noinsert,preview
 
+set clipboard=unnamedplus
+
 " 補完表示時のEnterで改行をしない
 inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
 inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-n>"
