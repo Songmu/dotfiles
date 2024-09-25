@@ -370,6 +370,7 @@ Plug 'udalov/kotlin-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'styled-components/vim-styled-components'
 Plug 'ddollar/golang-template.vim'
+Plug 'ConradIrwin/vim-bracketed-paste'
 
 call plug#end()
 
