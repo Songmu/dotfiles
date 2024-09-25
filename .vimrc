@@ -68,7 +68,9 @@ set vb t_vb=
 " ref. https://note.com/yasukotelin/n/na87dc604e042
 set completeopt=menuone,noinsert,preview
 
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
+set clipboard+=unnamed
+set clipboard+=autoselect
 
 " 補完表示時のEnterで改行をしない
 inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
@@ -85,7 +87,7 @@ let g:lsp_diagnostics_enabled = 1
 let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_text_edit_enabled = 1
-let g:lsp_inlay_hints_enabled = 1
+" let g:lsp_inlay_hints_enabled = 1
 let g:asyncomplete_popup_delay = 200
 let g:asyncomplete_remove_duplicates = 1
 let g:asyncomplete_smart_completion = 1
