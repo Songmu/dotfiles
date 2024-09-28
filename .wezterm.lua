@@ -17,6 +17,7 @@ return {
     font_size = 16.0,
     hide_tab_bar_if_only_one_tab = true,
     disable_default_key_bindings = true,
+    adjust_window_size_when_changing_font_size = false,
     keys = {
         {
             key = "v",
@@ -27,6 +28,16 @@ return {
             key = "c",
             mods = "CMD",
             action = wezterm.action.CopyTo "Clipboard",
+        },
+        {
+            key = ";",
+            mods = "CMD",
+            action = wezterm.action.IncreaseFontSize,
+        },
+        {
+            key = "-",
+            mods = "CMD",
+            action = wezterm.action.DecreaseFontSize,
         },
     }
 }
