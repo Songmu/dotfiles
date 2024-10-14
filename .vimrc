@@ -335,6 +335,8 @@ endfunction
 
 let g:ref_godoc_cmd = 'go doc -all'
 
+let g:rustfmt_autosave = 1
+
 " vim-plug
 call plug#begin('~/.vim/plugged')
 
@@ -373,6 +375,7 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'styled-components/vim-styled-components'
 Plug 'ddollar/golang-template.vim'
 Plug 'ConradIrwin/vim-bracketed-paste'
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
