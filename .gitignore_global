@@ -1,5 +1,6 @@
 localrc.vim
 .local.perl.vimrc
+.perl-version
 .DS_Store
 .songmu/*
 .tmp/*
