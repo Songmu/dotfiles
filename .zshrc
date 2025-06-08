@@ -268,14 +268,18 @@ zle -N peco-cdr
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+eval "$(mise activate zsh)"
+
+# bun completions
+[ -s "/Users/Songmu/.bun/_bun" ] && source "/Users/Songmu/.bun/_bun"
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/Songmu/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/Songmu/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/Songmu/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/Songmu/google-cloud-sdk/completion.zsh.inc'; fi
 
-eval "$(mise activate zsh)"
-
 if (which zprof > /dev/null 2>&1); then
   zprof
 fi
+
