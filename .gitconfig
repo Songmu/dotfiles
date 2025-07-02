@@ -3,6 +3,7 @@
 [user]
     name = Songmu
     email = y.songmu@gmail.com
+    signingkey = ~/.ssh/matsuki-masayuki.pub
 [core]
     quotepath = false
     excludesfile = ~/.gitignore_global
