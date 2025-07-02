@@ -54,4 +54,8 @@
 [init]
     defaultBranch = main
 [http]
-    cookiefile = /Users/Songmu/.gitcookies
+    cookiefile = ~/.gitcookies
+[gpg]
+    format = ssh
+[gpg "ssh"]
+    allowedSignersFile = ~/.config/git/allowed_signers

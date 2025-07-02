@@ -5,6 +5,7 @@ localrc.vim
 .songmu/*
 .tmp/*
 *.zwc
+CLAUDE.local.md
 
 .classpath
 .factorypath
