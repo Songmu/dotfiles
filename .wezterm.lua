@@ -2,7 +2,7 @@ local wezterm = require 'wezterm';
 return {
     font = wezterm.font_with_fallback {
         {
-            family = "HackGen35 Console NF",
+            family = "HackGen",
             weight = "Regular",
             stretch = "Normal",
             style = "Normal",

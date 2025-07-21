@@ -6,6 +6,7 @@ localrc.vim
 .tmp/*
 *.zwc
 CLAUDE.local.md
+.claude/settings.local.json
 
 .classpath
 .factorypath
