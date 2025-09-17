@@ -12,6 +12,12 @@ return {
             weight = "Regular",
             stretch = "Normal",
             style = "Normal",
+        },
+        {
+            family = "Monaco",
+            weight = "Regular",
+            stretch = "Normal",
+            style = "Normal",
         }
     },
     font_size = 16.0,
