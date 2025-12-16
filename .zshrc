@@ -118,7 +118,9 @@ zstyle ":chpwd:*" recent-dirs-default true
 zstyle ":completion:*" recent-dirs-insert always
 
 #履歴
-HISTFILE="$HOME/Dropbox/.zsh_history"
+if [[ -f "$HOME/Dropbox/.zsh_history" ]]; then
+  HISTFILE="$HOME/Dropbox/.zsh_history"
+fi
 HISTSIZE=10000000
 SAVEHIST=10000000
 
