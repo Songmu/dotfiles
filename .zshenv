@@ -2,7 +2,9 @@ if [[ $ZPROF_DEBUG != "" ]]; then
   zmodload zsh/zprof && zprof
 fi
 
-eval "$(direnv hook zsh)"
+if which direnv > /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
 
 export GOPATH=~/dev
 
@@ -33,13 +35,8 @@ plenv() {
   plenv "$@"
 }
 
-_arch=$(uname -m)
-if [[ $_arch == arm64 ]]; then
-    eval $(/opt/homebrew/bin/brew shellenv)
-elif [[ $_arch == x86_64 ]]; then
-    eval $(/usr/local/bin/brew shellenv)
-fi
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 [ -f /usr/local/share/zsh/site-functions/_aws ] && source /usr/local/share/zsh/site-functions/_aws
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
-. "$HOME/.cargo/env"
+[ -f ~/.cargo/env ] && source ~/.cargo/env
