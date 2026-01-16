@@ -46,15 +46,14 @@ zstyle ':vcs_info:*' disable-patterns "/Users/Songmu/temporary/"
 setopt prompt_subst
 my_precmd () {
   LANG=en_US.UTF-8 vcs_info
+  local line1="%F{yellow}%~%f ${vcs_info_msg_0_}"
+  local line2
   if [ -z "${SSH_CONNECTION}" ]; then
-    PROMPT="
-%{${fg[yellow]}%}%~%{${reset_color}%} ${vcs_info_msg_0_}
-[%*]$ "
+    line2="[%*]$ "
   else
-    PROMPT="
-%{${fg[yellow]}%}%~%{${reset_color}%} ${vcs_info_msg_0_}
-%{${fg[green]}%}[%n@%m]$%{${reset_color}%} "
+    line2="%F{green}[%n@%m]$%f "
   fi
+  PROMPT="${line1}"$'\n'"${line2}"
 
   if [[ -n "$STY" ]]; then
     screen -X title $(basename $(print -P "%~"))
