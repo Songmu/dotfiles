@@ -6,7 +6,9 @@ autodetach      on
 defscrollback   10000
 truecolor       on
 
+defutf8 on
 defencoding utf8
+encoding UTF-8 UTF-8
 cjkwidth on
 
 shell zsh

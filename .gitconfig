@@ -8,6 +8,11 @@
     quotepath = false
     excludesfile = ~/.gitignore_global
     precomposeunicode = true
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
 [alias]
     co = checkout
     ci = commit
@@ -34,15 +39,12 @@
 [diff "lockb"]
     textconv = bun
     binary = true
-[pager]
-    log  = diff-highlight | less -r
-    show = diff-highlight | less -r
-    diff = diff-highlight | less -r
 [ghq]
     root = ~/dev/src
     completeUser = false
 [merge]
     ff = false
+    conflictStyle = zdiff3
 [credential]
     helper = cache --timeout=3600
 [pull]
