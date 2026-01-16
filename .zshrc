@@ -100,7 +100,7 @@ my_precmd () {
 %{${fg[green]}%}[%n@%m]$%{${reset_color}%} "
   fi
 
-  if [[ "$SCREEN" == "1" ]]; then
+  if [[ -n "$STY" ]]; then
     screen -X title $(basename $(print -P "%~"))
   fi
 }
@@ -183,7 +183,8 @@ alias gti="git"
 unsetopt promptcr
 
 #screenのステータスラインに最後に実行したコマンドを表示
-if [[ "$SCREEN" == "1" ]]; then
+if [[ -n "$STY" ]]; then
+    unset zle_bracketed_paste
     set_screen_status() {
         # see [zsh-workers:13180]
         # http://www.zsh.org/mla/workers/2000/msg03993.html

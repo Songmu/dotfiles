@@ -10,7 +10,6 @@ truecolor       on
 defencoding utf8
 cjkwidth on
 
-setenv SCREEN 1
 shell zsh
 hardstatus on
 shelltitle "$ |zsh"
