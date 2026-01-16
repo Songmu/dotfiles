@@ -223,10 +223,6 @@ peco-cdr () {
 }
 zle -N peco-cdr
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
 eval "$(mise activate zsh)"
 
 # bun completions
@@ -241,4 +237,3 @@ if [ -f '/Users/Songmu/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/So
 if (which zprof > /dev/null 2>&1); then
   zprof
 fi
-
