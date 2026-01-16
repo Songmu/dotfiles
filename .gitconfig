@@ -13,6 +13,9 @@
     diffFilter = delta --color-only
 [delta]
     navigate = true
+    # https://github.com/dandavison/delta/issues/1727
+    file-decoration-style = none
+    hunk-header-decoration-style = none
 [alias]
     co = checkout
     ci = commit
