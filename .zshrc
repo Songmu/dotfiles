@@ -53,7 +53,7 @@ my_precmd () {
   else
     line2="%F{green}[%n@%m]$%f "
   fi
-  PROMPT="${line1}"$'\n'"${line2}"
+  PROMPT=$'\n'"${line1}"$'\n'"${line2}"
 
   if [[ -n "$STY" ]]; then
     screen -X title $(basename $(print -P "%~"))
