@@ -24,7 +24,7 @@ return {
     hide_tab_bar_if_only_one_tab = true,
     disable_default_key_bindings = true,
     adjust_window_size_when_changing_font_size = false,
-    treat_east_asian_ambiguous_width_as_wide = true,
+    treat_east_asian_ambiguous_width_as_wide = false,
     keys = {
         {
             key = "v",
