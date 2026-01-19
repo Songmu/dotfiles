@@ -1,4 +1,4 @@
-escape ^Jj
+escape ^Qq
 startup_message off
 vbell           off
 msgminwait      0
