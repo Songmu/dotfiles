@@ -1,4 +1,3 @@
-term = "xterm-256color"
 theme = "Builtin Dark"
 macos-titlebar-style = hidden
 font-family = "HackGen"
@@ -6,4 +5,3 @@ font-feature = "-calt"
 font-feature = "-dlig"
 font-feature = "-liga"
 font-size = 16
-
