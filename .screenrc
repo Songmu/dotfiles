@@ -5,6 +5,7 @@ msgminwait      0
 autodetach      on
 defscrollback   10000
 truecolor       on
+term            screen.xterm-256color
 
 defutf8 on
 defencoding utf8
