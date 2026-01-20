@@ -139,8 +139,6 @@ unsetopt promptcr
 
 #screenのステータスラインに最後に実行したコマンドを表示
 if [[ -n "$STY" ]]; then
-    unset zle_bracketed_paste
-
     set_screen_status() {
         # see [zsh-workers:13180]
         # http://www.zsh.org/mla/workers/2000/msg03993.html
