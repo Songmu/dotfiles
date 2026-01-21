@@ -45,6 +45,8 @@
 [ghq]
     root = ~/dev/src
     completeUser = false
+[wt]
+    basedir = .wt
 [merge]
     ff = false
     conflictStyle = zdiff3
