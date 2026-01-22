@@ -6,7 +6,6 @@
     signingkey = ~/.ssh/matsuki-masayuki.pub
 [core]
     quotepath = false
-    excludesfile = ~/.gitignore_global
     precomposeunicode = true
     pager = delta
 [interactive]

@@ -2,11 +2,12 @@ localrc.vim
 .local.perl.vimrc
 .perl-version
 .DS_Store
+*の競合コ*
 .songmu/*
 .tmp/*
 *.zwc
 CLAUDE.local.md
-.claude/settings.local.json
+**/.claude/settings.local.json
 
 .classpath
 .factorypath
