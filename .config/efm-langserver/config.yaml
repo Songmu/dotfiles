@@ -1,0 +1,43 @@
+version: 2
+log-file: /tmp/efm-langserver.log
+log-level: 5
+root-markers:
+  - .git/
+tools:
+  prettier: &prettier
+    format-command: 'prettier --stdin-filepath ${INPUT}'
+    format-stdin: true
+  google-java-format: &google-java-format
+    format-command:
+      java
+        --add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED
+        --add-exports jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED
+        --add-exports jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED
+        --add-exports jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED
+        --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED
+        -jar /Users/Songmu/.cache/pre-commit/google-java-formatter1.14.0.jar
+        --assume-filename ${INPUT} -
+    format-stdin: true
+  javaimport: &javaimport
+    format-command:
+      java
+        --add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED
+        --add-exports jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED
+        --add-exports jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED
+        --add-exports jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED
+        --add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED
+        -jar /Users/Songmu/dev/src/github.com/nicolascouvrat/javaimports/core/target/javaimports-1.3-SNAPSHOT-all-deps.jar
+        --fix-only --assume-filename=${INPUT} -
+    format-stdin: true
+languages:
+  typescript:
+    - <<: *prettier
+  typescriptreact:
+    - <<: *prettier
+  java:
+    # - <<: *javaimport
+    - <<: *google-java-format
+  go:
+    -
+      format-command: goimports
+      format-stdin: true
