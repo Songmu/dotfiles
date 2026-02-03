@@ -1,0 +1,12 @@
+basePresentationID: '1rhJAXYQKRGhIplk1JPBTuVvhUyZQcpygHr0s6jfRFq4'
+codeBlockToImageCommand: 'laminate'
+folderID: '1RMOe5WWZ2r8-f6-zjQLev-tDk7TY1Esl'
+defaults:
+- if: page == 1
+  layout: title
+- if: topHeadingLevel == 1
+  layout: part
+- if: topHeadingLevel == 2
+  layout: chapter
+- if: topHeadingLevel == 3
+  layout: section
