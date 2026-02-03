@@ -9,3 +9,10 @@ for dotfile in .?*; do
         ln -is "$PWD/$dotfile" $HOME
     fi
 done
+
+find .config -type f | while read file; do
+    target_dir="$HOME/$(dirname $file)"
+    mkdir -p "$target_dir"
+    ln -is "$PWD/$file" "$HOME/$file" < /dev/tty
+done
+
