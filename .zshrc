@@ -173,6 +173,27 @@ if [[ -n "$STY" ]]; then
     add-zsh-hook preexec set_screen_status
 fi
 
+copilot-r() {
+  local cwd=$(pwd)
+  local sessions=()
+
+  for f in ~/.copilot/session-state/*/workspace.yaml; do
+    if grep -q "^cwd: $cwd\$" "$f" 2>/dev/null; then
+      local id=$(grep '^id:' "$f" | head -1 | sed 's/id: //')
+      local updated=$(grep '^updated_at:' "$f" | head -1 | sed 's/updated_at: //')
+      sessions+=("$updated $id")
+    fi
+  done
+
+  if [ ${#sessions[@]} -eq 0 ]; then
+    echo "No session found for $cwd"
+    return 1
+  fi
+
+  local session_id=$(printf '%s\n' "${sessions[@]}" | sort -r | head -1 | awk '{print $2}')
+  copilot --resume "$session_id"
+}
+
 #w3m4alc
 alc() {
   if [ $# != 0 ]; then
