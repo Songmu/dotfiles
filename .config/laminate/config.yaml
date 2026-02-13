@@ -4,5 +4,7 @@ commands:
   run: 'qrencode -o "{{output}}" -t png'
 - lang: mermaid
   run: 'bunx mmdc -s 4 -i - -o "{{output}}" --quiet'
+- lang: ascii
+  run: ['convert', '-background', 'white', '-fill', 'black', 'label:{{input}}', '{{output}}']
 - lang: '*'
   run: 'silicon -l "{{lang}}" -o "{{output}}"'
