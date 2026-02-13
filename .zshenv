@@ -12,13 +12,11 @@ typeset -U path PATH
 path=(
     ~/bin
     /opt/homebrew/bin(N-/)
-    /usr/local/opt/ruby/bin
     ~/.plenv/libexec
     ~/.plenv/shims
     $GOPATH/bin
-    /usr/local/bin
     $PATH
-    /usr/local/sbin # nagios plugins
+    /usr/local/sbin
 )
 if which ghg > /dev/null; then
   export PATH=$(ghg bin):$PATH
