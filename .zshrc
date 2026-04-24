@@ -21,7 +21,6 @@ export GOPATH=~/dev
 typeset -U path PATH
 path=(
     ~/bin
-    /opt/homebrew/bin(N-/)
     ~/.plenv/libexec
     ~/.plenv/shims
     $GOPATH/bin
