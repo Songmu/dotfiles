@@ -342,7 +342,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-ghq'
-Plug 'SirVer/ultisnips'
 Plug 'thinca/vim-ref'
 Plug 'vim-scripts/closetag.vim'
 Plug 'tpope/vim-fugitive'
