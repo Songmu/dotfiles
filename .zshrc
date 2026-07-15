@@ -47,6 +47,10 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 [ -f ~/.cargo/env ] && source ~/.cargo/env
 
+export COPILOT_OTEL_ENABLED=true
+export COPILOT_OTEL_EXPORTER_TYPE=file
+export COPILOT_OTEL_FILE_EXPORTER_PATH="$HOME/.copilot/otel/copilot-otel.jsonl"
+
 source ~/.zplug/init.zsh
 zplug "m4i/cdd", use:"cdd"
 zplug "mafredri/zsh-async"
