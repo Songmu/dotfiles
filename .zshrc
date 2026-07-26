@@ -84,7 +84,7 @@ autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' formats '%F{red}(%s %b)%f'
 zstyle ':vcs_info:*' disable-patterns "$HOME/"
-zstyle ':vcs_info:*' disable-patterns "/Users/Songmu/temporary/"
+zstyle ':vcs_info:*' disable-patterns "$HOME/temporary/"
 
 setopt prompt_subst
 my_precmd () {
@@ -288,13 +288,13 @@ zle -N peco-cdr
 eval "$(mise activate zsh)"
 
 # bun completions
-[ -s "/Users/Songmu/.bun/_bun" ] && source "/Users/Songmu/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/Songmu/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/Songmu/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/Songmu/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/Songmu/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 if (which zprof > /dev/null 2>&1); then
   zprof
