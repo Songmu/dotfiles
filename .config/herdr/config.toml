@@ -32,7 +32,7 @@ previous_tab = "prefix+p"
 next_tab = "prefix+n"
 
 # Copy mode and configuration
-copy_mode = "prefix+esc"
+copy_mode = "prefix+["
 reload_config = "prefix+r"
 
 [ui]
