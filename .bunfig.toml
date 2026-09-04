@@ -3,4 +3,8 @@ exact = true
 auto = "disable"
 registry = "https://npm.flatt.tech/"
 minimumReleaseAge = 259200
-minimumReleaseAgeExcludes = ["@types/bun", "typescript"]
+minimumReleaseAgeExcludes = [
+  "@types/bun",
+  "typescript",
+  "@songmu/mdhq"
+]
