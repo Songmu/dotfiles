@@ -6,5 +6,6 @@ minimumReleaseAge = 259200
 minimumReleaseAgeExcludes = [
   "@types/bun",
   "typescript",
-  "@songmu/mdhq"
+  "@songmu/mdhq",
+  "knap"
 ]

@@ -23,6 +23,7 @@ path=(
     ~/bin
     ~/.plenv/libexec
     ~/.plenv/shims
+    ~/.bun/bin
     $GOPATH/bin
     $PATH
     /usr/local/sbin
