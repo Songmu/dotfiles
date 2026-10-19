@@ -8,6 +8,7 @@ localrc.vim
 *.zwc
 CLAUDE.local.md
 **/.claude/settings.local.json
+.worktrees
 
 .classpath
 .factorypath
