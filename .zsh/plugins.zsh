@@ -1,0 +1,7 @@
+zplug "m4i/cdd", use:"cdd"
+zplug "mafredri/zsh-async"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "zsh-users/zsh-completions"
+zplug "chrissicool/zsh-256color"
+zplug "~/.zsh/my-completions", from:local, use:"*"

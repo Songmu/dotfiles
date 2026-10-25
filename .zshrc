@@ -57,14 +57,14 @@ export COPILOT_OTEL_FILE_EXPORTER_PATH="$HOME/.copilot/otel/copilot-otel.jsonl"
 autoload -Uz add-zsh-hook
 
 if [[ -r "$HOME/.zplug/init.zsh" ]]; then
+  if [[ ! -f "$HOME/.zplug/packages.zsh" &&
+        ( -z "$ZPLUG_LOADFILE" || "$ZPLUG_LOADFILE" == "$HOME/.zplug/packages.zsh" ) ]]; then
+    export ZPLUG_LOADFILE="$HOME/.zsh/plugins.zsh"
+  fi
   source ~/.zplug/init.zsh
-  zplug "m4i/cdd", use:"cdd"
-  zplug "mafredri/zsh-async"
-  zplug "zsh-users/zsh-syntax-highlighting"
-  zplug "zsh-users/zsh-autosuggestions"
-  zplug "zsh-users/zsh-completions"
-  zplug "chrissicool/zsh-256color"
-  zplug "~/.zsh/my-completions", from:local, use:"*"
+  if [[ "$ZPLUG_LOADFILE" != "$HOME/.zsh/plugins.zsh" ]]; then
+    source "$HOME/.zsh/plugins.zsh"
+  fi
 
   zplug load
 fi
