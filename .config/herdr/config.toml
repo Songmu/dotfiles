@@ -24,7 +24,7 @@ split_vertical = "prefix+v"
 close_pane = "prefix+x"
 swap_pane_up = "prefix+shift+["
 swap_pane_down = "prefix+shift+]"
-resize_mode = "prefix+shift+r"
+resize_mode = "prefix+r"
 
 # Tabs (tmux windows)
 new_tab = "prefix+c"
@@ -33,7 +33,7 @@ next_tab = "prefix+n"
 
 # Copy mode and configuration
 copy_mode = "prefix+["
-reload_config = "prefix+r"
+reload_config = "prefix+shift+r"
 
 [ui]
 mouse_capture = true
