@@ -4,13 +4,17 @@ fi
 
 export LANG=en_US.UTF-8
 
-stty -ixon
-
-zshrc=$HOME/.zshrc
-if [ -L zshrc ]; then
-  zshrc=$(readlink $zshrc)
+if [[ -t 0 ]]; then
+  stty -ixon
 fi
-[ $zshrc -nt ~/.zshrc.zwc ] && zcompile ~/.zshrc
+
+for brew_cmd in "${commands[brew]:-}" /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
+  if [[ -x "$brew_cmd" ]]; then
+    eval "$("$brew_cmd" shellenv)"
+    break
+  fi
+done
+unset brew_cmd
 
 if which direnv > /dev/null; then
   eval "$(direnv hook zsh)"
@@ -25,7 +29,7 @@ path=(
     ~/.plenv/shims
     ~/.bun/bin
     $GOPATH/bin
-    $PATH
+    $path
     /usr/local/sbin
 )
 if which ghg > /dev/null; then
@@ -43,8 +47,6 @@ plenv() {
   plenv "$@"
 }
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 [ -f ~/.cargo/env ] && source ~/.cargo/env
 
@@ -52,25 +54,28 @@ export COPILOT_OTEL_ENABLED=true
 export COPILOT_OTEL_EXPORTER_TYPE=file
 export COPILOT_OTEL_FILE_EXPORTER_PATH="$HOME/.copilot/otel/copilot-otel.jsonl"
 
-source ~/.zplug/init.zsh
-zplug "m4i/cdd", use:"cdd"
-zplug "mafredri/zsh-async"
-zplug "zsh-users/zsh-syntax-highlighting"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-completions"
-zplug "chrissicool/zsh-256color"
-zplug "~/.zsh/my-completions", from:local, use:"*"
+autoload -Uz add-zsh-hook
 
-zplug load
+if [[ -r "$HOME/.zplug/init.zsh" ]]; then
+  source ~/.zplug/init.zsh
+  zplug "m4i/cdd", use:"cdd"
+  zplug "mafredri/zsh-async"
+  zplug "zsh-users/zsh-syntax-highlighting"
+  zplug "zsh-users/zsh-autosuggestions"
+  zplug "zsh-users/zsh-completions"
+  zplug "chrissicool/zsh-256color"
+  zplug "~/.zsh/my-completions", from:local, use:"*"
+
+  zplug load
+fi
 
 cleanup_cdd() {
   if [ -n "$WINDOW" ] && [ -f "$CDD_FILE" ]; then
     _cdd_delete $WINDOW
   fi
 }
-# add-zsh-hook have loaded in zplug
-add-zsh-hook zshexit cleanup_cdd
-add-zsh-hook chpwd _cdd_chpwd
+(( $+functions[_cdd_delete] )) && add-zsh-hook zshexit cleanup_cdd
+(( $+functions[_cdd_chpwd] )) && add-zsh-hook chpwd _cdd_chpwd
 
 setopt magic_equal_subst
 
@@ -117,6 +122,7 @@ zstyle ":chpwd:*" recent-dirs-default true
 zstyle ":completion:*" recent-dirs-insert always
 
 #履歴
+HISTFILE=${HISTFILE:-$HOME/.zsh_history}
 if [[ -f "$HOME/Dropbox/.zsh_history" ]]; then
   HISTFILE="$HOME/Dropbox/.zsh_history"
 fi
@@ -217,27 +223,6 @@ if [[ -n "$STY" ]]; then
     add-zsh-hook preexec set_screen_status
 fi
 
-copilot-r() {
-  local cwd=$(pwd)
-  local sessions=()
-
-  for f in ~/.copilot/session-state/*/workspace.yaml; do
-    if grep -q "^cwd: $cwd\$" "$f" 2>/dev/null; then
-      local id=$(grep '^id:' "$f" | head -1 | sed 's/id: //')
-      local updated=$(grep '^updated_at:' "$f" | head -1 | sed 's/updated_at: //')
-      sessions+=("$updated $id")
-    fi
-  done
-
-  if [ ${#sessions[@]} -eq 0 ]; then
-    echo "No session found for $cwd"
-    return 1
-  fi
-
-  local session_id=$(printf '%s\n' "${sessions[@]}" | sort -r | head -1 | awk '{print $2}')
-  copilot --resume "$session_id"
-}
-
 #w3m4alc
 alc() {
   if [ $# != 0 ]; then
@@ -251,8 +236,8 @@ alc() {
 peco-src () {
     local selected_dir=$(ghq list | peco --query "$LBUFFER")
     if [ -n "$selected_dir" ]; then
-        selected_dir=$(ghq list --full-path --exact $selected_dir)
-        BUFFER="cd ${selected_dir}"
+        selected_dir=$(ghq list --full-path --exact "$selected_dir")
+        BUFFER="cd -- ${(q)selected_dir}"
         zle accept-line
     fi
     zle clear-screen
@@ -277,16 +262,20 @@ peco-select-history() {
 zle -N peco-select-history
 
 peco-cdr () {
-    local selected_dir=$(cdr -l | awk '{ print $2 }' | peco)
+    local -a reply
+    cdr -r || return
+    local selected_dir=$(print -rl -- "${reply[@]}" | peco)
     if [ -n "$selected_dir" ]; then
-        BUFFER="cd ${selected_dir}"
+        BUFFER="cd -- ${(q)selected_dir}"
         zle accept-line
     fi
     zle clear-screen
 }
 zle -N peco-cdr
 
-eval "$(mise activate zsh)"
+if (( $+commands[mise] )); then
+  eval "$(mise activate zsh)"
+fi
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
