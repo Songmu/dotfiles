@@ -60,6 +60,7 @@ export COPILOT_OTEL_EXPORTER_TYPE=file
 export COPILOT_OTEL_FILE_EXPORTER_PATH="$HOME/.copilot/otel/copilot-otel.jsonl"
 
 autoload -Uz add-zsh-hook
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
 if [[ -r "$HOME/.zplug/init.zsh" ]]; then
   if [[ ! -f "$HOME/.zplug/packages.zsh" &&
@@ -94,12 +95,36 @@ alias zmv='noglob zmv'
 autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' formats '%F{red}(%s %b)%f'
-zstyle ':vcs_info:*' disable-patterns "$HOME/"
-zstyle ':vcs_info:*' disable-patterns "$HOME/temporary/"
+zstyle ':vcs_info:*' disable-patterns "$HOME" "$HOME/temporary"
 
 setopt prompt_subst
-my_precmd () {
+typeset -g my_vcs_dir=
+typeset -gi my_vcs_request=0
+(( $+functions[async_stop_worker] )) && async_stop_worker my_vcs
+
+my_vcs_info () {
+  local request=$1
+  local -x PATH=$3
+  builtin cd -q -- "$2" || return
   LANG=en_US.UTF-8 vcs_info
+  print -rl -- "$request" "$vcs_info_msg_0_"
+}
+
+my_vcs_callback () {
+  if [[ $1 == '[async]' ]]; then
+    async_stop_worker my_vcs
+    return
+  fi
+
+  local -a result=("${(@f)3}")
+  [[ $1 == my_vcs_info && $2 == 0 &&
+     $result[1] == $my_vcs_request && $my_vcs_dir == $PWD ]] || return
+  vcs_info_msg_0_=$result[2]
+  my_prompt
+  zle && zle reset-prompt
+}
+
+my_prompt () {
   local line1="%F{yellow}%~%f ${vcs_info_msg_0_}"
   local line2
   if [ -z "${SSH_CONNECTION}" ]; then
@@ -108,7 +133,20 @@ my_precmd () {
     line2="%F{green}[%n@%m]$%f "
   fi
   PROMPT=$'\n'"${line1}"$'\n'"${line2}"
+}
 
+my_precmd () {
+  [[ $my_vcs_dir == $PWD ]] || vcs_info_msg_0_=
+  my_vcs_dir=$PWD
+  (( ++my_vcs_request ))
+  if ! { (( $+functions[async_start_worker] )) &&
+         async_start_worker my_vcs -n &&
+         async_register_callback my_vcs my_vcs_callback &&
+         async_flush_jobs my_vcs &&
+         async_job my_vcs my_vcs_info "$my_vcs_request" "$PWD" "$PATH"; }; then
+    LANG=en_US.UTF-8 vcs_info
+  fi
+  my_prompt
   if [[ -n "$STY" ]]; then
     screen -X title $(basename $(print -P "%~"))
   fi
