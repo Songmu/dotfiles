@@ -8,13 +8,18 @@ if [[ -t 0 ]]; then
   stty -ixon
 fi
 
-for brew_cmd in "${commands[brew]:-}" /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
-  if [[ -x "$brew_cmd" ]]; then
-    eval "$("$brew_cmd" shellenv)"
-    break
-  fi
-done
-unset brew_cmd
+if [[ -z "$HOMEBREW_PREFIX" ||
+      ":$PATH:" != *":$HOMEBREW_PREFIX/bin:"* ||
+      ":$PATH:" != *":$HOMEBREW_PREFIX/sbin:"* ||
+      ":$FPATH:" != *":$HOMEBREW_PREFIX/share/zsh/site-functions:"* ]]; then
+  for brew_cmd in "${commands[brew]:-}" /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
+    if [[ -x "$brew_cmd" ]]; then
+      eval "$("$brew_cmd" shellenv zsh)"
+      break
+    fi
+  done
+  unset brew_cmd
+fi
 
 if which direnv > /dev/null; then
   eval "$(direnv hook zsh)"
