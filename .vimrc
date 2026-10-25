@@ -21,7 +21,7 @@ highlight Comment ctermfg=102
 highlight Visual  ctermbg=236
 
 "タブの設定
-set softtabstop=4
+set softtabstop=-1
 set shiftwidth=4
 set tabstop=4
 set expandtab
@@ -65,8 +65,7 @@ set helplang=ja
 set foldmethod=manual
 set vb t_vb=
 
-" ref. https://note.com/yasukotelin/n/na87dc604e042
-set completeopt=menuone,noinsert,preview
+set completeopt=menuone,noinsert,noselect,popup
 
 " set clipboard=unnamedplus
 set clipboard+=unnamed
@@ -77,25 +76,25 @@ inoremap <expr><CR>  pumvisible() ? "<C-y>" : "<CR>"
 inoremap <expr><C-n> pumvisible() ? "<Down>" : "<C-n>"
 inoremap <expr><C-p> pumvisible() ? "<Up>" : "<C-p>"
 
-nmap <silent> gd :LspDefinition<CR>
-nmap <silent> <C-]> :LspDefinition<CR>
-nmap <silent> <f2> :LspRename<CR>
-nmap <silent> <Leader>d :LspTypeDefinition<CR>
-nmap <silent> <Leader>r :LspReferences<CR>
-nmap <silent> <Leader>i :LspImplementation<CR>
 let g:lsp_diagnostics_enabled = 1
-let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_signs_enabled = 1
 let g:lsp_diagnostics_echo_cursor = 1
 let g:lsp_text_edit_enabled = 1
 " let g:lsp_inlay_hints_enabled = 1
+let g:asyncomplete_auto_completeopt = 0
 let g:asyncomplete_popup_delay = 200
-let g:asyncomplete_remove_duplicates = 1
-let g:asyncomplete_smart_completion = 1
 let g:asyncomplete_auto_popup = 1
 
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
+  setlocal tagfunc=lsp#tagfunc
   setlocal signcolumn=yes
+  nmap <buffer> <silent> gd :LspDefinition<CR>
+  nmap <buffer> <silent> <C-]> :LspDefinition<CR>
+  nmap <buffer> <silent> <f2> :LspRename<CR>
+  nmap <buffer> <silent> <Leader>d :LspTypeDefinition<CR>
+  nmap <buffer> <silent> <Leader>r :LspReferences<CR>
+  nmap <buffer> <silent> <Leader>i :LspImplementation<CR>
 endfunction
 
 let g:lsp_settings = {
@@ -105,9 +104,6 @@ let g:lsp_settings = {
 \        "validate": v:false
 \      }
 \    }
-\  },
-\  "java-language-server": {
-\    "cmd": $HOME . "/dev/src/github.com/draftcode/java-language-server/dist/lang_server_mac.sh"
 \  },
 \  "efm-langserver": {
 \    "disabled": v:false
@@ -123,21 +119,20 @@ augroup MyAutoCmd
   highlight WhitespaceEOL ctermbg=red guibg=red
   au BufRead,BufNew,WinEnter * match WhitespaceEOL /\(　\|\s\+$\)/
 
-  au BufNewFile,BufRead *.go set sw=4 noexpandtab ts=4
-  au BufNewFile,BufRead *.java set sw=2 ts=2
+  au FileType go setlocal sw=4 noexpandtab ts=4
   au BufNewFile,BufReadPost *.mt,*.tt,*.tx set filetype=html
   au BufNewFile,BufReadPost *.psgi,*.t,cpanfile,Daikufile set filetype=perl
   au BufNewFile,BufReadPost *.ru set filetype=ruby
-  au BufNewFile,BufReadPost Dockerfile set filetype=Dockerfile
+  au BufNewFile,BufReadPost Dockerfile set filetype=dockerfile
   au BufNewFile,BufReadPost Capfile* set filetype=ruby
   au BufNewFile,BufReadPost *.graphqls set filetype=graphql
   au BufNewfile,BufReadPost *.tmpl set filetype=gotmpl
 
-  au BufNewFile,BufRead *.rb,*.ts,*.tsx set sw=2 expandtab ts=2
+  au FileType ruby,typescript,typescriptreact setlocal sw=2 expandtab ts=2
   au FileType perl set isfname-=- isfname-=/ isfname-=+
   au FileType html setlocal path+=;/
   au BufNewFile *.pm set ft=perl | call sonictemplate#apply('package', 'n')
-  au BufWritePre *.ts,*.tsx,*.java,*.go call execute('LspDocumentFormatSync --server=efm-langserver')
+  au BufWritePre *.ts,*.tsx,*.go call execute('LspDocumentFormatSync --server=efm-langserver')
   au BufNewFile *.pl 0r $HOME/.vim/template/perl-script.txt
   au BufNewFile *.t  0r $HOME/.vim/template/perl-test.txt
   au CmdwinEnter * call s:init_cmdwin()
@@ -270,7 +265,7 @@ if has('conceal')
 endif
 
 " json
-let g:vim_json_syntax_conceal = 0
+let g:vim_json_conceal = 0
 
 " open-browser
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
@@ -278,7 +273,6 @@ nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
 let g:ctrlp_match_func = { 'match' : 'ctrlp_matchfuzzy#matcher' }
-let g:ctrlp_user_command='rg %s --files --color=never --glob ""'
 " to install files do `go install github.com/mattn/files@latest`
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard', 'files -a %s']
 let g:ctrlp_use_caching=0
@@ -294,7 +288,7 @@ function! s:ctrlp_grep(...)
   endif
 
   if pat != ""
-    execute 'silent grep!' pat . ' ' . getcwd()
+    execute 'silent grep! ' . escape('-e ' . shellescape(pat, 1) . ' -- ' . shellescape(getcwd(), 1), '|')
     if len(getqflist()) > 0
       CtrlPQuickfix
       cclose
@@ -325,9 +319,9 @@ let g:lightline = {
   \ }
 
 function! LightlineFilename()
-  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let root = FugitiveWorkTree()
   let path = expand('%:p')
-  if path[:len(root)-1] ==# root
+  if !empty(root) && stridx(path, root . '/') == 0
     return path[len(root)+1:]
   endif
   return expand('%')
@@ -336,6 +330,9 @@ endfunction
 let g:ref_godoc_cmd = 'go doc -all'
 
 let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+
+packadd editorconfig
 
 " vim-plug
 call plug#begin('~/.vim/plugged')
@@ -343,19 +340,14 @@ call plug#begin('~/.vim/plugged')
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/ctrlp-ghq'
 Plug 'thinca/vim-ref'
-Plug 'vim-scripts/closetag.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-jp/vimdoc-ja'
 Plug 'airblade/vim-rooter'
 Plug 'mattn/sonictemplate-vim'
-Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }
-Plug 'elzr/vim-json'
 Plug 'tyru/open-browser.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'itchyny/lightline.vim'
 Plug 'rhysd/ghpr-blame.vim'
-Plug 'mattn/vim-asyncgrep'
-Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'prabirshrestha/vim-lsp'
@@ -363,12 +355,9 @@ Plug 'mattn/vim-lsp-settings'
 Plug 'obcat/vim-ref-godoc'
 Plug 'mattn/ctrlp-matchfuzzy'
 Plug 'github/copilot.vim'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'styled-components/vim-styled-components'
 Plug 'ddollar/golang-template.vim'
-Plug 'ConradIrwin/vim-bracketed-paste'
-Plug 'rust-lang/rust.vim'
 
 call plug#end()
 
