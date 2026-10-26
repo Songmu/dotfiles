@@ -11,3 +11,6 @@ font-size = 16
 
 keybind = global:ctrl+2=toggle_visibility
 keybind = shift+enter=text:\n
+# Forward Ctrl+Tab / Ctrl+Shift+Tab using xterm modifyOtherKeys encoding.
+keybind = ctrl+tab=csi:27;5;9~
+keybind = ctrl+shift+tab=csi:27;6;9~

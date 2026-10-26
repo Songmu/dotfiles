@@ -158,8 +158,8 @@ nnoremap * g*
 nnoremap # g#
 
 "タブ切り替え
-nnoremap <C-l> gt
-nnoremap <C-h> gT
+nnoremap <C-Tab> gt
+nnoremap <C-S-Tab> gT
 nmap <C-t> :<C-u>tabnew %:h<cr>
 
 " 現在のタブを右へ移動
