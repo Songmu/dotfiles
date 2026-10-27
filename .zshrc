@@ -38,9 +38,6 @@ path=(
     $path
     /usr/local/sbin
 )
-if which ghg > /dev/null; then
-  export PATH=$(ghg bin):$PATH
-fi
 
 init_env() {
   local env_cmd=$1
