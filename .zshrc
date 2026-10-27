@@ -8,11 +8,12 @@ if [[ -t 0 ]]; then
   stty -ixon
 fi
 
-if [[ -z "$HOMEBREW_PREFIX" ||
+if [[ ( -x /opt/homebrew/bin/brew && "$HOMEBREW_PREFIX" != /opt/homebrew ) ||
+      -z "$HOMEBREW_PREFIX" ||
       ":$PATH:" != *":$HOMEBREW_PREFIX/bin:"* ||
       ":$PATH:" != *":$HOMEBREW_PREFIX/sbin:"* ||
       ":$FPATH:" != *":$HOMEBREW_PREFIX/share/zsh/site-functions:"* ]]; then
-  for brew_cmd in "${commands[brew]:-}" /opt/homebrew/bin/brew /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
+  for brew_cmd in /opt/homebrew/bin/brew "${commands[brew]:-}" /usr/local/bin/brew /home/linuxbrew/.linuxbrew/bin/brew; do
     if [[ -x "$brew_cmd" ]]; then
       eval "$("$brew_cmd" shellenv zsh)"
       break
