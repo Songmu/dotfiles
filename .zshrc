@@ -31,6 +31,7 @@ export GOPATH=~/dev
 typeset -U path PATH
 path=(
     ~/bin
+    ~/.local/bin
     ~/.plenv/libexec
     ~/.plenv/shims
     ~/.bun/bin
