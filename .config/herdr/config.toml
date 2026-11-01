@@ -47,6 +47,7 @@ delivery = "off"
 enabled = false
 
 [experimental]
+kitty_graphics = true
 # tmux did not persist pane contents.
 pane_history = false
 allow_nested = true

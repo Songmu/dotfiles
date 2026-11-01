@@ -1,5 +1,4 @@
 theme = "Builtin Dark"
-auto-update-channel = tip
 
 macos-titlebar-style = hidden
 mouse-hide-while-typing = true
